@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FilBanfi – Android Developer</title>
+<style>
+/* System font stack – zero network requests */
+:root {
+  --pri:        #1b6e38;
+  --pri-con:    #aaf5c2;
+  --on-pri-con: #002110;
+  --sec-con:    #cde9d5;
+  --surf:       #f5fbf5;
+  --surf-con:   #e8f2e9;
+  --surf-hi:    #dce8dd;
+  --on-surf:    #181d19;
+  --on-var:     #414942;
+  --outline:    #717970;
+  --out-var:    #c0c9c1;
+  --inv:        #2c332d;
+  --inv-on:     #ecf3ec;
+  --inv-pri:    #8ed9a4;
+
+  --r-full: 9999px; --r-xl: 24px; --r-l: 16px; --r-m: 12px;
+  --e1: 0 1px 3px rgba(0,0,0,.09);
+  --e2: 0 3px 8px rgba(0,0,0,.12);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { background: var(--surf); color: var(--on-surf); line-height: 1.55; }
+
+.page { max-width: 860px; margin: 0 auto; padding: 0 20px 80px; }
+
+/* Nav */
+nav {
+  position: sticky; top: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 13px 0;
+  background: rgba(245,251,245,.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--out-var);
+}
+.nav-logo { font-size: 18px; font-weight: 800; color: var(--pri); text-decoration: none; }
+.nav-links { display: flex; gap: 4px; }
+.nav-link { font-size: 13px; font-weight: 600; color: var(--on-var); text-decoration: none; padding: 6px 13px; border-radius: var(--r-full); transition: background .15s; }
+.nav-link:hover { background: var(--surf-hi); }
+@media(max-width:500px){ .nav-links { display: none; } }
+
+/* Hero */
+.hero { padding: 60px 0 48px; }
+.pill {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: var(--pri-con); color: var(--on-pri-con);
+  font-size: 11px; font-weight: 700; letter-spacing: .09em; text-transform: uppercase;
+  padding: 5px 13px; border-radius: var(--r-full); margin-bottom: 20px;
+}
+.dot { width: 6px; height: 6px; border-radius: 50%; background: var(--pri); animation: blink 1.8s step-end infinite; }
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+
+h1 { font-size: clamp(40px, 8vw, 68px); font-weight: 800; line-height: 1.06; letter-spacing: -2px; margin-bottom: 16px; }
+h1 .name { color: var(--pri); }
+.hero-sub { font-size: 16px; color: var(--on-var); max-width: 480px; margin-bottom: 8px; }
+.hero-mono { font-family: ui-monospace, "Cascadia Code", monospace; font-size: 12px; color: var(--outline); margin-bottom: 30px; }
+.hero-mono span { color: var(--pri); }
+
+.btn-row { display: flex; flex-wrap: wrap; gap: 10px; }
+.btn-f { display: inline-flex; align-items: center; gap: 7px; background: var(--pri); color: #fff; font-size: 14px; font-weight: 700; padding: 10px 20px; border-radius: var(--r-full); text-decoration: none; box-shadow: var(--e1); transition: filter .15s; }
+.btn-f:hover { filter: brightness(1.1); }
+.btn-t { display: inline-flex; align-items: center; gap: 7px; background: var(--sec-con); color: var(--on-pri-con); font-size: 14px; font-weight: 700; padding: 10px 20px; border-radius: var(--r-full); text-decoration: none; box-shadow: var(--e1); transition: filter .15s; }
+.btn-t:hover { filter: brightness(.95); }
+
+/* Sections */
+.section { margin-top: 64px; }
+.sec-label { font-family: ui-monospace, monospace; font-size: 10px; letter-spacing: .15em; text-transform: uppercase; color: var(--pri); margin-bottom: 5px; }
+.sec-title { font-size: 24px; font-weight: 800; letter-spacing: -.4px; margin-bottom: 20px; }
+
+/* Project grid */
+.proj-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px,1fr)); gap: 12px; }
+@media(max-width:500px){ .proj-grid { grid-template-columns: 1fr; } }
+
+.proj-card { background: var(--surf-con); border-radius: var(--r-xl); padding: 22px; text-decoration: none; color: inherit; display: flex; flex-direction: column; gap: 8px; box-shadow: var(--e1); transition: box-shadow .18s, transform .18s; }
+.proj-card:hover { box-shadow: var(--e2); transform: translateY(-3px); }
+.proj-card.featured { grid-column: 1/-1; flex-direction: row; align-items: flex-start; gap: 18px; background: var(--pri-con); }
+@media(max-width:500px){ .proj-card.featured { flex-direction: column; } }
+
+.proj-icon { width: 48px; height: 48px; border-radius: var(--r-m); display: flex; align-items: center; justify-content: center; font-size: 24px; flex-shrink: 0; background: rgba(0,0,0,.06); }
+.featured .proj-icon { width: 58px; height: 58px; font-size: 28px; }
+
+.proj-body { flex: 1; min-width: 0; }
+.proj-badges { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 8px; }
+.badge { font-family: ui-monospace, monospace; font-size: 9px; font-weight: 600; padding: 2px 8px; border-radius: var(--r-full); letter-spacing: .06em; text-transform: uppercase; }
+.bl { background: #c6f4d8; color: #063d1a; }
+.bw { background: #fff3cd; color: #6d4c00; }
+.ba { background: #e3f2fd; color: #0d47a1; }
+.bp { background: #ede7f6; color: #311b92; }
+
+.proj-name { font-size: 17px; font-weight: 800; color: var(--on-surf); margin-bottom: 4px; }
+.featured .proj-name { font-size: 20px; }
+.proj-desc { font-size: 13px; color: var(--on-var); line-height: 1.55; }
+.proj-tech { font-family: ui-monospace, monospace; font-size: 11px; color: var(--outline); margin-top: 5px; }
+.proj-arrow { align-self: flex-start; font-size: 18px; color: var(--pri); margin-top: 2px; transition: transform .18s; }
+.proj-card:hover .proj-arrow { transform: translate(3px,-3px); }
+
+/* Tech chips */
+.tech-groups { display: flex; flex-direction: column; gap: 16px; }
+.tech-group-label { font-family: ui-monospace, monospace; font-size: 10px; letter-spacing: .13em; text-transform: uppercase; color: var(--outline); margin-bottom: 7px; }
+.tech-chips { display: flex; flex-wrap: wrap; gap: 7px; }
+.tc { display: inline-flex; align-items: center; gap: 6px; background: var(--surf-con); border: 1.5px solid var(--out-var); border-radius: var(--r-full); padding: 6px 13px; font-size: 13px; font-weight: 600; color: var(--on-surf); transition: border-color .15s, background .15s; }
+.tc:hover { border-color: var(--pri); background: var(--pri-con); }
+
+/* Stats – single img, lazy loaded */
+.stats-wrap { background: var(--surf-con); border-radius: var(--r-xl); padding: 24px; display: flex; justify-content: center; box-shadow: var(--e1); }
+.stats-wrap img { max-width: 100%; border-radius: var(--r-m); }
+
+/* About */
+.about-card { background: var(--inv); color: var(--inv-on); border-radius: var(--r-xl); padding: 30px; display: flex; gap: 20px; align-items: flex-start; }
+@media(max-width:500px){ .about-card { flex-direction: column; gap: 14px; } }
+.about-av { width: 68px; height: 68px; border-radius: var(--r-l); overflow: hidden; flex-shrink: 0; border: 2px solid var(--inv-pri); }
+.about-av img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.about-text h3 { font-size: 20px; font-weight: 800; margin-bottom: 6px; }
+.about-text p { font-size: 13px; line-height: 1.65; color: rgba(236,243,236,.72); max-width: 520px; }
+.about-tags { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 12px; }
+.about-tag { font-family: ui-monospace, monospace; font-size: 11px; font-weight: 600; background: rgba(142,217,164,.14); color: var(--inv-pri); border: 1px solid rgba(142,217,164,.2); border-radius: var(--r-full); padding: 3px 10px; }
+
+/* Contacts */
+.contacts-grid { display: flex; flex-wrap: wrap; gap: 9px; }
+.cc { display: inline-flex; align-items: center; gap: 9px; background: var(--surf-con); border: 1.5px solid var(--out-var); border-radius: var(--r-full); padding: 9px 16px 9px 11px; text-decoration: none; color: var(--on-surf); box-shadow: var(--e1); transition: border-color .15s, background .15s; }
+.cc:hover { border-color: var(--pri); background: var(--pri-con); }
+.cc-icon { font-size: 18px; }
+.cc-plat { font-family: ui-monospace, monospace; font-size: 9px; letter-spacing: .09em; text-transform: uppercase; color: var(--outline); display: block; }
+.cc-handle { font-size: 13px; font-weight: 700; display: block; }
+
+/* Footer */
+footer { margin-top: 72px; padding-top: 18px; border-top: 1px solid var(--out-var); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 6px; }
+.foot-logo { font-weight: 800; color: var(--pri); }
+.foot-copy { font-family: ui-monospace, monospace; font-size: 11px; color: var(--outline); }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <nav>
+    <a class="nav-logo" href="#">FilBanfi</a>
+    <div class="nav-links">
+      <a class="nav-link" href="#projects">Projects</a>
+      <a class="nav-link" href="#tech">Tech</a>
+      <a class="nav-link" href="#about">About</a>
+      <a class="nav-link" href="#contacts">Contact</a>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <div class="pill"><div class="dot"></div>Open to collaboration</div>
+    <h1>Hi, I'm<br><span class="name">Filippo Banfi</span></h1>
+    <p class="hero-sub">Android developer building privacy-first apps under the FilBanfi brand.</p>
+    <p class="hero-mono"><span>Kotlin</span> · Jetpack Compose · <span>Fedora Linux</span> · Open Source · 🇮🇹</p>
+    <div class="btn-row">
+      <a class="btn-f" href="https://play.google.com/store/apps/developer?id=FilBanfi" target="_blank">▶ Google Play</a>
+      <a class="btn-t" href="https://github.com/FilBanfi" target="_blank">⌥ GitHub</a>
+    </div>
+  </section>
+
+  <section class="section" id="projects">
+    <div class="sec-label">// projects</div>
+    <div class="sec-title">What I'm building</div>
+    <div class="proj-grid">
+
+      <a class="proj-card featured" href="https://github.com/FilBanfi/WalkYourTime" target="_blank">
+        <div class="proj-icon">🦌</div>
+        <div class="proj-body">
+          <div class="proj-badges"><span class="badge bl">● Live</span><span class="badge ba">Android</span></div>
+          <div class="proj-name">WalkYourTime</div>
+          <div class="proj-desc">Turn your steps into screen time. Privacy-first Android app — 30+ localizations, Monet theming, fully local with zero tracking.</div>
+          <div class="proj-tech">Kotlin · Jetpack Compose · Health Connect · Accessibility API</div>
+        </div>
+        <div class="proj-arrow">↗</div>
+      </a>
+
+      <div class="proj-card">
+        <div class="proj-icon">📍</div>
+        <div class="proj-body">
+          <div class="proj-badges"><span class="badge bw">Planned</span><span class="badge ba">Android</span></div>
+          <div class="proj-name">Spot</div>
+          <div class="proj-desc">Save and revisit GPS locations privately. Sync via Google Drive, no third-party servers.</div>
+          <div class="proj-tech">Kotlin · Android · Google Drive API</div>
+        </div>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-icon">🔧</div>
+        <div class="proj-body">
+          <div class="proj-badges"><span class="badge bw">WIP</span><span class="badge bp">Custom ROM</span></div>
+          <div class="proj-name">AnythingOS</div>
+          <div class="proj-desc">Porting Nothing OS 4.0 aesthetics onto LineageOS 23 for Samsung Galaxy A51 (Exynos).</div>
+          <div class="proj-tech">AOSP · LineageOS · Samsung Exynos</div>
+        </div>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-icon">⚔️</div>
+        <div class="proj-body">
+          <div class="proj-badges"><span class="badge bw">On hold</span></div>
+          <div class="proj-name">Mysterium</div>
+          <div class="proj-desc">A 2D dungeon crawler with an original soundtrack composed in 12/8 time.</div>
+          <div class="proj-tech">C++ · SFML · Original OST</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="section" id="tech">
+    <div class="sec-label">// tech stack</div>
+    <div class="sec-title">Tools & languages</div>
+    <div class="tech-groups">
+      <div>
+        <div class="tech-group-label">Languages</div>
+        <div class="tech-chips">
+          <div class="tc">🟣 Kotlin</div>
+          <div class="tc">🔵 C++</div>
+          <div class="tc">🐍 Python</div>
+          <div class="tc">🌐 HTML</div>
+        </div>
+      </div>
+      <div>
+        <div class="tech-group-label">Android Stack</div>
+        <div class="tech-chips">
+          <div class="tc">🎨 Jetpack Compose</div>
+          <div class="tc">🤖 Android SDK</div>
+          <div class="tc">❤️ Health Connect</div>
+          <div class="tc">♿ Accessibility API</div>
+          <div class="tc">✨ Material 3</div>
+        </div>
+      </div>
+      <div>
+        <div class="tech-group-label">Environment</div>
+        <div class="tech-chips">
+          <div class="tc">🟢 Android Studio</div>
+          <div class="tc">🎩 Fedora</div>
+          <div class="tc">🐧 Linux</div>
+          <div class="tc">🌿 Git</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="sec-label">// github activity</div>
+    <div class="sec-title">Stats</div>
+    <div class="stats-wrap">
+      <img
+        src="https://github-readme-stats.vercel.app/api?username=FilBanfi&show_icons=true&bg_color=e8f2e9&title_color=1b6e38&text_color=181d19&icon_color=1b6e38&border_color=c0c9c1&border_radius=16&hide_border=false"
+        alt="FilBanfi GitHub Stats"
+        loading="lazy"
+        width="495" height="195"
+      />
+    </div>
+  </section>
+
+  <section class="section" id="about">
+    <div class="sec-label">// about</div>
+    <div class="sec-title">Who I am</div>
+    <div class="about-card">
+      <div class="about-av">
+        <img src="https://avatars.githubusercontent.com/FilBanfi" alt="FilBanfi" loading="lazy">
+      </div>
+      <div class="about-text">
+        <h3>Filippo Banfi</h3>
+        <p>Android developer from Italy. I build privacy-first apps with Kotlin and Jetpack Compose. Long-time Linux user who prefers experimenting over following standard paths. Passionate about custom ROMs, open source, and low-level systems.</p>
+        <div class="about-tags">
+          <span class="about-tag">Android Dev</span>
+          <span class="about-tag">Open Source</span>
+          <span class="about-tag">Fedora Linux</span>
+          <span class="about-tag">Custom ROMs</span>
+          <span class="about-tag">Privacy First</span>
+          <span class="about-tag">🇮🇹 Italian</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="contacts">
+    <div class="sec-label">// contact</div>
+    <div class="sec-title">Get in touch</div>
+    <div class="contacts-grid">
+      <a class="cc" href="mailto:filbanfi@hotmail.com">
+        <span class="cc-icon">✉️</span>
+        <span><span class="cc-plat">Email</span><span class="cc-handle">filbanfi@hotmail.com</span></span>
+      </a>
+      <a class="cc" href="https://www.instagram.com/filbanfi/" target="_blank">
+        <span class="cc-icon">📷</span>
+        <span><span class="cc-plat">Instagram</span><span class="cc-handle">@filbanfi</span></span>
+      </a>
+      <a class="cc" href="https://www.threads.com/@filbanfi" target="_blank">
+        <span class="cc-icon">🧵</span>
+        <span><span class="cc-plat">Threads</span><span class="cc-handle">@filbanfi</span></span>
+      </a>
+      <a class="cc" href="https://x.com/FilBanfi" target="_blank">
+        <span class="cc-icon">🐦</span>
+        <span><span class="cc-plat">X</span><span class="cc-handle">@FilBanfi</span></span>
+      </a>
+    </div>
+  </section>
+
+  <footer>
+    <span class="foot-logo">FilBanfi</span>
+    <span class="foot-copy">filbanfi.github.io · built with ❤️ and Kotlin</span>
+  </footer>
+
+</div>
+</body>
+</html>
