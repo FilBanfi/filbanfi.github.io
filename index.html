@@ -1,68 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
-  <!-- ===================================================
-       FilBanfi \u2014 GitHub Pages Homepage
-       Author  : FilBanfi (filbanfi@hotmail.com)
-       Updated : 2026
-       Fonts   : Syne (headings) \u00b7 DM Sans (body) \u00b7 JetBrains Mono (code/labels)
-       Icons   : Simple Icons CDN \u2014 https://simpleicons.org
-  =================================================== -->
-
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>FilBanfi \u2014 Independent Developer</title>
-
-  <!-- Fonts -->
+  <title>FilBanfi \u2014 Developer</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@400;500;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
 
   <style>
-
-    /* ==============================================
-       DESIGN TOKENS \u2014 edit colors/fonts here only
-    ============================================== */
+    /* =============================================
+       DESIGN TOKENS
+    ============================================= */
     :root {
-      /* Brand colors */
-      --green-deep:    #004519;
-      --green-mid:     #006b2a;
-      --green-light:   #B0E6C4;
-      --green-pale:    #d8f5e6;
-
-      /* Text */
-      --white:         #f5f5f0;
-      --grey:          #8a9e93;
-
-      /* Cards */
-      --card-bg:       rgba(0, 107, 42, 0.18);
-      --card-border:   rgba(176, 230, 196, 0.18);
-
-      /* Fonts */
-      --font-display:  'Syne', sans-serif;
-      --font-body:     'DM Sans', sans-serif;
-      --font-mono:     'JetBrains Mono', monospace;
-
-      /* Layout heights (banner + nav) */
-      --banner-h:      36px;
-      --nav-h:         64px;
+      --green-deep:   #004519;
+      --green-mid:    #006b2a;
+      --green-light:  #B0E6C4;
+      --green-pale:   #d8f5e6;
+      --white:        #f5f5f0;
+      --grey:         #8a9e93;
+      --card-bg:      rgba(0, 107, 42, 0.18);
+      --card-border:  rgba(176, 230, 196, 0.18);
+      --font-display: 'Syne', sans-serif;
+      --font-body:    'DM Sans', sans-serif;
+      --font-mono:    'JetBrains Mono', monospace;
+      --banner-h:     36px;   /* height of the top announcement bar */
     }
 
-
-    /* ==============================================
-       RESET & BASE
-    ============================================== */
-    *, *::before, *::after {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
+    /* =============================================
+       RESET
+    ============================================= */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
     body {
       background-color: var(--green-deep);
       color: var(--white);
@@ -70,363 +39,128 @@
       font-size: 16px;
       line-height: 1.6;
       overflow-x: hidden;
-      /* push content below fixed banner + nav */
-      padding-top: calc(var(--banner-h) + var(--nav-h));
     }
 
-    /* Subtle noise texture overlay */
+    /* Noise texture */
     body::before {
       content: '';
-      position: fixed;
-      inset: 0;
+      position: fixed; inset: 0;
       background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
-      pointer-events: none;
-      z-index: 0;
-      opacity: 0.6;
+      pointer-events: none; z-index: 0; opacity: 0.6;
     }
 
-    /* Decorative radial glow top-right */
+    /* Decorative glow */
     body::after {
       content: '';
-      position: fixed;
-      top: -20%;
-      right: -10%;
-      width: 60vw;
-      height: 60vw;
+      position: fixed; top: -20%; right: -10%;
+      width: 60vw; height: 60vw;
       background: radial-gradient(circle, rgba(176,230,196,0.07) 0%, transparent 70%);
-      pointer-events: none;
-      z-index: 0;
+      pointer-events: none; z-index: 0;
     }
 
-    /* Centered content wrapper */
-    .container {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 0 2rem;
-      position: relative;
-      z-index: 1;
-    }
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 2rem; position: relative; z-index: 1; }
 
-
-    /* ==============================================
+    /* =============================================
        ANNOUNCEMENT BANNER
-       Edit the text inside .banner-text to update
-    ============================================== */
+       Edit text in the HTML below (search "banner-text")
+    ============================================= */
     .banner {
       position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 200;
+      top: 0; left: 0; right: 0;
+      z-index: 110;                             /* above nav */
       height: var(--banner-h);
-      background: rgba(0, 50, 20, 0.92);
-      border-bottom: 1px solid rgba(176,230,196,0.15);
+      background: rgba(0, 40, 18, 0.95);
+      border-bottom: 1px solid rgba(176,230,196,0.12);
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 0.6rem;
       font-family: var(--font-mono);
-      font-size: 0.75rem;
+      font-size: 0.72rem;
       color: var(--green-light);
+      white-space: nowrap;
+      overflow: hidden;
     }
 
-    /* Pulsing green dot */
+    /* Pulsing dot */
     .banner-dot {
-      width: 7px;
-      height: 7px;
+      width: 7px; height: 7px;
       border-radius: 50%;
       background: #64dc82;
-      animation: pulse 2s infinite;
-    }
-
-    @keyframes pulse {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50%       { opacity: 0.5; transform: scale(0.8); }
+      flex-shrink: 0;
+      animation: pulse 2s ease-in-out infinite;
     }
 
     .banner a {
-      color: var(--green-light);
-      text-decoration: underline;
-      text-underline-offset: 3px;
-    }
-
-    .banner a:hover {
       color: var(--white);
+      text-decoration: underline;
+      text-underline-offset: 2px;
     }
 
+    .banner a:hover { color: var(--green-light); }
 
-    /* ==============================================
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50%       { opacity: 0.4; transform: scale(0.75); }
+    }
+
+    /* =============================================
        NAVIGATION
-    ============================================== */
+       Sits directly below the banner
+    ============================================= */
     nav {
       position: fixed;
-      top: var(--banner-h);   /* sits directly below the banner */
-      left: 0;
-      right: 0;
+      top: var(--banner-h);   /* pushed down by banner height */
+      left: 0; right: 0;
       z-index: 100;
-      height: var(--nav-h);
-      display: flex;
-      align-items: center;
-      background: rgba(0, 69, 25, 0.82);
+      padding: 1rem 0;
+      background: rgba(0,69,25,0.82);
       backdrop-filter: blur(14px);
       -webkit-backdrop-filter: blur(14px);
       border-bottom: 1px solid var(--card-border);
     }
+    nav .container { display: flex; align-items: center; justify-content: space-between; }
+    .nav-logo { display: flex; align-items: center; gap: 0.75rem; text-decoration: none; }
+    .nav-logo img { width: 32px; height: 32px; border-radius: 50%; border: 2px solid var(--green-light); }
+    .nav-logo span { font-family: var(--font-display); font-weight: 800; font-size: 1.1rem; color: var(--green-light); letter-spacing: 0.03em; }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a { color: var(--grey); text-decoration: none; font-size: 0.875rem; font-family: var(--font-mono); transition: color 0.2s; }
+    .nav-links a:hover { color: var(--green-light); }
 
-    nav .container {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      width: 100%;
-    }
+    /* =============================================
+       HERO
+       padding-top = banner (36px) + nav (~64px) + gap
+    ============================================= */
+    .hero { min-height: 100vh; display: flex; align-items: center; padding-top: 116px; }
+    .hero-inner { display: grid; grid-template-columns: 1fr auto; gap: 4rem; align-items: center; width: 100%; }
+    .hero-tag { font-family: var(--font-mono); font-size: 0.8rem; color: var(--green-light); background: rgba(176,230,196,0.1); border: 1px solid rgba(176,230,196,0.25); padding: 0.3rem 0.8rem; border-radius: 999px; display: inline-block; margin-bottom: 1.5rem; animation: fadeUp 0.6s ease both; }
+    .hero h1 { font-family: var(--font-display); font-size: clamp(3rem,7vw,5.5rem); font-weight: 800; line-height: 1.0; letter-spacing: -0.02em; color: var(--white); animation: fadeUp 0.6s 0.1s ease both; }
+    .hero h1 .accent { color: var(--green-light); }
+    .hero-subtitle { margin-top: 1.5rem; font-size: 1.15rem; color: var(--grey); max-width: 480px; animation: fadeUp 0.6s 0.2s ease both; }
+    .hero-flags { font-size: 1.4rem; margin-top: 0.5rem; animation: fadeUp 0.6s 0.25s ease both; }
+    .hero-badges { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 2rem; animation: fadeUp 0.6s 0.3s ease both; }
+    .badge { font-family: var(--font-mono); font-size: 0.75rem; padding: 0.35rem 0.75rem; border-radius: 6px; border: 1px solid var(--card-border); color: var(--green-light); background: var(--card-bg); }
+    .hero-avatar { animation: fadeUp 0.6s 0.15s ease both; }
+    .hero-avatar img { width: 180px; height: 180px; border-radius: 24px; border: 3px solid var(--green-light); box-shadow: 0 0 60px rgba(176,230,196,0.15), 0 0 0 8px rgba(176,230,196,0.05); display: block; }
+    .hero-cta { display: flex; gap: 1rem; margin-top: 2.5rem; animation: fadeUp 0.6s 0.35s ease both; }
+    .btn { padding: 0.75rem 1.75rem; border-radius: 10px; font-family: var(--font-display); font-weight: 700; font-size: 0.9rem; cursor: pointer; text-decoration: none; transition: all 0.2s; display: inline-block; }
+    .btn-primary { background: var(--green-light); color: var(--green-deep); border: 2px solid var(--green-light); }
+    .btn-primary:hover { background: var(--green-pale); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(176,230,196,0.3); }
+    .btn-secondary { background: transparent; color: var(--green-light); border: 2px solid rgba(176,230,196,0.35); }
+    .btn-secondary:hover { border-color: var(--green-light); transform: translateY(-2px); }
 
-    /* Logo left */
-    .nav-logo {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      text-decoration: none;
-    }
+    /* =============================================
+       SHARED SECTION STYLES
+    ============================================= */
+    section { padding: 6rem 0; }
+    .section-label { font-family: var(--font-mono); font-size: 0.75rem; color: var(--green-light); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 0.75rem; }
+    .section-title { font-family: var(--font-display); font-size: clamp(1.8rem,4vw,2.8rem); font-weight: 800; color: var(--white); margin-bottom: 3rem; line-height: 1.1; }
+    .divider { border: none; border-top: 1px solid rgba(176,230,196,0.12); margin: 0; }
 
-    .nav-logo img {
-      width: 32px;
-      height: 32px;
-      border-radius: 50%;
-      border: 2px solid var(--green-light);
-    }
-
-    .nav-logo span {
-      font-family: var(--font-display);
-      font-weight: 800;
-      font-size: 1.1rem;
-      color: var(--green-light);
-      letter-spacing: 0.03em;
-    }
-
-    /* Links right */
-    .nav-links {
-      display: flex;
-      gap: 2rem;
-      list-style: none;
-    }
-
-    .nav-links a {
-      color: var(--grey);
-      text-decoration: none;
-      font-size: 0.875rem;
-      font-family: var(--font-mono);
-      transition: color 0.2s;
-    }
-
-    .nav-links a:hover {
-      color: var(--green-light);
-    }
-
-
-    /* ==============================================
-       SECTIONS \u2014 shared layout helpers
-    ============================================== */
-    section {
-      padding: 6rem 0;
-    }
-
-    /* Small uppercase label above section title */
-    .section-label {
-      font-family: var(--font-mono);
-      font-size: 0.75rem;
-      color: var(--green-light);
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      margin-bottom: 0.75rem;
-    }
-
-    /* Large section heading */
-    .section-title {
-      font-family: var(--font-display);
-      font-size: clamp(1.8rem, 4vw, 2.8rem);
-      font-weight: 800;
-      color: var(--white);
-      margin-bottom: 3rem;
-      line-height: 1.1;
-    }
-
-    /* Full-width horizontal rule between sections */
-    .divider {
-      border: none;
-      border-top: 1px solid rgba(176,230,196,0.12);
-      margin: 0;
-    }
-
-    /* Scroll-triggered fade-up animation (applied via JS) */
-    .fade-in {
-      opacity: 0;
-      transform: translateY(16px);
-      transition: opacity 0.5s ease, transform 0.5s ease;
-    }
-
-    .fade-in.visible {
-      opacity: 1;
-      transform: none;
-    }
-
-    /* Generic card */
-    .card {
-      background: var(--card-bg);
-      border: 1px solid var(--card-border);
-      border-radius: 16px;
-      padding: 2rem;
-    }
-
-
-    /* ==============================================
-       HERO SECTION
-    ============================================== */
-    .hero {
-      min-height: calc(100vh - var(--banner-h) - var(--nav-h));
-      display: flex;
-      align-items: center;
-    }
-
-    /* Two-column: text left, avatar right */
-    .hero-inner {
-      display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 4rem;
-      align-items: center;
-      width: 100%;
-    }
-
-    /* Small pill above the name */
-    .hero-tag {
-      font-family: var(--font-mono);
-      font-size: 0.8rem;
-      color: var(--green-light);
-      background: rgba(176,230,196,0.1);
-      border: 1px solid rgba(176,230,196,0.25);
-      padding: 0.3rem 0.8rem;
-      border-radius: 999px;
-      display: inline-block;
-      margin-bottom: 1.5rem;
-      animation: fadeUp 0.6s ease both;
-    }
-
-    .hero h1 {
-      font-family: var(--font-display);
-      font-size: clamp(3rem, 7vw, 5.5rem);
-      font-weight: 800;
-      line-height: 1.0;
-      letter-spacing: -0.02em;
-      color: var(--white);
-      animation: fadeUp 0.6s 0.1s ease both;
-    }
-
-    /* Green accent on "Banfi" */
-    .hero h1 .accent {
-      color: var(--green-light);
-    }
-
-    .hero-subtitle {
-      margin-top: 1.5rem;
-      font-size: 1.15rem;
-      color: var(--grey);
-      max-width: 480px;
-      animation: fadeUp 0.6s 0.2s ease both;
-    }
-
-    .hero-flags {
-      font-size: 1.4rem;
-      margin-top: 0.5rem;
-      animation: fadeUp 0.6s 0.25s ease both;
-    }
-
-    /* Small keyword pills */
-    .hero-badges {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.6rem;
-      margin-top: 2rem;
-      animation: fadeUp 0.6s 0.3s ease both;
-    }
-
-    .badge {
-      font-family: var(--font-mono);
-      font-size: 0.75rem;
-      padding: 0.35rem 0.75rem;
-      border-radius: 6px;
-      border: 1px solid var(--card-border);
-      color: var(--green-light);
-      background: var(--card-bg);
-    }
-
-    /* CTA buttons */
-    .hero-cta {
-      display: flex;
-      gap: 1rem;
-      margin-top: 2.5rem;
-      animation: fadeUp 0.6s 0.35s ease both;
-    }
-
-    .btn {
-      padding: 0.75rem 1.75rem;
-      border-radius: 10px;
-      font-family: var(--font-display);
-      font-weight: 700;
-      font-size: 0.9rem;
-      cursor: pointer;
-      text-decoration: none;
-      transition: all 0.2s;
-      display: inline-block;
-    }
-
-    .btn-primary {
-      background: var(--green-light);
-      color: var(--green-deep);
-      border: 2px solid var(--green-light);
-    }
-
-    .btn-primary:hover {
-      background: var(--green-pale);
-      transform: translateY(-2px);
-      box-shadow: 0 8px 24px rgba(176,230,196,0.3);
-    }
-
-    .btn-secondary {
-      background: transparent;
-      color: var(--green-light);
-      border: 2px solid rgba(176,230,196,0.35);
-    }
-
-    .btn-secondary:hover {
-      border-color: var(--green-light);
-      transform: translateY(-2px);
-    }
-
-    /* Avatar photo */
-    .hero-avatar {
-      animation: fadeUp 0.6s 0.15s ease both;
-    }
-
-    .hero-avatar img {
-      width: 180px;
-      height: 180px;
-      border-radius: 24px;
-      border: 3px solid var(--green-light);
-      box-shadow:
-        0 0 60px rgba(176,230,196,0.15),
-        0 0 0 8px rgba(176,230,196,0.05);
-      display: block;
-    }
-
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(20px); }
-      to   { opacity: 1; transform: none; }
-    }
-
-
-    /* ==============================================
-       CURRENTLY BUILDING SECTION
-       Edit the items array in the JS block below
-    ============================================== */
+    /* =============================================
+       CURRENTLY BUILDING
+       Edit the cards directly in the HTML below
+    ============================================= */
     .building-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
@@ -449,29 +183,19 @@
       gap: 0.75rem;
     }
 
-    /* Animated working indicator */
+    /* Animated green dot = "active" indicator */
     .working-dot {
-      width: 8px;
-      height: 8px;
+      width: 8px; height: 8px;
       border-radius: 50%;
       background: #64dc82;
       flex-shrink: 0;
-      animation: pulse 2s infinite;
+      animation: pulse 2s ease-in-out infinite;
     }
 
-    .building-name {
-      font-family: var(--font-display);
-      font-weight: 700;
-      font-size: 1rem;
-      color: var(--white);
-    }
+    .building-name { font-family: var(--font-display); font-weight: 700; font-size: 1rem; color: var(--white); }
+    .building-desc { font-size: 0.85rem; color: var(--grey); line-height: 1.5; }
 
-    .building-desc {
-      font-size: 0.85rem;
-      color: var(--grey);
-      line-height: 1.5;
-    }
-
+    /* Small label showing current phase/build */
     .building-progress {
       font-family: var(--font-mono);
       font-size: 0.7rem;
@@ -480,382 +204,93 @@
       border: 1px solid rgba(176,230,196,0.15);
       padding: 0.2rem 0.6rem;
       border-radius: 5px;
-      display: inline-block;
       align-self: flex-start;
     }
 
+    /* =============================================
+       FEATURED PROJECTS (PINNED)
+    ============================================= */
+    .pinned-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px,1fr)); gap: 1.5rem; }
+    .project-card { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 16px; padding: 1.75rem; text-decoration: none; color: var(--white); transition: all 0.25s ease; display: flex; flex-direction: column; gap: 1rem; position: relative; overflow: hidden; }
+    .project-card::before { content:''; position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(90deg,var(--green-light),transparent); opacity:0; transition:opacity 0.25s; }
+    .project-card:hover { border-color: rgba(176,230,196,0.4); background: rgba(0,107,42,0.28); transform: translateY(-4px); box-shadow: 0 16px 40px rgba(0,0,0,0.3); }
+    .project-card:hover::before { opacity: 1; }
+    .project-card-top { display: flex; justify-content: space-between; align-items: flex-start; }
 
-    /* ==============================================
-       PINNED PROJECTS SECTION
-    ============================================== */
-    .pinned-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 1.5rem;
-    }
+    /* Icon: replace emoji with <img> when you have a logo */
+    .project-icon { font-size: 2rem; line-height: 1; }
+    .project-icon img { width: 48px; height: 48px; border-radius: 12px; object-fit: contain; display: block; }
 
-    .project-card {
-      background: var(--card-bg);
-      border: 1px solid var(--card-border);
-      border-radius: 16px;
-      padding: 1.75rem;
-      text-decoration: none;
-      color: var(--white);
-      transition: all 0.25s ease;
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-      position: relative;
-      overflow: hidden;
-    }
+    /* Status chips */
+    .status-chip { font-family: var(--font-mono); font-size: 0.65rem; font-weight: 700; padding: 0.2rem 0.5rem; border-radius: 6px; letter-spacing: 0.05em; }
+    .s-AP { background:rgba(100,220,130,0.2); color:#64dc82; border:1px solid rgba(100,220,130,0.35); }
+    .s-AB { background:rgba(100,180,255,0.2); color:#64b4ff; border:1px solid rgba(100,180,255,0.35); }
+    .s-PT { background:rgba(255,210,80,0.2);  color:#ffd250; border:1px solid rgba(255,210,80,0.35); }
+    .s-PI { background:rgba(255,160,80,0.2);  color:#ffa050; border:1px solid rgba(255,160,80,0.35); }
+    .s-FP { background:rgba(200,150,255,0.2); color:#c896ff; border:1px solid rgba(200,150,255,0.35); }
+    .s-FI { background:rgba(180,180,180,0.2); color:#b4b4b4; border:1px solid rgba(180,180,180,0.35); }
+    .s-ID { background:rgba(255,255,255,0.1); color:#aaaaaa; border:1px solid rgba(255,255,255,0.15); }
+    .s-IN { background:rgba(200,50,50,0.2);   color:#ff8080; border:1px solid rgba(200,50,50,0.3); }
 
-    /* Green gradient line that appears on hover */
-    .project-card::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 2px;
-      background: linear-gradient(90deg, var(--green-light), transparent);
-      opacity: 0;
-      transition: opacity 0.25s;
-    }
+    .project-name { font-family: var(--font-display); font-size: 1.25rem; font-weight: 700; }
+    .project-desc { font-size: 0.875rem; color: var(--grey); flex: 1; }
+    .project-langs { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+    .lang-tag { font-family: var(--font-mono); font-size: 0.7rem; padding: 0.2rem 0.5rem; background: rgba(176,230,196,0.08); border: 1px solid rgba(176,230,196,0.15); border-radius: 4px; color: var(--green-light); }
+    .card-arrow { font-size: 0.8rem; color: var(--grey); align-self: flex-end; transition: color 0.2s, transform 0.2s; }
+    .project-card:hover .card-arrow { color: var(--green-light); transform: translate(2px,-2px); }
 
-    .project-card:hover {
-      border-color: rgba(176,230,196,0.4);
-      background: rgba(0,107,42,0.28);
-      transform: translateY(-4px);
-      box-shadow: 0 16px 40px rgba(0,0,0,0.3);
-    }
-
-    .project-card:hover::before {
-      opacity: 1;
-    }
-
-    .project-card-top {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-    }
-
-    /* Icon area \u2014 replace emoji with <img> when you have a logo */
-    .project-icon {
-      font-size: 2.2rem;
-      line-height: 1;
-    }
-
-    .project-icon img {
-      width: 48px;
-      height: 48px;
-      border-radius: 12px;
-      object-fit: contain;
-      display: block;
-    }
-
-    .project-name {
-      font-family: var(--font-display);
-      font-size: 1.25rem;
-      font-weight: 700;
-    }
-
-    .project-desc {
-      font-size: 0.875rem;
-      color: var(--grey);
-      flex: 1;
-    }
-
-    .project-langs {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.4rem;
-    }
-
-    .lang-tag {
-      font-family: var(--font-mono);
-      font-size: 0.7rem;
-      padding: 0.2rem 0.5rem;
-      background: rgba(176,230,196,0.08);
-      border: 1px solid rgba(176,230,196,0.15);
-      border-radius: 4px;
-      color: var(--green-light);
-    }
-
-    .card-arrow {
-      font-size: 0.9rem;
-      color: var(--grey);
-      align-self: flex-end;
-      transition: color 0.2s, transform 0.2s;
-    }
-
-    .project-card:hover .card-arrow {
-      color: var(--green-light);
-      transform: translate(2px, -2px);
-    }
-
-
-    /* ==============================================
-       STATUS CHIPS \u2014 used in cards and table
-    ============================================== */
-    .status-chip {
-      font-family: var(--font-mono);
-      font-size: 0.65rem;
-      font-weight: 700;
-      padding: 0.2rem 0.5rem;
-      border-radius: 6px;
-      letter-spacing: 0.05em;
-    }
-
-    .s-AP { background: rgba(100,220,130,0.2); color: #64dc82; border: 1px solid rgba(100,220,130,0.35); }
-    .s-AB { background: rgba(100,180,255,0.2); color: #64b4ff; border: 1px solid rgba(100,180,255,0.35); }
-    .s-PT { background: rgba(255,210,80,0.2);  color: #ffd250; border: 1px solid rgba(255,210,80,0.35);  }
-    .s-PI { background: rgba(255,160,80,0.2);  color: #ffa050; border: 1px solid rgba(255,160,80,0.35);  }
-    .s-FP { background: rgba(200,150,255,0.2); color: #c896ff; border: 1px solid rgba(200,150,255,0.35); }
-    .s-FI { background: rgba(180,180,180,0.2); color: #b4b4b4; border: 1px solid rgba(180,180,180,0.35); }
-    .s-ID { background: rgba(255,255,255,0.1); color: #aaaaaa; border: 1px solid rgba(255,255,255,0.15); }
-    .s-IN { background: rgba(200,50,50,0.2);   color: #ff8080; border: 1px solid rgba(200,50,50,0.3);   }
-
-
-    /* ==============================================
+    /* =============================================
        ALL PROJECTS TABLE
-    ============================================== */
+    ============================================= */
+    .filter-bar { display:flex; flex-wrap:wrap; gap:0.75rem; margin-bottom:2rem; }
+    .filter-select { background:var(--card-bg); border:1px solid var(--card-border); border-radius:8px; color:var(--green-light); font-family:var(--font-mono); font-size:0.8rem; padding:0.5rem 1rem; appearance:none; cursor:pointer; transition:border-color 0.2s; outline:none; min-width:160px; }
+    .filter-select:hover,.filter-select:focus { border-color:rgba(176,230,196,0.5); }
+    .filter-select option { background:var(--green-deep); }
+    .reset-btn { background:transparent; border:1px solid rgba(176,230,196,0.2); border-radius:8px; color:var(--grey); font-family:var(--font-mono); font-size:0.8rem; padding:0.5rem 1rem; cursor:pointer; transition:all 0.2s; }
+    .reset-btn:hover { color:var(--white); border-color:rgba(176,230,196,0.4); }
+    .table-wrap { overflow-x:auto; border-radius:14px; border:1px solid var(--card-border); }
+    table { width:100%; border-collapse:collapse; font-size:0.875rem; }
+    thead tr { background:rgba(0,107,42,0.35); }
+    th { font-family:var(--font-mono); font-size:0.7rem; text-transform:uppercase; letter-spacing:0.1em; color:var(--green-light); padding:1rem 1.25rem; text-align:left; border-bottom:1px solid var(--card-border); }
+    tbody tr { border-bottom:1px solid rgba(176,230,196,0.06); transition:background 0.15s; }
+    tbody tr:last-child { border-bottom:none; }
+    tbody tr:hover { background:rgba(176,230,196,0.04); }
+    td { padding:0.85rem 1.25rem; vertical-align:middle; }
+    .td-name a { color:var(--white); font-family:var(--font-display); font-weight:600; text-decoration:none; transition:color 0.2s; }
+    .td-name a:hover { color:var(--green-light); }
+    .td-name .no-link { color:var(--white); font-family:var(--font-display); font-weight:600; }
+    .td-platforms { color:var(--grey); font-size:0.8rem; }
+    .td-langs { display:flex; flex-wrap:wrap; gap:0.3rem; }
+    .no-results { text-align:center; color:var(--grey); padding:3rem; font-family:var(--font-mono); font-size:0.85rem; }
 
-    /* Filter dropdowns row */
-    .filter-bar {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.75rem;
-      margin-bottom: 2rem;
-    }
-
-    .filter-select {
-      background: var(--card-bg);
-      border: 1px solid var(--card-border);
-      border-radius: 8px;
-      color: var(--green-light);
-      font-family: var(--font-mono);
-      font-size: 0.8rem;
-      padding: 0.5rem 1rem;
-      appearance: none;
-      cursor: pointer;
-      outline: none;
-      min-width: 170px;
-      transition: border-color 0.2s;
-    }
-
-    .filter-select:hover,
-    .filter-select:focus {
-      border-color: rgba(176,230,196,0.5);
-    }
-
-    .filter-select option {
-      background: var(--green-deep);
-    }
-
-    .reset-btn {
-      background: transparent;
-      border: 1px solid rgba(176,230,196,0.2);
-      border-radius: 8px;
-      color: var(--grey);
-      font-family: var(--font-mono);
-      font-size: 0.8rem;
-      padding: 0.5rem 1rem;
-      cursor: pointer;
-      transition: all 0.2s;
-    }
-
-    .reset-btn:hover {
-      color: var(--white);
-      border-color: rgba(176,230,196,0.4);
-    }
-
-    /* Scrollable table wrapper */
-    .table-wrap {
-      overflow-x: auto;
-      border-radius: 14px;
-      border: 1px solid var(--card-border);
-    }
-
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 0.875rem;
-    }
-
-    thead tr {
-      background: rgba(0,107,42,0.35);
-    }
-
-    th {
-      font-family: var(--font-mono);
-      font-size: 0.7rem;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      color: var(--green-light);
-      padding: 1rem 1.25rem;
-      text-align: left;
-      border-bottom: 1px solid var(--card-border);
-    }
-
-    tbody tr {
-      border-bottom: 1px solid rgba(176,230,196,0.06);
-      transition: background 0.15s;
-    }
-
-    tbody tr:last-child {
-      border-bottom: none;
-    }
-
-    tbody tr:hover {
-      background: rgba(176,230,196,0.04);
-    }
-
-    td {
-      padding: 0.85rem 1.25rem;
-      vertical-align: middle;
-    }
-
-    /* Project name cell */
-    .td-name a {
-      color: var(--white);
-      font-family: var(--font-display);
-      font-weight: 600;
-      text-decoration: none;
-      transition: color 0.2s;
-    }
-
-    .td-name a:hover {
-      color: var(--green-light);
-    }
-
-    .td-name .no-link {
-      color: var(--white);
-      font-family: var(--font-display);
-      font-weight: 600;
-    }
-
-    .td-platforms {
-      color: var(--grey);
-      font-size: 0.8rem;
-    }
-
-    .td-langs {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.3rem;
-    }
-
-    /* "No results" message shown when filters match nothing */
-    .no-results {
-      text-align: center;
-      color: var(--grey);
-      padding: 3rem;
-      font-family: var(--font-mono);
-      font-size: 0.85rem;
-    }
-
-
-    /* ==============================================
+    /* =============================================
        STATUS LEGEND
-    ============================================== */
-    .legend {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-      gap: 0.75rem;
-      margin-top: 1.5rem;
-    }
+    ============================================= */
+    .legend { display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:0.75rem; margin-top:1.5rem; }
+    .legend-item { display:flex; align-items:flex-start; gap:0.75rem; background:var(--card-bg); border:1px solid var(--card-border); border-radius:10px; padding:0.85rem 1rem; }
+    .legend-item .status-chip { flex-shrink:0; margin-top:0.1rem; }
+    .legend-text strong { display:block; font-size:0.8rem; color:var(--white); margin-bottom:0.1rem; }
+    .legend-text small { font-size:0.72rem; color:var(--grey); line-height:1.4; }
 
-    .legend-item {
-      display: flex;
-      align-items: flex-start;
-      gap: 0.75rem;
-      background: var(--card-bg);
-      border: 1px solid var(--card-border);
-      border-radius: 10px;
-      padding: 0.85rem 1rem;
-    }
+    /* =============================================
+       SKILLS \u2014 chip style
+       Icons loaded from Simple Icons CDN:
+         https://cdn.simpleicons.org/{slug}/{hex}
+       Find slugs at simpleicons.org
+    ============================================= */
+    .skills-grid { display:flex; flex-direction:column; gap:2.5rem; }
+    .skills-group h3 { font-family:var(--font-display); font-weight:700; font-size:0.85rem; color:var(--grey); text-transform:uppercase; letter-spacing:0.12em; margin-bottom:1rem; }
+    .chips-row { display:flex; flex-wrap:wrap; gap:0.6rem; }
+    .chip { display:inline-flex; align-items:center; gap:0.5rem; background:var(--card-bg); border:1px solid var(--card-border); border-radius:8px; padding:0.45rem 0.9rem; font-family:var(--font-mono); font-size:0.78rem; color:var(--white); transition:all 0.2s; }
+    .chip:hover { border-color:rgba(176,230,196,0.45); background:rgba(0,107,42,0.3); transform:translateY(-1px); }
+    /* Both SVG and CDN <img> icons inside chips */
+    .chip svg  { width:16px; height:16px; flex-shrink:0; }
+    .chip img  { width:16px; height:16px; flex-shrink:0; object-fit:contain; }
+    .chip-star { color:var(--green-light); font-size:0.65rem; }
 
-    .legend-item .status-chip {
-      flex-shrink: 0;
-      margin-top: 0.15rem;
-    }
-
-    .legend-text strong {
-      display: block;
-      font-size: 0.8rem;
-      color: var(--white);
-      margin-bottom: 0.15rem;
-    }
-
-    .legend-text small {
-      font-size: 0.72rem;
-      color: var(--grey);
-      line-height: 1.4;
-    }
-
-
-    /* ==============================================
-       SKILLS \u2014 chip/badge style
-       Icons loaded from Simple Icons CDN
-    ============================================== */
-    .skills-grid {
-      display: flex;
-      flex-direction: column;
-      gap: 2.5rem;
-    }
-
-    .skills-group h3 {
-      font-family: var(--font-display);
-      font-weight: 700;
-      font-size: 0.85rem;
-      color: var(--grey);
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      margin-bottom: 1rem;
-    }
-
-    .chips-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.6rem;
-    }
-
-    /* Individual chip */
-    .chip {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      background: var(--card-bg);
-      border: 1px solid var(--card-border);
-      border-radius: 8px;
-      padding: 0.45rem 0.9rem;
-      font-family: var(--font-mono);
-      font-size: 0.78rem;
-      color: var(--white);
-      transition: all 0.2s;
-    }
-
-    .chip:hover {
-      border-color: rgba(176,230,196,0.45);
-      background: rgba(0,107,42,0.3);
-      transform: translateY(-1px);
-    }
-
-    /* Icons inside chips \u2014 loaded from Simple Icons CDN */
-    .chip img {
-      width: 16px;
-      height: 16px;
-      object-fit: contain;
-    }
-
-    /* Star for "preferred" language */
-    .chip-star {
-      color: var(--green-light);
-      font-size: 0.65rem;
-    }
-
-
-    /* ==============================================
+    /* =============================================
        GITHUB STATS
-    ============================================== */
+    ============================================= */
     .stats-wrap {
       display: flex;
       flex-wrap: wrap;
@@ -863,7 +298,7 @@
       justify-content: center;
     }
 
-    /* Stats cards are plain <img> tags from github-readme-stats */
+    /* The stats cards are plain <img> from github-readme-stats */
     .stats-wrap img {
       border-radius: 12px;
       border: 1px solid var(--card-border);
@@ -871,11 +306,10 @@
       height: auto;
     }
 
-
-    /* ==============================================
-       AVAILABLE FOR SECTION
-       Edit the cards below in the HTML
-    ============================================== */
+    /* =============================================
+       AVAILABLE FOR
+       Edit the cards directly in the HTML below
+    ============================================= */
     .available-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
@@ -898,186 +332,86 @@
       transform: translateY(-3px);
     }
 
-    .available-icon {
-      font-size: 1.8rem;
-      line-height: 1;
-    }
+    .available-icon { font-size: 1.8rem; line-height: 1; }
+    .available-title { font-family: var(--font-display); font-weight: 700; font-size: 1rem; color: var(--white); }
+    .available-desc { font-size: 0.83rem; color: var(--grey); line-height: 1.5; }
 
-    .available-title {
-      font-family: var(--font-display);
-      font-weight: 700;
-      font-size: 1rem;
-      color: var(--white);
-    }
+    /* =============================================
+       CONTACT & SOCIAL
+    ============================================= */
+    .social-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(170px,1fr)); gap:1rem; }
+    .social-card { display:flex; align-items:center; gap:0.85rem; background:var(--card-bg); border:1px solid var(--card-border); border-radius:12px; padding:1rem 1.25rem; text-decoration:none; color:var(--white); transition:all 0.2s; }
+    .social-card:hover { border-color:rgba(176,230,196,0.4); background:rgba(0,107,42,0.28); transform:translateY(-2px); }
+    .social-icon { width:26px; height:26px; flex-shrink:0; display:flex; align-items:center; justify-content:center; }
+    /* Both SVG and CDN <img> icons in social cards */
+    .social-icon svg { width:100%; height:100%; }
+    .social-icon img { width:100%; height:100%; object-fit:contain; }
+    .social-info small { display:block; font-family:var(--font-mono); font-size:0.65rem; color:var(--grey); text-transform:uppercase; letter-spacing:0.08em; }
+    .social-info span { font-size:0.85rem; font-weight:500; }
 
-    .available-desc {
-      font-size: 0.83rem;
-      color: var(--grey);
-      line-height: 1.5;
-    }
-
-
-    /* ==============================================
-       CONTACT & SOCIAL SECTION
-    ============================================== */
-    .social-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
-      gap: 1rem;
-    }
-
-    .social-card {
-      display: flex;
-      align-items: center;
-      gap: 0.85rem;
-      background: var(--card-bg);
-      border: 1px solid var(--card-border);
-      border-radius: 12px;
-      padding: 1rem 1.25rem;
-      text-decoration: none;
-      color: var(--white);
-      transition: all 0.2s;
-    }
-
-    .social-card:hover {
-      border-color: rgba(176,230,196,0.4);
-      background: rgba(0,107,42,0.28);
-      transform: translateY(-2px);
-    }
-
-    /* Icon area \u2014 26\u00d726 px, loads from Simple Icons CDN */
-    .social-icon {
-      width: 26px;
-      height: 26px;
-      flex-shrink: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .social-icon img {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-    }
-
-    .social-info small {
-      display: block;
-      font-family: var(--font-mono);
-      font-size: 0.65rem;
-      color: var(--grey);
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-    }
-
-    .social-info span {
-      font-size: 0.85rem;
-      font-weight: 500;
-    }
-
-
-    /* ==============================================
+    /* =============================================
        FOOTER
-    ============================================== */
-    footer {
-      border-top: 1px solid var(--card-border);
-      padding: 2.5rem 0;
-    }
+    ============================================= */
+    footer { border-top:1px solid var(--card-border); padding:2.5rem 0; }
+    footer .container { display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem; }
+    footer p { font-size:0.8rem; color:var(--grey); font-family:var(--font-mono); }
+    .gplv3 { font-family:var(--font-mono); font-size:0.75rem; color:var(--green-light); background:rgba(176,230,196,0.08); border:1px solid rgba(176,230,196,0.2); padding:0.25rem 0.6rem; border-radius:5px; }
 
-    footer .container {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 1rem;
-    }
+    /* =============================================
+       ANIMATIONS
+    ============================================= */
+    @keyframes fadeUp { from{opacity:0;transform:translateY(20px);} to{opacity:1;transform:none;} }
+    .fade-in { opacity:0; transform:translateY(16px); transition:opacity 0.5s ease,transform 0.5s ease; }
+    .fade-in.visible { opacity:1; transform:none; }
 
-    footer p {
-      font-size: 0.8rem;
-      color: var(--grey);
-      font-family: var(--font-mono);
-    }
-
-    .gplv3-badge {
-      font-family: var(--font-mono);
-      font-size: 0.75rem;
-      color: var(--green-light);
-      background: rgba(176,230,196,0.08);
-      border: 1px solid rgba(176,230,196,0.2);
-      padding: 0.25rem 0.6rem;
-      border-radius: 5px;
-    }
-
-
-    /* ==============================================
-       RESPONSIVE \u2014 mobile adjustments
-    ============================================== */
+    /* =============================================
+       RESPONSIVE \u2014 mobile
+    ============================================= */
     @media (max-width: 720px) {
+      /* On mobile: hide banner, reset nav and hero to original positions */
+      .banner        { display: none; }
+      nav            { top: 0; }
+      .hero          { padding-top: 80px; }
 
-      /* Stack hero vertically, center everything */
-      .hero-inner {
-        grid-template-columns: 1fr;
-        text-align: center;
-      }
-
-      .hero-avatar {
-        order: -1;
-        display: flex;
-        justify-content: center;
-      }
-
+      /* Stack hero vertically */
+      .hero-inner    { grid-template-columns: 1fr; text-align: center; }
+      .hero-avatar   { order: -1; display: flex; justify-content: center; }
       .hero-badges,
-      .hero-cta {
-        justify-content: center;
-      }
+      .hero-cta      { justify-content: center; }
+      .hero-subtitle { margin: 1rem auto 0; }
 
-      .hero-subtitle {
-        margin: 1rem auto 0;
-      }
+      /* Hide nav links */
+      .nav-links     { display: none; }
 
-      /* Hide nav links on small screens */
-      .nav-links {
-        display: none;
-      }
-
-      /* Stats images stack vertically */
-      .stats-wrap {
-        flex-direction: column;
-        align-items: center;
-      }
+      /* Stack stats vertically */
+      .stats-wrap    { flex-direction: column; align-items: center; }
     }
-
   </style>
 </head>
 <body>
 
-
-  <!-- =====================================================
+  <!-- =============================================
        ANNOUNCEMENT BANNER
-       Change the text here whenever you want to update it
-  ====================================================== -->
+       Edit the text here to change the message
+  ============================================= -->
   <div class="banner">
     <div class="banner-dot"></div>
-    <span class="banner-text">
+    <span>
       Open to collaborations &amp; open source contributions \u2014
       <a href="mailto:filbanfi@hotmail.com">get in touch</a>
     </span>
   </div>
 
 
-  <!-- =====================================================
+  <!-- =============================================
        NAVIGATION
-  ====================================================== -->
+  ============================================= -->
   <nav>
     <div class="container">
-
-      <!-- Logo -->
       <a href="#" class="nav-logo">
-        <img src="https://avatars.githubusercontent.com/u/268989714?v=4" alt="FilBanfi avatar" />
+        <img src="https://avatars.githubusercontent.com/u/268989714?v=4" alt="FilBanfi" />
         <span>FilBanfi</span>
       </a>
-
-      <!-- Links \u2014 add/remove <li> items as needed -->
       <ul class="nav-links">
         <li><a href="#building">Building</a></li>
         <li><a href="#pinned">Projects</a></li>
@@ -1086,32 +420,25 @@
         <li><a href="#available">Available for</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
-
     </div>
   </nav>
 
 
-  <!-- =====================================================
-       HERO SECTION
-  ====================================================== -->
+  <!-- =============================================
+       HERO
+  ============================================= -->
   <section class="hero">
     <div class="container">
       <div class="hero-inner">
 
-        <!-- Left: text -->
         <div class="hero-text">
           <div class="hero-tag">// independent developer</div>
-
           <h1>Fil<span class="accent">Banfi</span></h1>
-
           <p class="hero-subtitle">
             Android developer. Open source advocate. Proudly Italian.
             Kotlin, Linux, and a lot of curiosity.
           </p>
-
           <div class="hero-flags">\ud83d\udc9a\ud83e\udd0d\u2764\ufe0f</div>
-
-          <!-- Quick keyword pills -->
           <div class="hero-badges">
             <span class="badge">Kotlin</span>
             <span class="badge">Android</span>
@@ -1119,24 +446,14 @@
             <span class="badge">GPLv3</span>
             <span class="badge">Open Source</span>
           </div>
-
-          <!-- Main CTAs -->
           <div class="hero-cta">
-            <a href="https://github.com/FilBanfi" target="_blank" class="btn btn-primary">
-              GitHub \u2192
-            </a>
-            <a href="#all-projects" class="btn btn-secondary">
-              All Projects
-            </a>
+            <a href="https://github.com/FilBanfi" target="_blank" class="btn btn-primary">GitHub \u2192</a>
+            <a href="#all-projects" class="btn btn-secondary">All Projects</a>
           </div>
         </div>
 
-        <!-- Right: avatar -->
         <div class="hero-avatar">
-          <img
-            src="https://avatars.githubusercontent.com/u/268989714?v=4"
-            alt="FilBanfi profile photo"
-          />
+          <img src="https://avatars.githubusercontent.com/u/268989714?v=4" alt="FilBanfi" />
         </div>
 
       </div>
@@ -1146,81 +463,104 @@
   <hr class="divider" />
 
 
-  <!-- =====================================================
+  <!-- =============================================
        CURRENTLY BUILDING
-       To add/remove items: edit the `buildingItems` array
-       in the <script> block at the bottom of this file.
-  ====================================================== -->
+       To edit: change the text inside each
+       .building-card directly here in the HTML.
+       To add a card: copy one block and paste it.
+  ============================================= -->
   <section id="building">
     <div class="container">
-
       <p class="section-label fade-in">// active work</p>
       <h2 class="section-title fade-in">Currently Building</h2>
 
-      <div class="building-grid fade-in" id="buildingGrid">
-        <!-- Populated by JS \u2014 edit buildingItems array below -->
-      </div>
+      <div class="building-grid fade-in">
 
+        <!-- Card 1 -->
+        <div class="building-card">
+          <div class="building-card-top">
+            <div class="working-dot"></div>
+            <div class="building-name">WalkYourTime 1.0 SP1</div>
+          </div>
+          <div class="building-desc">
+            Post-launch patch: step-to-screen-time slider rebalancing and bug fixes.
+          </div>
+          <span class="building-progress">build 20260403</span>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="building-card">
+          <div class="building-card-top">
+            <div class="working-dot"></div>
+            <div class="building-name">Samsung Messages Replacement</div>
+          </div>
+          <div class="building-desc">
+            Open-source replacement app for Samsung Messages with One UI aesthetic,
+            before Samsung's July 2026 discontinuation deadline.
+          </div>
+          <span class="building-progress">early development</span>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="building-card">
+          <div class="building-card-top">
+            <div class="working-dot"></div>
+            <div class="building-name">WalkYourTime 1.1 BETA</div>
+          </div>
+          <div class="building-desc">
+            Next feature cycle: UI/UX polish and improvements based on user feedback.
+          </div>
+          <span class="building-progress">planning phase</span>
+        </div>
+
+      </div>
     </div>
   </section>
 
   <hr class="divider" />
 
 
-  <!-- =====================================================
-       PINNED PROJECTS
+  <!-- =============================================
+       FEATURED PROJECTS (PINNED)
        To add a real logo, replace the emoji inside
-       .project-icon with:
-         <img src="assets/your-logo.png" alt="Project name" />
-       or a raw GitHub URL.
-  ====================================================== -->
+       .project-icon with an <img> tag like this:
+         <img src="assets/your-logo.png" alt="Name" />
+  ============================================= -->
   <section id="pinned">
     <div class="container">
-
       <p class="section-label fade-in">// highlighted</p>
       <h2 class="section-title fade-in">Featured Projects</h2>
 
       <div class="pinned-grid">
 
-
-        <!-- \u2500\u2500 WalkYourTime \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500 -->
+        <!-- WalkYourTime -->
         <a href="https://github.com/FilBanfi/WalkYourTime" target="_blank" class="project-card fade-in">
           <div class="project-card-top">
-
             <div class="project-icon">
               <!--
                 LOGO: WalkYourTime
-                Replace the emoji below with your actual logo, e.g.:
+                Replace emoji with your logo, e.g.:
                   <img src="assets/walkyourtime.png" alt="WalkYourTime" />
-                or via raw GitHub:
+                or raw GitHub URL:
                   <img src="https://raw.githubusercontent.com/FilBanfi/WalkYourTime/main/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png" alt="WalkYourTime" />
               -->
               \ud83d\udeb6
             </div>
-
             <span class="status-chip s-AP">AP</span>
           </div>
-
           <div class="project-name">WalkYourTime</div>
-          <div class="project-desc">
-            Android app that converts your daily steps into screen time.
-            GPLv3 license, available on Google Play.
-          </div>
-
+          <div class="project-desc">Android app that converts your daily steps into screen time. GPLv3, available on Google Play.</div>
           <div class="project-langs">
             <span class="lang-tag">Kotlin</span>
             <span class="lang-tag">Jetpack Compose</span>
             <span class="lang-tag">Android</span>
           </div>
-
           <div class="card-arrow">\u2197</div>
         </a>
 
-
-        <!-- \u2500\u2500 AnythingOS \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500 -->
+        <!-- AnythingOS -->
         <a href="https://github.com/FilBanfi/AnythingOS" target="_blank" class="project-card fade-in">
           <div class="project-card-top">
-
             <div class="project-icon">
               <!--
                 LOGO: AnythingOS \u2014 replace when ready:
@@ -1228,29 +568,20 @@
               -->
               \ud83d\udcf1
             </div>
-
             <span class="status-chip s-FP">FP</span>
           </div>
-
           <div class="project-name">AnythingOS</div>
-          <div class="project-desc">
-            Porting Nothing OS onto the Samsung Galaxy A51 (Exynos).
-            Experimental custom ROM project.
-          </div>
-
+          <div class="project-desc">Porting Nothing OS onto the Samsung Galaxy A51 (Exynos). Experimental custom ROM.</div>
           <div class="project-langs">
             <span class="lang-tag">Android</span>
             <span class="lang-tag">LineageOS</span>
           </div>
-
           <div class="card-arrow">\u2197</div>
         </a>
 
-
-        <!-- \u2500\u2500 Mysterium \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500 -->
+        <!-- Mysterium -->
         <a href="https://github.com/FilBanfi/Mysterium" target="_blank" class="project-card fade-in">
           <div class="project-card-top">
-
             <div class="project-icon">
               <!--
                 LOGO: Mysterium \u2014 replace when ready:
@@ -1258,29 +589,20 @@
               -->
               \ud83c\udf00
             </div>
-
             <span class="status-chip s-AB">AB</span>
           </div>
-
           <div class="project-name">Mysterium</div>
-          <div class="project-desc">
-            Interactive project built on TurboWarp.
-            Actively developed, currently in beta.
-          </div>
-
+          <div class="project-desc">Interactive project built on TurboWarp. Actively developed, currently in beta.</div>
           <div class="project-langs">
             <span class="lang-tag">TurboWarp</span>
             <span class="lang-tag">Scratch</span>
           </div>
-
           <div class="card-arrow">\u2197</div>
         </a>
 
-
-        <!-- \u2500\u2500 Spot \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500 -->
+        <!-- Spot -->
         <a href="https://github.com/FilBanfi/Spot" target="_blank" class="project-card fade-in">
           <div class="project-card-top">
-
             <div class="project-icon">
               <!--
                 LOGO: Spot \u2014 replace when ready:
@@ -1288,24 +610,16 @@
               -->
               \ud83d\udccd
             </div>
-
             <span class="status-chip s-FP">FP</span>
           </div>
-
           <div class="project-name">Spot</div>
-          <div class="project-desc">
-            GPS app to save and find locations. Evolution of FindMyCar.
-            Planned, built in Kotlin.
-          </div>
-
+          <div class="project-desc">GPS app to save and find locations. Evolution of FindMyCar. Planned, built in Kotlin.</div>
           <div class="project-langs">
             <span class="lang-tag">Kotlin</span>
             <span class="lang-tag">Android</span>
           </div>
-
           <div class="card-arrow">\u2197</div>
         </a>
-
 
       </div>
     </div>
@@ -1314,20 +628,18 @@
   <hr class="divider" />
 
 
-  <!-- =====================================================
+  <!-- =============================================
        ALL PROJECTS TABLE
-       Data is stored in the `projects` array in the
-       <script> block at the bottom. Edit it there.
-  ====================================================== -->
+       Project data is in the JS block at the bottom.
+       Edit the `projects` array there.
+  ============================================= -->
   <section id="all-projects">
     <div class="container">
-
       <p class="section-label fade-in">// full archive</p>
       <h2 class="section-title fade-in">All Projects</h2>
 
       <!-- Filters -->
       <div class="filter-bar fade-in">
-
         <select class="filter-select" id="filterStatus" onchange="applyFilters()">
           <option value="">Status: all</option>
           <option value="AP">AP \u2014 Active &amp; Ready</option>
@@ -1339,7 +651,6 @@
           <option value="ID">ID \u2014 Discontinued, Available</option>
           <option value="IN">IN \u2014 Discontinued, Unavailable</option>
         </select>
-
         <select class="filter-select" id="filterPlatform" onchange="applyFilters()">
           <option value="">Platform: all</option>
           <option value="Android">Android</option>
@@ -1348,118 +659,10 @@
           <option value="Web">Web</option>
           <option value="Multi">Multi</option>
         </select>
-
         <select class="filter-select" id="filterLang" onchange="applyFilters()">
           <option value="">Language: all</option>
           <option value="Kotlin">Kotlin</option>
           <option value="Python">Python</option>
           <option value="C++">C++</option>
           <option value="Bash">Bash</option>
-          <option value="AppInventor">AppInventor</option>
-          <option value="TurboWarp">TurboWarp</option>
-          <option value="Kodular">Kodular</option>
-          <option value="Arduino">Arduino</option>
-        </select>
-
-        <button class="reset-btn" onclick="resetFilters()">\u2715 Reset</button>
-      </div>
-
-      <!-- Table -->
-      <div class="table-wrap fade-in">
-        <table>
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th>Status</th>
-              <th>Platforms</th>
-              <th>Languages</th>
-            </tr>
-          </thead>
-          <tbody id="projectTableBody">
-            <!-- Rows populated by JS -->
-          </tbody>
-        </table>
-        <div class="no-results" id="noResults" style="display: none;">
-          No projects match the selected filters.
-        </div>
-      </div>
-
-      <!-- Status legend -->
-      <div style="margin-top: 3rem;" class="fade-in">
-        <p class="section-label">// status legend</p>
-        <div class="legend">
-
-          <div class="legend-item">
-            <span class="status-chip s-AP">AP</span>
-            <div class="legend-text">
-              <strong>Active &amp; Ready</strong>
-              <small>Actively developed and publicly available.</small>
-            </div>
-          </div>
-
-          <div class="legend-item">
-            <span class="status-chip s-AB">AB</span>
-            <div class="legend-text">
-              <strong>Active Beta</strong>
-              <small>Actively developed but still in beta.</small>
-            </div>
-          </div>
-
-          <div class="legend-item">
-            <span class="status-chip s-PT">PT</span>
-            <div class="legend-text">
-              <strong>Temporary Pause</strong>
-              <small>Development paused temporarily, will resume.</small>
-            </div>
-          </div>
-
-          <div class="legend-item">
-            <span class="status-chip s-PI">PI</span>
-            <div class="legend-text">
-              <strong>Indefinite Pause</strong>
-              <small>Development on hold with no set timeline.</small>
-            </div>
-          </div>
-
-          <div class="legend-item">
-            <span class="status-chip s-FP">FP</span>
-            <div class="legend-text">
-              <strong>Planned Future</strong>
-              <small>Not started yet, but planned.</small>
-            </div>
-          </div>
-
-          <div class="legend-item">
-            <span class="status-chip s-FI">FI</span>
-            <div class="legend-text">
-              <strong>Hypothetical Future</strong>
-              <small>Might never happen \u2014 just an idea.</small>
-            </div>
-          </div>
-
-          <div class="legend-item">
-            <span class="status-chip s-ID">ID</span>
-            <div class="legend-text">
-              <strong>Discontinued, Available</strong>
-              <small>Never finished, never will be \u2014 but still usable.</small>
-            </div>
-          </div>
-
-          <div class="legend-item">
-            <span class="status-chip s-IN">IN</span>
-            <div class="legend-text">
-              <strong>Discontinued, Unavailable</strong>
-              <small>Never finished, relies on infrastructure that no longer exists.</small>
-            </div>
-          </div>
-
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <hr class="divider" />
-
-
-  <!--
+          <option value="App
