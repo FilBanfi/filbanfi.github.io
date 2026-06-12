@@ -9,15 +9,14 @@
   
   <title>FilBanfi - Developer</title>
   
-  <!-- Fonts ottimizzati: caricati solo i pesi effettivamente utilizzati per ridurre il blocco del rendering -->
- <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <!-- Ottimizzazione connessione a Google Fonts (riduce la latenza) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=JetBrains+Mono:wght@400;500&family=DM+Sans:wght@400;500&display=swap" />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=JetBrains+Mono:wght@400;500&family=DM+Sans:wght@400;500&display=swap" media="print" onload="this.media='all'" />
-  <noscript>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=JetBrains+Mono:wght@400;500&family=DM+Sans:wght@400;500&display=swap" />
-  </noscript>
   
+  <!-- Caricamento standard dei font (metodo raccomandato da Google, previene forced reflow) -->
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=JetBrains+Mono:wght@400;500&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet" />
+  
+  <!-- CSS del sito -->
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
