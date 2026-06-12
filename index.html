@@ -3,33 +3,36 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <!-- SEO: Meta description obbligatoria per il 100% su Lighthouse -->
+  <meta name="description" content="FilBanfi - Italian indie developer and open source advocate building high-quality, privacy-first tools for Android and Linux." />
+  
   <title>FilBanfi - Developer</title>
   
-  <!-- Fonts di Google: Syne (titoli), DM Sans (testo), JetBrains Mono (codice) -->
+  <!-- Fonts ottimizzati: caricati solo i pesi effettivamente utilizzati per ridurre il blocco del rendering -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@400;500;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=JetBrains+Mono:wght@400;500&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet" />
   
-  <!-- Collegamento al file CSS centrale -->
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-  <!-- ==========================================================================
-       HEADER E NAVIGAZIONE
-       ========================================================================== -->
+  <!-- HEADER E NAVIGAZIONE -->
   <header>
     <div class="container">
-      <!-- Logo e Nome: href punta alla home page -->
       <a href="index.html" class="nav-logo">
-        <img src="https://avatars.githubusercontent.com/FilBanfi" alt="FilBanfi Logo" />
+        <img src="https://avatars.githubusercontent.com/FilBanfi" alt="FilBanfi Logo" width="36" height="36" />
         <span><span class="fil">Fil</span><span class="banfi">Banfi</span></span>
       </a>
       
-      <!-- Bottone hamburger per mobile -->
-      <button class="menu-toggle" aria-label="Toggle menu">Menu</button>
+      <!-- Hamburger menu in puro CSS (3 linee) -->
+      <button class="menu-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
       
-      <!-- Link di navigazione: la classe "active" indica la pagina corrente -->
       <nav>
         <ul class="nav-links">
           <li><a href="index.html" class="active">Home</a></li>
@@ -42,32 +45,25 @@
   </header>
 
   <main>
-    <!-- ==========================================================================
-         SEZIONE HERO (CHI SONO)
-         ========================================================================== -->
+    <!-- SEZIONE HERO -->
     <section class="hero">
       <div class="container">
         <div class="hero-grid">
           
-          <!-- Colonna sinistra: Immagine e Chips -->
           <div class="hero-image-wrapper">
-            <!-- Sostituisci l'URL in src con la tua foto reale quando pronta -->
-            <img src="https://miro.medium.com/v2/resize:fit:1240/1*p6TJa5HwgptvQNDxIsF3QA.jpeg" alt="Filippo Banfi" class="hero-image" />
+            <!-- Width e height espliciti per prevenire Cumulative Layout Shift (CLS) -->
+            <img src="https://miro.medium.com/v2/resize:fit:1240/1*p6TJa5HwgptvQNDxIsF3QA.jpeg" alt="Filippo Banfi" class="hero-image" width="320" height="320" />
             
             <div class="hero-chips">
-              <span class="chip">open to collaborations</span>
-              <span class="chip">open source advocate</span>
-              <span class="chip">proudly italian</span>
-              
-              <!-- TEMPLATE: Per aggiungere un'altra chip, copia la riga qui sotto e incollala sopra questo commento -->
-              <!-- <span class="chip">Nuova Chip</span> -->
+              <span class="chip">Open to collaborations</span>
+              <span class="chip">Open source advocate</span>
+              <span class="chip">Proudly Italian</span>
             </div>
           </div>
           
-          <!-- Colonna destra: Titolo e Descrizione -->
           <div class="hero-content">
             <h1>Who I am?</h1>
-            <p>Hello! I'm filippo banfi, an italian indie developer and content creator. my goal is to make high quality and lightweight tools for your devices, fully privacy first and open source, while documenting everything on social medias, so everyone can understand how the tech world works.</p>
+            <p>Hello! I'm Filippo Banfi, an Italian indie developer and content creator. My goal is to build high-quality, lightweight tools for your devices that are fully privacy-first and open source, while documenting everything on social media so everyone can understand how the tech world works.</p>
           </div>
           
         </div>
@@ -76,9 +72,7 @@
 
     <hr class="divider" />
 
-    <!-- ==========================================================================
-         SEZIONE FEATURED PROJECTS
-         ========================================================================== -->
+    <!-- SEZIONE FEATURED PROJECTS -->
     <section class="featured">
       <div class="container">
         <h2 class="section-title">Featured projects</h2>
@@ -87,88 +81,63 @@
           
           <!-- PROGETTO 1: WalkYourTime -->
           <article class="project-card">
-            <img src="https://www.diabetes.ie/wp-content/uploads/2021/05/logo-Placeholder.jpg" alt="WalkYourTime Logo" class="project-logo" />
+            <img src="https://placehold.co/100x100/003312/b0e6c4?text=WYT" alt="WalkYourTime Logo" class="project-logo" width="100" height="100" />
             <div class="project-info">
               <div>
                 <h3>WalkYourTime</h3>
-                <p>WalkYourTime is the innovative app that transform the steps made during the day in screen time, to promote an healthier and more conscious approach to your smartphone.</p>
+                <p>WalkYourTime is an innovative app that transforms your daily steps into screen time, promoting a healthier and more conscious approach to smartphone usage.</p>
                 <div class="project-meta">
                   <span class="meta-chip">Kotlin</span>
                   <span class="meta-chip">Android</span>
                 </div>
               </div>
-              <!-- Cambia l'href con il link reale del progetto -->
-              <a href="https://github.com/FilBanfi/WalkYourTime" target="_blank" class="btn-discover">Discover more &rarr;</a>
+              <!-- Aria-label univoco per risolvere l'avviso di accessibilita' "Identical links" -->
+              <a href="https://github.com/FilBanfi/WalkYourTime" target="_blank" rel="noopener noreferrer" class="btn-discover" aria-label="Discover more about WalkYourTime">Discover more &rarr;</a>
             </div>
           </article>
 
           <!-- PROGETTO 2: EcoPoints -->
           <article class="project-card">
-            <img src="https://www.diabetes.ie/wp-content/uploads/2021/05/logo-Placeholder.jpg" alt="EcoPoints Logo" class="project-logo" />
+            <img src="https://placehold.co/100x100/003312/b0e6c4?text=EP" alt="EcoPoints Logo" class="project-logo" width="100" height="100" />
             <div class="project-info">
               <div>
                 <h3>EcoPoints</h3>
-                <p>EcoPoints is one of the first fully free and open source AI trash recognition software. Even if today the app might seem outdated, this app is one of the most important steps of my journey.</p>
+                <p>EcoPoints is one of the first fully free and open-source AI trash recognition apps. Even if it might seem outdated today, it represents one of the most important steps in my journey.</p>
                 <div class="project-meta">
                   <span class="meta-chip">AppInventor</span>
                   <span class="meta-chip">Android</span>
                 </div>
               </div>
-              <a href="https://github.com/FilBanfi" target="_blank" class="btn-discover">Discover more &rarr;</a>
+              <a href="https://github.com/FilBanfi" target="_blank" rel="noopener noreferrer" class="btn-discover" aria-label="Discover more about EcoPoints">Discover more &rarr;</a>
             </div>
           </article>
 
           <!-- PROGETTO 3: SysUp -->
           <article class="project-card">
-            <img src="https://www.diabetes.ie/wp-content/uploads/2021/05/logo-Placeholder.jpg" alt="SysUp Logo" class="project-logo" />
+            <img src="https://placehold.co/100x100/003312/b0e6c4?text=SU" alt="SysUp Logo" class="project-logo" width="100" height="100" />
             <div class="project-info">
               <div>
                 <h3>SysUp</h3>
-                <p>Sysup is the brand new, fully customizable and modular tool to keep your Linux system fully updated in an easy, effortless way, suitable for everyone, on every distro.</p>
+                <p>SysUp is a brand-new, fully customizable, and modular tool designed to keep your Linux system updated in an easy, effortless way, suitable for everyone on any distro.</p>
                 <div class="project-meta">
                   <span class="meta-chip">Bash</span>
                   <span class="meta-chip">Linux</span>
                 </div>
               </div>
-              <a href="https://github.com/FilBanfi" target="_blank" class="btn-discover">Discover more &rarr;</a>
+              <a href="https://github.com/FilBanfi" target="_blank" rel="noopener noreferrer" class="btn-discover" aria-label="Discover more about SysUp">Discover more &rarr;</a>
             </div>
           </article>
 
-          <!-- BLOCCO SPECIALE: Discover More (porta alla pagina Projects) -->
+          <!-- BLOCCO SPECIALE: Discover More -->
           <article class="project-card explore">
             <div class="project-info" style="align-items: center; text-align: center;">
               <div>
                 <h3>Discover more</h3>
                 <p>FilBanfi is way more than just this. Click the button below to discover a new world of FilBanfi tools.</p>
               </div>
-              <a href="projects.html" class="btn-discover">View All Projects &rarr;</a>
+              <a href="projects.html" class="btn-discover" aria-label="View all projects">View All Projects &rarr;</a>
             </div>
           </article>
-
-          <!-- 
-            TEMPLATE: COME AGGIUNGERE UN NUOVO PROGETTO IN QUESTA GRIGLIA
-            Istruzioni:
-            1. Copia tutto il blocco <article> qui sotto.
-            2. Incollalo PRIMA del blocco "Discover more" (così rimane l'ultimo a destra/in basso).
-            3. Modifica: src dell'immagine, testo di h3 (titolo), testo di p (descrizione).
-            4. Modifica o aggiungi i <span class="meta-chip"> per linguaggio/piattaforma.
-            5. Modifica l'href del link <a> con l'URL corretto.
-          
-          <article class="project-card">
-            <img src="URL_IMMAGINE_QUI" alt="Nome Progetto Logo" class="project-logo" />
-            <div class="project-info">
-              <div>
-                <h3>Nome del Nuovo Progetto</h3>
-                <p>Descrizione breve e accattivante del nuovo progetto che stai aggiungendo alla home page.</p>
-                <div class="project-meta">
-                  <span class="meta-chip">Linguaggio</span>
-                  <span class="meta-chip">Piattaforma</span>
-                </div>
-              </div>
-              <a href="https://github.com/tuo-link" target="_blank" class="btn-discover">Discover more &rarr;</a>
-            </div>
-          </article>
-          -->
 
         </div>
       </div>
@@ -176,50 +145,28 @@
 
     <hr class="divider" />
 
-    <!-- ==========================================================================
-         SEZIONE ATTIVITA (GITHUB E LAVORI IN CORSO)
-         ========================================================================== -->
+    <!-- SEZIONE ATTIVITA -->
     <section class="activity-section">
       <div class="container">
         <h2 class="section-title">My activity</h2>
         
         <div class="activity-grid">
           
-          <!-- Grafico GitHub: i colori nell'URL sono già impostati per fondersi con lo sfondo -->
           <div class="gh-stats">
-            <img src="https://github-readme-stats.vercel.app/api?username=FilBanfi&show_icons=true&title_color=b0e6c4&text_color=f5f5f0&icon_color=b0e6c4&bg_color=004519&hide_border=true" alt="GitHub Stats" />
+            <!-- Grafico GitHub con colori integrati -->
+            <img src="https://github-readme-stats.vercel.app/api?username=FilBanfi&show_icons=true&title_color=b0e6c4&text_color=f5f5f0&icon_color=b0e6c4&bg_color=004519&hide_border=true" alt="GitHub Stats for FilBanfi" width="600" height="300" />
           </div>
 
-          <!-- Lista "Currently working on" -->
           <div class="currently-working">
             <h3>Currently working on</h3>
             
-            <!-- Item 1: WalkYourTime -->
             <div class="working-item">
               <span class="working-dot"></span>
               <div>
                 <h4>WalkYourTime</h4>
-                <p>Improving step/time conversion ratio and UI polish</p>
+                <p>Improving step/time conversion ratio and UI polish.</p>
               </div>
             </div>
-
-            <!-- 
-              TEMPLATE: COME AGGIUNGERE UN NUOVO PROGETTO IN SVILUPPO
-              Istruzioni:
-              1. Copia tutto il blocco <div class="working-item"> qui sotto.
-              2. Incollalo sotto l'ultimo progetto esistente, ma prima di questo commento.
-              3. Modifica il testo dentro <h4> con il nome del progetto.
-              4. Modifica il testo dentro <p> con una breve descrizione dello stato attuale.
-              5. (Opzionale) Se il progetto e' in pausa, puoi cambiare la classe del pallino da "working-dot" a "working-dot paused" (dovrai aggiungere lo stile CSS per .paused se vuoi un colore diverso, es. giallo).
-            
-            <div class="working-item">
-              <span class="working-dot"></span>
-              <div>
-                <h4>Nome del Nuovo Progetto</h4>
-                <p>Breve descrizione di cosa stai facendo su questo progetto in questo momento.</p>
-              </div>
-            </div>
-            -->
 
           </div>
         </div>
@@ -227,9 +174,7 @@
     </section>
   </main>
 
-  <!-- ==========================================================================
-       FOOTER
-       ========================================================================== -->
+  <!-- FOOTER -->
   <footer>
     <div class="container">
       <div class="footer-hearts">💚🤍❤️</div>
@@ -237,18 +182,18 @@
     </div>
   </footer>
 
-  <!-- ==========================================================================
-       JAVASCRIPT MINIMO (SOLO PER IL MENU MOBILE)
-       ========================================================================== -->
+  <!-- JAVASCRIPT MINIMO -->
   <script>
-    // Seleziona il bottone del menu e la lista dei link
     const menuToggle = document.querySelector('.menu-toggle');
     const navLinks = document.querySelector('.nav-links');
 
-    // Aggiunge un ascoltatore di click: quando si clicca, aggiunge o rimuove la classe "active"
-    // La classe "active" nel CSS gestisce l'apertura e la chiusura con un'animazione
     menuToggle.addEventListener('click', () => {
       navLinks.classList.toggle('active');
+      menuToggle.classList.toggle('active');
+      
+      // Aggiorna l'attributo ARIA per l'accessibilita' (screen reader)
+      const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
+      menuToggle.setAttribute('aria-expanded', !isExpanded);
     });
   </script>
 </body>
