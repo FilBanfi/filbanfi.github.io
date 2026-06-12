@@ -5,8 +5,7 @@
   --green-deep: #004519;
   --green-light: #b0e6c4;
   --white: #f5f5f0;
-  /* Grigio leggermente alleggerito per garantire contrasto WCAG AAA anche su sfondi alpha */
-  --grey: #c8dccf; 
+  --grey: #c8dccf;
   --font-display: 'Syne', sans-serif;
   --font-body: 'DM Sans', sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
@@ -104,7 +103,6 @@ header .container {
   color: var(--green-light); 
 }
 
-/* Hamburger menu in puro CSS (3 linee) */
 .menu-toggle { 
   display: none; 
   background: none; 
@@ -131,7 +129,6 @@ header .container {
   margin-bottom: 0; 
 }
 
-/* Animazione hamburger -> X quando attivo */
 .menu-toggle.active span:nth-child(1) { 
   transform: translateY(8px) rotate(45deg); 
 }
@@ -334,7 +331,6 @@ header .container {
   border-radius: 12px; 
   overflow: hidden;
   background: var(--green-deep);
-  /* Aspect ratio riservato per prevenire Cumulative Layout Shift (CLS) */
   aspect-ratio: 2 / 1; 
 }
 
@@ -409,9 +405,137 @@ footer {
 }
 
 /* ==========================================================================
-   9. RESPONSIVE (MOBILE)
+   9. PAGINA ABOUT - STILI SPECIFICI (DESKTOP)
+   ========================================================================== */
+.about-hero {
+  padding: 3rem 0;
+  text-align: center;
+}
+
+.about-intro {
+  margin-top: 2rem;
+}
+
+.about-image-wrapper {
+  display: inline-block;
+  text-align: center;
+}
+
+.about-image {
+  width: 100%;
+  max-width: 280px;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: 24px;
+  border: 3px solid var(--green-light);
+  box-shadow: 0 0 40px rgba(176, 230, 196, 0.1);
+  margin-bottom: 0.75rem;
+}
+
+.about-caption {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--grey);
+}
+
+.about-section {
+  padding: 2rem 0;
+}
+
+.section-subtitle {
+  font-family: var(--font-display);
+  font-size: clamp(1.3rem, 3vw, 1.8rem);
+  font-weight: 800;
+  color: var(--green-light);
+  margin-bottom: 1.5rem;
+}
+
+.about-content-box {
+  background: rgba(176, 230, 196, 0.04);
+  border: 1px solid rgba(176, 230, 196, 0.12);
+  border-radius: 16px;
+  padding: 2rem;
+}
+
+.about-content-box p {
+  font-size: 1rem;
+  color: var(--grey);
+  line-height: 1.8;
+  margin-bottom: 1.25rem;
+}
+
+.about-content-box p:last-child {
+  margin-bottom: 0;
+}
+
+.video-wrapper {
+  max-width: 640px;
+  margin: 0 auto;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 2px solid rgba(176, 230, 196, 0.15);
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.video-placeholder {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  cursor: pointer;
+  transition: transform 0.2s, border-color 0.2s;
+}
+
+.video-placeholder:hover {
+  transform: translateY(-2px);
+  border-color: rgba(176, 230, 196, 0.3);
+}
+
+.video-thumbnail {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.video-play-button {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(176, 230, 196, 0.9);
+  border-radius: 50%;
+  width: 80px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s, background 0.2s;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.video-play-button svg {
+  fill: var(--green-deep);
+  margin-left: 4px;
+}
+
+.video-placeholder:hover .video-play-button {
+  transform: translate(-50%, -50%) scale(1.1);
+  background: var(--green-light);
+}
+
+.video-note {
+  text-align: center;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--grey);
+  margin-top: 0.75rem;
+}
+
+/* ==========================================================================
+   10. RESPONSIVE (MOBILE) - TUTTE LE PAGINE
    ========================================================================== */
 @media (max-width: 768px) {
+  /* Header e navigazione */
   .menu-toggle { 
     display: block; 
   }
@@ -441,6 +565,7 @@ footer {
     border-top: 1px solid rgba(176, 230, 196, 0.05); 
   }
 
+  /* Home - Hero */
   .hero-grid { 
     grid-template-columns: 1fr; 
     text-align: center; 
@@ -450,6 +575,7 @@ footer {
     justify-content: center; 
   }
   
+  /* Home - Projects */
   .projects-grid { 
     grid-template-columns: 1fr; 
   }
@@ -458,7 +584,29 @@ footer {
     grid-template-columns: 80px 1fr; 
   }
   
+  /* Home - Activity */
   .activity-grid { 
     grid-template-columns: 1fr; 
+  }
+
+  /* About - Immagine */
+  .about-image {
+    max-width: 240px;
+  }
+  
+  /* About - Content box */
+  .about-content-box {
+    padding: 1.5rem;
+  }
+  
+  /* About - Video */
+  .video-play-button {
+    width: 64px;
+    height: 64px;
+  }
+  
+  .video-play-button svg {
+    width: 32px;
+    height: 32px;
   }
 }
