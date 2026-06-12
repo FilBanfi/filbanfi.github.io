@@ -5,8 +5,8 @@
   --green-deep: #004519;
   --green-light: #b0e6c4;
   --white: #f5f5f0;
-  /* Grigio alleggerito per garantire contrasto WCAG AA 4.5:1 sullo sfondo scuro */
-  --grey: #a3b5ad; 
+  /* Grigio leggermente alleggerito per garantire contrasto WCAG AAA anche su sfondi alpha */
+  --grey: #c8dccf; 
   --font-display: 'Syne', sans-serif;
   --font-body: 'DM Sans', sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
