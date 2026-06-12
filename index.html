@@ -3,1212 +3,253 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>FilBanfi — Developer</title>
+  <title>FilBanfi - Developer</title>
+  
+  <!-- Fonts di Google: Syne (titoli), DM Sans (testo), JetBrains Mono (codice) -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@400;500;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
-  <style>
-    /* =========================================================
-       CSS VARIABLES
-       ========================================================= */
-    :root {
-      --green-deep:   #004519;
-      --green-mid:    #006b2a;
-      --green-light:  #B0E6C4;
-      --green-pale:   #d8f5e6;
-      --white:        #f5f5f0;
-      --grey:         #8a9e93;
-      --card-bg:      rgba(0, 107, 42, 0.18);
-      --card-border:  rgba(176, 230, 196, 0.18);
-      --font-display: 'Syne', sans-serif;
-      --font-body:    'DM Sans', sans-serif;
-      --font-mono:    'JetBrains Mono', monospace;
-    }
-
-    /* =========================================================
-       RESET & BASE
-       ========================================================= */
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
-    body {
-      background-color: var(--green-deep);
-      color: var(--white);
-      font-family: var(--font-body);
-      font-size: 16px;
-      line-height: 1.6;
-      overflow-x: hidden;
-    }
-    body::before {
-      content: '';
-      position: fixed; inset: 0;
-      background-image: url("image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
-      pointer-events: none; z-index: 0; opacity: 0.6;
-    }
-    body::after {
-      content: '';
-      position: fixed; top: -20%; right: -10%;
-      width: 60vw; height: 60vw;
-      background: radial-gradient(circle, rgba(176,230,196,0.07) 0%, transparent 70%);
-      pointer-events: none; z-index: 0;
-    }
-    .container { max-width: 1100px; margin: 0 auto; padding: 0 2rem; position: relative; z-index: 1; }
-
-    /* =========================================================
-       NAVIGATION
-       ========================================================= */
-    nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      padding: 1rem 0;
-      background: rgba(0,69,25,0.85);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-      border-bottom: 1px solid var(--card-border);
-    }
-    nav .container { display: flex; align-items: center; justify-content: space-between; }
-    .nav-logo { display: flex; align-items: center; gap: 0.75rem; text-decoration: none; }
-    .nav-logo img { width: 32px; height: 32px; border-radius: 50%; border: 2px solid var(--green-light); }
-    .nav-logo span { font-family: var(--font-display); font-weight: 800; font-size: 1.1rem; color: var(--green-light); letter-spacing: 0.03em; }
-    .nav-links { display: flex; gap: 2rem; list-style: none; }
-    .nav-links a { color: var(--grey); text-decoration: none; font-size: 0.875rem; font-family: var(--font-mono); transition: color 0.2s; }
-    .nav-links a:hover { color: var(--green-light); }
-
-    /* =========================================================
-       BANNER
-       ========================================================= */
-    .collab-banner {
-      margin-top: 64px;
-      background: rgba(176, 230, 196, 0.06);
-      border-bottom: 1px solid var(--card-border);
-      padding: 0.85rem 0;
-      position: relative;
-      z-index: 99;
-      transition: max-height 0.35s ease, opacity 0.3s ease, padding 0.35s ease, margin 0.35s ease;
-      overflow: hidden;
-      max-height: 200px;
-      opacity: 1;
-    }
-    .collab-banner.dismissed {
-      max-height: 0; opacity: 0; padding-top: 0; padding-bottom: 0;
-      margin-top: 0; border: none; pointer-events: none;
-    }
-    .collab-banner .container { display: flex; align-items: center; justify-content: center; gap: 0.75rem; flex-wrap: wrap; }
-    .collab-banner p { font-family: var(--font-mono); font-size: 0.8rem; color: var(--green-light); }
-    .collab-banner a {
-      font-family: var(--font-mono); font-size: 0.75rem;
-      background: rgba(176,230,196,0.12); border: 1px solid rgba(176,230,196,0.3);
-      padding: 0.25rem 0.75rem; border-radius: 6px;
-      color: var(--green-light); text-decoration: none; transition: all 0.2s;
-    }
-    .collab-banner a:hover { background: rgba(176,230,196,0.2); }
-    .collab-banner .dismiss-btn {
-      position: absolute; right: 1.25rem; top: 50%; transform: translateY(-50%);
-      background: none; border: none; color: var(--grey); cursor: pointer;
-      font-size: 1.2rem; line-height: 1; transition: color 0.2s;
-    }
-    .collab-banner .dismiss-btn:hover { color: var(--white); }
-
-    /* =========================================================
-       HERO
-       ========================================================= */
-    .hero { min-height: 100vh; display: flex; align-items: center; padding-top: 80px; }
-    .hero-inner { display: grid; grid-template-columns: 1fr auto; gap: 4rem; align-items: center; width: 100%; }
-    .hero-tag {
-      font-family: var(--font-mono); font-size: 0.8rem; color: var(--green-light);
-      background: rgba(176,230,196,0.1); border: 1px solid rgba(176,230,196,0.25);
-      padding: 0.3rem 0.8rem; border-radius: 999px; display: inline-block;
-      margin-bottom: 1.5rem; animation: fadeUp 0.6s ease both;
-    }
-    .hero h1 {
-      font-family: var(--font-display); font-size: clamp(3rem,7vw,5.5rem);
-      font-weight: 800; line-height: 1.0; letter-spacing: -0.02em;
-      color: var(--white); animation: fadeUp 0.6s 0.1s ease both;
-    }
-    .hero h1 .accent { color: var(--green-light); }
-    .hero-subtitle { margin-top: 1.5rem; font-size: 1.15rem; color: var(--grey); max-width: 480px; animation: fadeUp 0.6s 0.2s ease both; }
-    .hero-flags { font-size: 1.4rem; margin-top: 0.5rem; animation: fadeUp 0.6s 0.25s ease both; }
-    .hero-badges { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 2rem; animation: fadeUp 0.6s 0.3s ease both; }
-    .badge {
-      font-family: var(--font-mono); font-size: 0.75rem; padding: 0.35rem 0.75rem;
-      border-radius: 6px; border: 1px solid var(--card-border);
-      color: var(--green-light); background: var(--card-bg);
-    }
-    .hero-avatar { animation: fadeUp 0.6s 0.15s ease both; }
-    .hero-avatar img {
-      width: 180px; height: 180px; border-radius: 24px; border: 3px solid var(--green-light);
-      box-shadow: 0 0 60px rgba(176,230,196,0.15), 0 0 0 8px rgba(176,230,196,0.05);
-      display: block;
-    }
-    .hero-cta { display: flex; gap: 1rem; margin-top: 2.5rem; animation: fadeUp 0.6s 0.35s ease both; }
-    .btn {
-      padding: 0.75rem 1.75rem; border-radius: 10px;
-      font-family: var(--font-display); font-weight: 700; font-size: 0.9rem;
-      cursor: pointer; text-decoration: none; transition: all 0.2s; display: inline-block;
-    }
-    .btn-primary { background: var(--green-light); color: var(--green-deep); border: 2px solid var(--green-light); }
-    .btn-primary:hover { background: var(--green-pale); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(176,230,196,0.3); }
-    .btn-secondary { background: transparent; color: var(--green-light); border: 2px solid rgba(176,230,196,0.35); }
-    .btn-secondary:hover { border-color: var(--green-light); transform: translateY(-2px); }
-
-    /* =========================================================
-       SECTIONS
-       ========================================================= */
-    section { padding: 6rem 0; }
-    .section-label { font-family: var(--font-mono); font-size: 0.75rem; color: var(--green-light); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 0.75rem; }
-    .section-title { font-family: var(--font-display); font-size: clamp(1.8rem,4vw,2.8rem); font-weight: 800; color: var(--white); margin-bottom: 3rem; line-height: 1.1; }
-    .divider { border: none; border-top: 1px solid rgba(176,230,196,0.12); margin: 0; }
-
-    /* =========================================================
-       CURRENTLY BUILDING
-       ========================================================= */
-    .building-list { display: flex; flex-direction: column; gap: 0.75rem; }
-    .building-item {
-      display: flex; align-items: center; gap: 1rem;
-      background: var(--card-bg); border: 1px solid var(--card-border);
-      border-radius: 12px; padding: 1rem 1.5rem; transition: all 0.2s;
-    }
-    .building-item:hover { border-color: rgba(176,230,196,0.4); background: rgba(0,107,42,0.28); }
-    .building-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
-    .building-dot.active { background: #64dc82; box-shadow: 0 0 8px rgba(100,220,130,0.4); }
-    .building-dot.planned { background: #ffd250; box-shadow: 0 0 8px rgba(255,210,80,0.3); }
-    .building-name { font-family: var(--font-display); font-weight: 700; font-size: 0.95rem; min-width: 140px; }
-    .building-desc { font-size: 0.85rem; color: var(--grey); }
-
-    /* =========================================================
-       PINNED PROJECTS
-       ========================================================= */
-    .pinned-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px,1fr)); gap: 1.5rem; }
-    .project-card {
-      background: var(--card-bg); border: 1px solid var(--card-border);
-      border-radius: 16px; padding: 1.75rem;
-      color: var(--white); transition: all 0.25s ease;
-      display: flex; flex-direction: column; gap: 1rem;
-      position: relative; overflow: hidden;
-    }
-    .project-card::before {
-      content:''; position:absolute; top:0; left:0; right:0; height:2px;
-      background:linear-gradient(90deg,var(--green-light),transparent);
-      opacity:0; transition:opacity 0.25s;
-    }
-    .project-card:hover {
-      border-color: rgba(176,230,196,0.4); background: rgba(0,107,42,0.28);
-      transform: translateY(-4px); box-shadow: 0 16px 40px rgba(0,0,0,0.3);
-    }
-    .project-card:hover::before { opacity: 1; }
-
-    .project-card .expand-toggle {
-      font-size: 0.7rem; font-family: var(--font-mono);
-      color: var(--grey); cursor: pointer; background: none; border: none;
-      position: absolute; top: 1.25rem; right: 1.25rem;
-      transition: color 0.2s;
-    }
-    .project-card .expand-toggle:hover { color: var(--green-light); }
-
-    .project-details {
-      max-height: 0; overflow: hidden;
-      transition: max-height 0.35s ease, opacity 0.3s ease;
-      border-top: 1px solid var(--card-border);
-      padding-top: 0; opacity: 0;
-    }
-    .project-card.expanded .project-details { max-height: 500px; padding-top: 1rem; opacity: 1; }
-    .project-details .detail-row { display: flex; gap: 0.5rem; font-size: 0.78rem; margin-bottom: 0.5rem; }
-    .project-details .detail-label { font-family: var(--font-mono); color: var(--green-light); min-width: 70px; }
-    .project-details .detail-value { color: var(--grey); }
-    .project-details .detail-ok { color: #64dc82; }
-    .project-details .detail-wip { color: #ffd250; }
-    .project-details .detail-broken { color: #ff8080; }
-
-    .carousel-wrap { margin-top: 0.5rem; overflow: hidden; border-radius: 8px; }
-    .carousel {
-      display: flex; gap: 0.5rem; overflow-x: auto;
-      scroll-snap-type: x mandatory; scrollbar-width: thin;
-      scrollbar-color: var(--green-mid) transparent; padding-bottom: 0.5rem;
-    }
-    .carousel img {
-      flex-shrink: 0; width: 100%; max-width: 240px;
-      aspect-ratio: 16/9; object-fit: cover;
-      border-radius: 8px; scroll-snap-align: start;
-      background: rgba(0,107,42,0.15); display: block;
-    }
-
-    .project-card-top { display: flex; justify-content: space-between; align-items: flex-start; }
-    .project-icon { font-size: 2rem; line-height: 1; }
-    .project-icon img { width: 48px; height: 48px; border-radius: 12px; object-fit: contain; display: block; }
-
-    .status-chip {
-      font-family: var(--font-mono); font-size: 0.65rem; font-weight: 700;
-      padding: 0.2rem 0.5rem; border-radius: 6px; letter-spacing: 0.05em;
-    }
-    .s-AP { background:rgba(100,220,130,0.2); color:#64dc82; border:1px solid rgba(100,220,130,0.35); }
-    .s-AB { background:rgba(100,180,255,0.2); color:#64b4ff; border:1px solid rgba(100,180,255,0.35); }
-    .s-PT { background:rgba(255,210,80,0.2); color:#ffd250; border:1px solid rgba(255,210,80,0.35); }
-    .s-PI { background:rgba(255,160,80,0.2); color:#ffa050; border:1px solid rgba(255,160,80,0.35); }
-    .s-FP { background:rgba(200,150,255,0.2); color:#c896ff; border:1px solid rgba(200,150,255,0.35); }
-    .s-FI { background:rgba(180,180,180,0.2); color:#b4b4b4; border:1px solid rgba(180,180,180,0.35); }
-    .s-ID { background:rgba(255,255,255,0.1); color:#aaaaaa; border:1px solid rgba(255,255,255,0.15); }
-    .s-IN { background:rgba(200,50,50,0.2); color:#ff8080; border:1px solid rgba(200,50,50,0.3); }
-
-    .project-name { font-family: var(--font-display); font-size: 1.25rem; font-weight: 700; }
-    .project-desc { font-size: 0.875rem; color: var(--grey); flex: 1; }
-    .project-langs { display: flex; flex-wrap: wrap; gap: 0.4rem; }
-    .lang-tag {
-      font-family: var(--font-mono); font-size: 0.7rem; padding: 0.2rem 0.5rem;
-      background: rgba(176,230,196,0.08); border: 1px solid rgba(176,230,196,0.15);
-      border-radius: 4px; color: var(--green-light);
-    }
-
-    /* GitHub button */
-    .project-gh-btn {
-      display: inline-flex; align-items: center; gap: 0.4rem;
-      font-family: var(--font-mono); font-size: 0.78rem;
-      color: var(--green-light); background: rgba(176,230,196,0.08);
-      border: 1px solid rgba(176,230,196,0.25);
-      padding: 0.4rem 0.85rem; border-radius: 8px;
-      text-decoration: none; transition: all 0.2s;
-      margin-top: auto;
-    }
-    .project-gh-btn:hover {
-      background: rgba(176,230,196,0.18); border-color: rgba(176,230,196,0.5);
-      transform: translateY(-1px);
-    }
-    .project-gh-btn svg { width: 16px; height: 16px; flex-shrink: 0; }
-
-    .card-arrow { font-size: 0.8rem; color: var(--grey); align-self: flex-end; transition: color 0.2s, transform 0.2s; }
-    .project-card:hover .card-arrow { color: var(--green-light); transform: translate(2px,-2px); }
-
-    /* =========================================================
-       ALL PROJECTS TABLE
-       ========================================================= */
-    .filter-bar { display:flex; flex-wrap:wrap; gap:0.75rem; margin-bottom:2rem; }
-    .filter-select {
-      background:var(--card-bg); border:1px solid var(--card-border);
-      border-radius:8px; color:var(--green-light); font-family:var(--font-mono);
-      font-size:0.8rem; padding:0.5rem 1rem; appearance:none;
-      cursor:pointer; transition:border-color 0.2s; outline:none; min-width:160px;
-    }
-    .filter-select:hover,.filter-select:focus { border-color:rgba(176,230,196,0.5); }
-    .filter-select option { background:var(--green-deep); }
-    .reset-btn {
-      background:transparent; border:1px solid rgba(176,230,196,0.2);
-      border-radius:8px; color:var(--grey); font-family:var(--font-mono);
-      font-size:0.8rem; padding:0.5rem 1rem; cursor:pointer; transition:all 0.2s;
-    }
-    .reset-btn:hover { color:var(--white); border-color:rgba(176,230,196,0.4); }
-    .table-wrap { overflow-x:auto; border-radius:14px; border:1px solid var(--card-border); }
-    table { width:100%; border-collapse:collapse; font-size:0.875rem; }
-    thead tr { background:rgba(0,107,42,0.35); }
-    th {
-      font-family:var(--font-mono); font-size:0.7rem;
-      text-transform:uppercase; letter-spacing:0.1em; color:var(--green-light);
-      padding:1rem 1.25rem; text-align:left; border-bottom:1px solid var(--card-border);
-    }
-    tbody tr { border-bottom:1px solid rgba(176,230,196,0.06); transition:background 0.15s; }
-    tbody tr:last-child { border-bottom:none; }
-    tbody tr:hover { background:rgba(176,230,196,0.04); }
-    td { padding:0.85rem 1.25rem; vertical-align:middle; }
-    .td-name a { color:var(--white); font-family:var(--font-display); font-weight:600; text-decoration:none; transition:color 0.2s; }
-    .td-name a:hover { color:var(--green-light); }
-    .td-name .no-link { color:var(--white); font-family:var(--font-display); font-weight:600; }
-    .td-platforms { color:var(--grey); font-size:0.8rem; }
-    .td-langs { display:flex; flex-wrap:wrap; gap:0.3rem; }
-    .no-results { text-align:center; color:var(--grey); padding:3rem; font-family:var(--font-mono); font-size:0.85rem; }
-
-    /* LEGEND — Collapsible */
-    .legend-toggle {
-      background: var(--card-bg); border: 1px solid var(--card-border);
-      border-radius: 10px; padding: 0.85rem 1.25rem; width: 100%;
-      display: flex; align-items: center; justify-content: space-between;
-      cursor: pointer; transition: all 0.2s; color: var(--white);
-      font-family: var(--font-mono); font-size: 0.8rem;
-    }
-    .legend-toggle:hover { border-color: rgba(176,230,196,0.4); }
-    .legend-toggle .arrow { transition: transform 0.3s; font-size: 0.9rem; }
-    .legend-toggle.open .arrow { transform: rotate(180deg); }
-    .legend-content {
-      max-height: 0; overflow: hidden; transition: max-height 0.4s ease;
-    }
-    .legend-content.open { max-height: 2000px; }
-    .legend { display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:0.75rem; margin-top: 0; }
-    .legend-item { display:flex; align-items:flex-start; gap:0.75rem; background:var(--card-bg); border:1px solid var(--card-border); border-radius:10px; padding:0.85rem 1rem; }
-    .legend-item .status-chip { flex-shrink:0; margin-top:0.1rem; }
-    .legend-text strong { display:block; font-size:0.8rem; color:var(--white); margin-bottom:0.1rem; }
-    .legend-text small { font-size:0.72rem; color:var(--grey); line-height:1.4; }
-
-    /* =========================================================
-       GITHUB ACTIVITY
-       ========================================================= */
-    .gh-embed {
-      background: var(--card-bg); border: 1px solid var(--card-border);
-      border-radius: 16px; padding: 1.5rem;
-      display: flex; flex-direction: column; justify-content: center; align-items: center;
-    }
-    .gh-embed img { max-width: 100%; height: auto; border-radius: 8px; display: block; }
-    .gh-embed a { font-family: var(--font-mono); font-size: 0.75rem; color: var(--grey); margin-top: 0.75rem; transition: color 0.2s; }
-    .gh-embed a:hover { color: var(--green-light); }
-
-    /* =========================================================
-       SKILLS — simpleicons.org CDN images ONLY
-       Format: https://cdn.simpleicons.org/[slug]/B0E6C4
-       NO inline SVGs
-       ========================================================= */
-    .skills-grid { display:flex; flex-direction:column; gap:2.5rem; }
-    .skills-group h3 { font-family:var(--font-display); font-weight:700; font-size:0.85rem; color:var(--grey); text-transform:uppercase; letter-spacing:0.12em; margin-bottom:1rem; }
-    .chips-row { display:flex; flex-wrap:wrap; gap:0.6rem; }
-    .chip {
-      display:inline-flex; align-items:center; gap:0.5rem;
-      background:var(--card-bg); border:1px solid var(--card-border);
-      border-radius:8px; padding:0.45rem 0.9rem;
-      font-family:var(--font-mono); font-size:0.78rem; color:var(--white);
-      transition:all 0.2s;
-    }
-    .chip:hover { border-color:rgba(176,230,196,0.45); background:rgba(0,107,42,0.3); transform:translateY(-1px); }
-    .chip img.si-icon { width:18px; height:18px; flex-shrink:0; display: block; }
-    .chip-star { color:var(--green-light); font-size:0.65rem; }
-
-    /* =========================================================
-       AVAILABLE FOR
-       ========================================================= */
-    .available-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; }
-    .available-card {
-      background: var(--card-bg); border: 1px solid var(--card-border);
-      border-radius: 16px; padding: 1.75rem;
-    }
-    .available-card h3 { font-family: var(--font-display); font-weight: 700; font-size: 1.1rem; color: var(--white); margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem; }
-    .available-card ul { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
-    .available-card li { font-size: 0.875rem; color: var(--grey); padding-left: 1.25rem; position: relative; }
-    .available-card li::before { content: '›'; position: absolute; left: 0; color: var(--green-light); font-weight: 700; }
-
-    /* =========================================================
-       ABOUT
-       ========================================================= */
-    .about-box {
-      background: var(--card-bg); border: 1px solid var(--card-border);
-      border-radius: 16px; padding: 2rem;
-      color: var(--grey); font-size: 0.95rem; line-height: 1.7;
-    }
-    .about-box p { margin-bottom: 1rem; }
-    .about-box p:last-child { margin-bottom: 0; }
-    .about-highlight { color: var(--white) !important; font-family: var(--font-display); font-weight: 600; font-size: 1.05rem !important; }
-    .philosophy-box {
-      margin-top: 1.5rem;
-      background: rgba(176,230,196,0.04);
-      border-left: 3px solid var(--green-light);
-      padding: 1rem 1.25rem; border-radius: 0 8px 8px 0;
-    }
-    .philosophy-box p {
-      font-family: var(--font-display); font-size: 0.95rem;
-      color: var(--green-light); font-style: italic; margin-bottom: 0.5rem;
-    }
-    .philosophy-box p:last-child { margin-bottom: 0; }
-
-    /* =========================================================
-       CONTACTS — Flexbox layout
-       Cards distribute equally within each group.
-       2 cards = 50% each, 3 cards = ~33% each.
-       On mobile, all cards stack full-width.
-       ALL icons from simpleicons.org
-       ========================================================= */
-    .contact-group { margin-bottom: 2rem; }
-    .contact-group:last-child { margin-bottom: 0; }
-    .contact-group-label {
-      font-family: var(--font-mono); font-size: 0.7rem;
-      color: var(--green-light); text-transform: uppercase;
-      letter-spacing: 0.12em; margin-bottom: 0.75rem;
-    }
-    .social-grid {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1rem;
-    }
-    .social-card {
-      flex: 1;
-      min-width: 0;
-      display: flex; align-items: center; gap: 0.85rem;
-      background: var(--card-bg); border: 1px solid var(--card-border);
-      border-radius: 12px; padding: 1rem 1.25rem;
-      text-decoration: none; color: var(--white); transition: all 0.2s;
-    }
-    .social-card:hover {
-      border-color: rgba(176,230,196,0.4); background: rgba(0,107,42,0.28);
-      transform: translateY(-2px);
-    }
-    .social-icon { width: 26px; height: 26px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; }
-    .social-icon svg { width: 100%; height: 100%; }
-    .social-icon img.si-icon { width: 26px; height: 26px; flex-shrink: 0; display: block; }
-    .social-info small {
-      display: block; font-family: var(--font-mono); font-size: 0.65rem;
-      color: var(--grey); text-transform: uppercase; letter-spacing: 0.08em;
-    }
-    .social-info span { font-size: 0.85rem; font-weight: 500; }
-
-    .email-card {
-      flex: 1;
-      min-width: 0;
-      display: flex; align-items: center; gap: 0.85rem;
-      background: rgba(176,230,196,0.08); border: 1px solid rgba(176,230,196,0.25);
-      border-radius: 12px; padding: 1rem 1.25rem;
-      text-decoration: none; color: var(--white); transition: all 0.2s;
-    }
-    .email-card:hover {
-      border-color: rgba(176,230,196,0.5); background: rgba(176,230,196,0.12);
-      transform: translateY(-2px);
-    }
-    .email-address { font-family: var(--font-mono); font-size: 0.85rem; color: var(--green-light); }
-
-    /* =========================================================
-       FOOTER
-       ========================================================= */
-    footer { border-top: 1px solid var(--card-border); padding: 2.5rem 0; }
-    footer .container { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
-    footer p { font-size: 0.8rem; color: var(--grey); font-family: var(--font-mono); }
-    .gplv3 {
-      font-family: var(--font-mono); font-size: 0.75rem; color: var(--green-light);
-      background: rgba(176,230,196,0.08); border: 1px solid rgba(176,230,196,0.2);
-      padding: 0.25rem 0.6rem; border-radius: 5px;
-    }
-
-    /* =========================================================
-       ANIMATIONS
-       ========================================================= */
-    @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: none; } }
-    .fade-in { opacity: 0; transform: translateY(16px); transition: opacity 0.5s ease, transform 0.5s ease; }
-    .fade-in.visible { opacity: 1; transform: none; }
-
-    /* =========================================================
-       RESPONSIVE
-       ========================================================= */
-    @media(max-width:720px) {
-      .hero-inner { grid-template-columns: 1fr; text-align: center; }
-      .hero-avatar { order: -1; display: flex; justify-content: center; }
-      .hero-badges, .hero-cta { justify-content: center; }
-      .hero-subtitle { margin: 1rem auto 0; }
-      .nav-links { display: none; }
-      .available-grid { grid-template-columns: 1fr; }
-      /* On mobile, cards stack vertically and take full width */
-      .social-card, .email-card {
-        flex: 1 1 100%;
-      }
-    }
-  </style>
+  
+  <!-- Collegamento al file CSS centrale -->
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-<!-- ============================================================
-     NAVIGATION
-     ============================================================ -->
-<nav>
-  <div class="container">
-    <a href="#" class="nav-logo">
-      <img src="https://avatars.githubusercontent.com/u/268989714?v=4" alt="FilBanfi" />
-      <span>FilBanfi</span>
-    </a>
-    <ul class="nav-links">
-      <li><a href="#building">Building</a></li>
-      <li><a href="#pinned">Projects</a></li>
-      <li><a href="#all-projects">All</a></li>
-      <li><a href="#skills">Skills</a></li>
-      <li><a href="#available">Available</a></li>
-      <li><a href="#about">About</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
-  </div>
-</nav>
-
-<!-- ============================================================
-     BANNER
-     ============================================================ -->
-<div class="collab-banner" id="collabBanner">
-  <div class="container">
-    <p>🤝 Open to collaborations — development, promotion & tech projects</p>
-    <a href="#available">Learn more →</a>
-  </div>
-  <button class="dismiss-btn" id="dismissBanner" title="Close" aria-label="Close banner">×</button>
-</div>
-
-<!-- ============================================================
-     HERO
-     ============================================================ -->
-<section class="hero">
-  <div class="container">
-    <div class="hero-inner">
-      <div class="hero-text">
-        <div class="hero-tag">// independent developer</div>
-        <h1>Fil<span class="accent">Banfi</span></h1>
-        <p class="hero-subtitle">Android developer. Open source advocate. Proudly Italian. Kotlin, Linux, and endless curiosity.</p>
-        <div class="hero-flags">💚🤍❤️</div>
-        <div class="hero-badges">
-          <span class="badge">Kotlin</span>
-          <span class="badge">Android</span>
-          <span class="badge">Linux</span>
-          <span class="badge">GPLv3</span>
-          <span class="badge">Open Source</span>
-        </div>
-        <div class="hero-cta">
-          <a href="https://github.com/FilBanfi" target="_blank" class="btn btn-primary">GitHub →</a>
-          <a href="#all-projects" class="btn btn-secondary">Projects</a>
-        </div>
-      </div>
-      <div class="hero-avatar">
-        <img src="https://avatars.githubusercontent.com/u/268989714?v=4" alt="FilBanfi" />
-      </div>
-    </div>
-  </div>
-</section>
-
-<hr class="divider" />
-
-<!-- ============================================================
-     CURRENTLY BUILDING
-     ============================================================ -->
-<section id="building">
-  <div class="container">
-    <p class="section-label fade-in">// currently building</p>
-    <h2 class="section-title fade-in">Active Work</h2>
-    <div class="building-list fade-in">
-      <div class="building-item">
-        <span class="building-dot active"></span>
-        <span class="building-name">WalkYourTime</span>
-        <span class="building-desc">Improving step/time conversion ratio & UI polish</span>
-      </div>
-      <div class="building-item">
-        <span class="building-dot active"></span>
-        <span class="building-name">AnythingOS</span>
-        <span class="building-desc">Hardware compatibility & boot fixes for Samsung A51</span>
-      </div>
-      <div class="building-item">
-        <span class="building-dot planned"></span>
-        <span class="building-name">Spot</span>
-        <span class="building-desc">Early design phase — location saving & retrieval</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<hr class="divider" />
-
-<!-- ============================================================
-     PINNED PROJECTS
-     ============================================================ -->
-<section id="pinned">
-  <div class="container">
-    <p class="section-label fade-in">// featured</p>
-    <h2 class="section-title fade-in">Key Projects</h2>
-    <div class="pinned-grid">
-
-      <!-- WalkYourTime -->
-      <div class="project-card fade-in">
-        <button class="expand-toggle" onclick="toggleProject(this.parentElement);">+ details</button>
-        <div class="project-card-top">
-          <div class="project-icon">🚶</div>
-          <span class="status-chip s-AP">AP</span>
-        </div>
-        <div class="project-name">WalkYourTime</div>
-        <div class="project-desc">Android app that converts your steps into screen time. GPLv3 license, available on Google Play.</div>
-        <div class="project-langs">
-          <span class="lang-tag">Kotlin</span>
-          <span class="lang-tag">Jetpack Compose</span>
-          <span class="lang-tag">Android</span>
-        </div>
-        <div class="carousel-wrap">
-          <div class="carousel">
-            <img src="https://placehold.co/480x270/006b2a/B0E6C4?text=WalkYourTime+Preview" alt="WalkYourTime Screenshot" />
-          </div>
-        </div>
-        <div class="project-details">
-          <div class="detail-row"><span class="detail-label">License</span><span class="detail-value">GPLv3</span></div>
-          <div class="detail-row"><span class="detail-label">Store</span><span class="detail-value">Google Play</span></div>
-          <div class="detail-row"><span class="detail-label">Working</span><span class="detail-value detail-ok">Step tracking, time conversion, UI</span></div>
-          <div class="detail-row"><span class="detail-label">In progress</span><span class="detail-value detail-wip">Ratio fine-tuning, performance</span></div>
-        </div>
-        <a href="https://github.com/FilBanfi/WalkYourTime" target="_blank" class="project-gh-btn">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12c0 4.42 2.87 8.17 6.84 9.49.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.15-1.1-1.46-1.1-1.46-.9-.62.07-.6.07-.6 1 .07 1.52 1.02 1.52 1.02.89 1.52 2.34 1.08 2.91.83.09-.64.35-1.08.63-1.33-2.22-.25-4.56-1.11-4.56-4.95 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.64 0 0 .84-.27 2.75 1.02A9.56 9.56 0 0112 7.43c.85 0 1.7.11 2.5.34 1.91-1.29 2.75-1.02 2.75-1.02.55 1.37.2 2.39.1 2.64.64.7 1.03 1.59 1.03 2.68 0 3.85-2.34 4.7-4.57 4.95.36.31.68.92.68 1.85v2.74c0 .27.18.58.69.48A10.01 10.01 0 0022 12c0-5.52-4.48-10-10-10z"/></svg>
-          View on GitHub
-        </a>
-      </div>
-
-      <!-- AnythingOS -->
-      <div class="project-card fade-in">
-        <button class="expand-toggle" onclick="toggleProject(this.parentElement);">+ details</button>
-        <div class="project-card-top">
-          <div class="project-icon">📱</div>
-          <span class="status-chip s-FP">FP</span>
-        </div>
-        <div class="project-name">AnythingOS</div>
-        <div class="project-desc">Nothing OS port for Samsung Galaxy A51 Exynos. Experimental custom ROM.</div>
-        <div class="project-langs">
-          <span class="lang-tag">Android</span>
-          <span class="lang-tag">LineageOS</span>
-        </div>
-        <div class="carousel-wrap">
-          <div class="carousel">
-            <img src="https://placehold.co/480x270/006b2a/B0E6C4?text=AnythingOS+Preview" alt="AnythingOS Screenshot" />
-          </div>
-        </div>
-        <div class="project-details">
-          <div class="detail-row"><span class="detail-label">Base</span><span class="detail-value">LineageOS</span></div>
-          <div class="detail-row"><span class="detail-label">Device</span><span class="detail-value">Samsung Galaxy A51 (Exynos)</span></div>
-          <div class="detail-row"><span class="detail-label">Working</span><span class="detail-value detail-ok">Boot, basic UI</span></div>
-          <div class="detail-row"><span class="detail-label">In progress</span><span class="detail-value detail-wip">Hardware drivers, camera</span></div>
-          <div class="detail-row"><span class="detail-label">Broken</span><span class="detail-value detail-broken">Sensors, some peripherals</span></div>
-        </div>
-        <a href="https://github.com/FilBanfi/AnythingOS" target="_blank" class="project-gh-btn">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12c0 4.42 2.87 8.17 6.84 9.49.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.15-1.1-1.46-1.1-1.46-.9-.62.07-.6.07-.6 1 .07 1.52 1.02 1.52 1.02.89 1.52 2.34 1.08 2.91.83.09-.64.35-1.08.63-1.33-2.22-.25-4.56-1.11-4.56-4.95 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.64 0 0 .84-.27 2.75 1.02A9.56 9.56 0 0112 7.43c.85 0 1.7.11 2.5.34 1.91-1.29 2.75-1.02 2.75-1.02.55 1.37.2 2.39.1 2.64.64.7 1.03 1.59 1.03 2.68 0 3.85-2.34 4.7-4.57 4.95.36.31.68.92.68 1.85v2.74c0 .27.18.58.69.48A10.01 10.01 0 0022 12c0-5.52-4.48-10-10-10z"/></svg>
-          View on GitHub
-        </a>
-      </div>
-
-      <!-- Mysterium -->
-      <div class="project-card fade-in">
-        <button class="expand-toggle" onclick="toggleProject(this.parentElement);">+ details</button>
-        <div class="project-card-top">
-          <div class="project-icon">🌀</div>
-          <span class="status-chip s-AB">AB</span>
-        </div>
-        <div class="project-name">Mysterium</div>
-        <div class="project-desc">Interactive project on TurboWarp. Active development, currently in beta.</div>
-        <div class="project-langs">
-          <span class="lang-tag">TurboWarp</span>
-          <span class="lang-tag">Scratch</span>
-        </div>
-        <div class="carousel-wrap">
-          <div class="carousel">
-            <img src="https://placehold.co/480x270/006b2a/B0E6C4?text=Mysterium+Preview" alt="Mysterium Screenshot" />
-          </div>
-        </div>
-        <div class="project-details">
-          <div class="detail-row"><span class="detail-label">Platform</span><span class="detail-value">TurboWarp / Web</span></div>
-          <div class="detail-row"><span class="detail-label">Stage</span><span class="detail-value">Beta</span></div>
-          <div class="detail-row"><span class="detail-label">Working</span><span class="detail-value detail-ok">Core gameplay, UI</span></div>
-          <div class="detail-row"><span class="detail-label">In progress</span><span class="detail-value detail-wip">Content expansion</span></div>
-        </div>
-        <a href="https://github.com/FilBanfi/Mysterium" target="_blank" class="project-gh-btn">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12c0 4.42 2.87 8.17 6.84 9.49.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.15-1.1-1.46-1.1-1.46-.9-.62.07-.6.07-.6 1 .07 1.52 1.02 1.52 1.02.89 1.52 2.34 1.08 2.91.83.09-.64.35-1.08.63-1.33-2.22-.25-4.56-1.11-4.56-4.95 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.64 0 0 .84-.27 2.75 1.02A9.56 9.56 0 0112 7.43c.85 0 1.7.11 2.5.34 1.91-1.29 2.75-1.02 2.75-1.02.55 1.37.2 2.39.1 2.64.64.7 1.03 1.59 1.03 2.68 0 3.85-2.34 4.7-4.57 4.95.36.31.68.92.68 1.85v2.74c0 .27.18.58.69.48A10.01 10.01 0 0022 12c0-5.52-4.48-10-10-10z"/></svg>
-          View on GitHub
-        </a>
-      </div>
-
-      <!-- Spot -->
-      <div class="project-card fade-in">
-        <button class="expand-toggle" onclick="toggleProject(this.parentElement);">+ details</button>
-        <div class="project-card-top">
-          <div class="project-icon">📍</div>
-          <span class="status-chip s-FP">FP</span>
-        </div>
-        <div class="project-name">Spot</div>
-        <div class="project-desc">GPS app for saving and finding places. Evolution of FindMyCar. In Kotlin, planned development.</div>
-        <div class="project-langs">
-          <span class="lang-tag">Kotlin</span>
-          <span class="lang-tag">Android</span>
-        </div>
-        <div class="carousel-wrap">
-          <div class="carousel">
-            <img src="https://placehold.co/480x270/006b2a/B0E6C4?text=Spot+Concept" alt="Spot Screenshot" />
-          </div>
-        </div>
-        <div class="project-details">
-          <div class="detail-row"><span class="detail-label">Predecessor</span><span class="detail-value">FindMyCar (Spot Legacy)</span></div>
-          <div class="detail-row"><span class="detail-label">Stage</span><span class="detail-value">Design phase</span></div>
-          <div class="detail-row"><span class="detail-label">Planned</span><span class="detail-value detail-wip">Core features, map integration</span></div>
-        </div>
-        <a href="https://github.com/FilBanfi/Spot" target="_blank" class="project-gh-btn">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12c0 4.42 2.87 8.17 6.84 9.49.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.15-1.1-1.46-1.1-1.46-.9-.62.07-.6.07-.6 1 .07 1.52 1.02 1.52 1.02.89 1.52 2.34 1.08 2.91.83.09-.64.35-1.08.63-1.33-2.22-.25-4.56-1.11-4.56-4.95 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.64 0 0 .84-.27 2.75 1.02A9.56 9.56 0 0112 7.43c.85 0 1.7.11 2.5.34 1.91-1.29 2.75-1.02 2.75-1.02.55 1.37.2 2.39.1 2.64.64.7 1.03 1.59 1.03 2.68 0 3.85-2.34 4.7-4.57 4.95.36.31.68.92.68 1.85v2.74c0 .27.18.58.69.48A10.01 10.01 0 0022 12c0-5.52-4.48-10-10-10z"/></svg>
-          View on GitHub
-        </a>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<hr class="divider" />
-
-<!-- ============================================================
-     ALL PROJECTS TABLE
-     ============================================================ -->
-<section id="all-projects">
-  <div class="container">
-    <p class="section-label fade-in">// full archive</p>
-    <h2 class="section-title fade-in">All Projects</h2>
-    <div class="filter-bar fade-in">
-      <select class="filter-select" id="filterStatus" onchange="applyFilters()">
-        <option value="">Status: all</option>
-        <option value="AP">AP — Active, ready</option>
-        <option value="AB">AB — Active, beta</option>
-        <option value="PT">PT — Temporary pause</option>
-        <option value="PI">PI — Indefinite pause</option>
-        <option value="FP">FP — Future, planned</option>
-        <option value="FI">FI — Future, hypothetical</option>
-        <option value="ID">ID — Discontinued, available</option>
-        <option value="IN">IN — Discontinued, unavailable</option>
-      </select>
-      <select class="filter-select" id="filterPlatform" onchange="applyFilters()">
-        <option value="">Platform: all</option>
-        <option value="Android">Android</option>
-        <option value="Linux">Linux</option>
-        <option value="Arduino">Arduino</option>
-        <option value="Web">Web</option>
-        <option value="Multi">Multi</option>
-      </select>
-      <select class="filter-select" id="filterLang" onchange="applyFilters()">
-        <option value="">Language: all</option>
-        <option value="Kotlin">Kotlin</option>
-        <option value="Python">Python</option>
-        <option value="C++">C++</option>
-        <option value="Bash">Bash</option>
-        <option value="AppInventor">AppInventor</option>
-        <option value="TurboWarp">TurboWarp</option>
-        <option value="Kodular">Kodular</option>
-        <option value="Arduino">Arduino (lang)</option>
-      </select>
-      <button class="reset-btn" onclick="resetFilters()">✕ Reset</button>
-    </div>
-    <div class="table-wrap fade-in">
-      <table>
-        <thead>
-          <tr><th>Name</th><th>Status</th><th>Platforms</th><th>Languages</th></tr>
-        </thead>
-        <tbody id="projectTableBody"></tbody>
-      </table>
-      <div class="no-results" id="noResults" style="display:none;">No projects match the selected filters.</div>
-    </div>
-
-    <!-- LEGEND — Collapsible -->
-    <div style="margin-top:3rem;" class="fade-in">
-      <p class="section-label">// status legend</p>
-      <button class="legend-toggle" id="legendToggle" onclick="toggleLegend()">
-        <span>View status meanings</span>
-        <span class="arrow">▼</span>
-      </button>
-      <div class="legend-content" id="legendContent">
-        <div class="legend" style="margin-top:0.75rem;">
-          <div class="legend-item"><span class="status-chip s-AP">AP</span><div class="legend-text"><strong>Active, Ready</strong><small>Under development and publicly available.</small></div></div>
-          <div class="legend-item"><span class="status-chip s-AB">AB</span><div class="legend-text"><strong>Active, Beta</strong><small>Actively developed but still in beta.</small></div></div>
-          <div class="legend-item"><span class="status-chip s-PT">PT</span><div class="legend-text"><strong>Temporary Pause</strong><small>Development temporarily suspended, will resume.</small></div></div>
-          <div class="legend-item"><span class="status-chip s-PI">PI</span><div class="legend-text"><strong>Indefinite Pause</strong><small>Development suspended indefinitely.</small></div></div>
-          <div class="legend-item"><span class="status-chip s-FP">FP</span><div class="legend-text"><strong>Future, Planned</strong><small>Not started yet but planned.</small></div></div>
-          <div class="legend-item"><span class="status-chip s-FI">FI</span><div class="legend-text"><strong>Future, Hypothetical</strong><small>May never be realized.</small></div></div>
-          <div class="legend-item"><span class="status-chip s-ID">ID</span><div class="legend-text"><strong>Discontinued, Available</strong><small>Not finished, will not be resumed, but still usable.</small></div></div>
-          <div class="legend-item"><span class="status-chip s-IN">IN</span><div class="legend-text"><strong>Discontinued, Unavailable</strong><small>Not finished, depends on inactive infrastructure.</small></div></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<hr class="divider" />
-
-<!-- ============================================================
-     GITHUB ACTIVITY
-     ============================================================ -->
-<section id="github-stats">
-  <div class="container">
-    <p class="section-label fade-in">// activity</p>
-    <h2 class="section-title fade-in">GitHub Contributions</h2>
-    <div class="gh-embed fade-in">
-      <img src="https://ghchart.rshah.org/B0E6C4/FilBanfi" alt="FilBanfi GitHub Contributions" loading="lazy" />
-      <a href="https://github.com/FilBanfi" target="_blank">View full profile →</a>
-    </div>
-  </div>
-</section>
-
-<hr class="divider" />
-
-<!-- ============================================================
-     SKILLS — simpleicons.org CDN images ONLY
-     EVERY icon uses: <img class="si-icon" src="https://cdn.simpleicons.org/[slug]/B0E6C4" alt="[name]" />
-     ============================================================ -->
-<section id="skills">
-  <div class="container">
-    <p class="section-label fade-in">// stack</p>
-    <h2 class="section-title fade-in">Languages & Tools</h2>
-    <div class="skills-grid fade-in">
-
-      <!-- Languages -->
-      <div class="skills-group">
-        <h3>Languages</h3>
-        <div class="chips-row">
-          <div class="chip">
-            <img class="si-icon" src="https://cdn.simpleicons.org/kotlin/B0E6C4" alt="Kotlin" />
-            Kotlin <span class="chip-star">★</span>
-          </div>
-          <div class="chip">
-            <img class="si-icon" src="https://cdn.simpleicons.org/cplusplus/B0E6C4" alt="C++" />
-            C++
-          </div>
-          <div class="chip">
-            <img class="si-icon" src="https://cdn.simpleicons.org/python/B0E6C4" alt="Python" />
-            Python
-          </div>
-          <div class="chip">
-            <img class="si-icon" src="https://cdn.simpleicons.org/html5/B0E6C4" alt="HTML / CSS" />
-            HTML / CSS
-          </div>
-          <div class="chip">
-            <img class="si-icon" src="https://cdn.simpleicons.org/mitappinventor/B0E6C4" alt="AppInventor" />
-            AppInventor
-          </div>
-          <div class="chip">
-            <img class="si-icon" src="https://cdn.simpleicons.org/scratch/B0E6C4" alt="TurboWarp" />
-            TurboWarp
-          </div>
-          <div class="chip">
-            <img class="si-icon" src="https://cdn.simpleicons.org/gnubash/B0E6C4" alt="Bash" />
-            Bash
-          </div>
-        </div>
-      </div>
-
-      <!-- Platforms -->
-      <div class="skills-group">
-        <h3>Platforms</h3>
-        <div class="chips-row">
-          <div class="chip">
-            <img class="si-icon" src="https://cdn.simpleicons.org/android/B0E6C4" alt="Android" />
-            Android
-          </div>
-          <div class="chip">
-            <img class="si-icon" src="https://cdn.simpleicons.org/linux/B0E6C4" alt="Linux" />
-            Linux
-          </div>
-          <div class="chip">
-            <img class="si-icon" src="https://cdn.simpleicons.org/arduino/B0E6C4" alt="Arduino" />
-            Arduino
-          </div>
-          <div class="chip">
-            <img class="si-icon" src="https://cdn.simpleicons.org/html5/B0E6C4" alt="Web" />
-            Web
-          </div>
-        </div>
-      </div>
-
-      <!-- Tools & Stack -->
-      <div class="skills-group">
-        <h3>Tools & Stack</h3>
-        <div class="chips-row">
-          <div class="chip">
-            <img class="si-icon" src="https://cdn.simpleicons.org/androidstudio/B0E6C4" alt="Android Studio" />
-            Android Studio
-          </div>
-          <div class="chip">
-            <img class="si-icon" src="https://cdn.simpleicons.org/jetpackcompose/B0E6C4" alt="Jetpack Compose" />
-            Jetpack Compose
-          </div>
-          <div class="chip">
-            <img class="si-icon" src="https://cdn.simpleicons.org/git/B0E6C4" alt="Git / GitHub" />
-            Git / GitHub
-          </div>
-          <div class="chip">
-            <img class="si-icon" src="https://cdn.simpleicons.org/docker/B0E6C4" alt="Docker" />
-            Docker
-          </div>
-          <div class="chip">
-            <img class="si-icon" src="https://cdn.simpleicons.org/kdeplasma/B0E6C4" alt="KDE Plasma" />
-            KDE Plasma
-          </div>
-          <div class="chip">
-            <img class="si-icon" src="https://cdn.simpleicons.org/googleplay/B0E6C4" alt="Google Play" />
-            Google Play
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<hr class="divider" />
-
-<!-- ============================================================
-     AVAILABLE FOR
-     ============================================================ -->
-<section id="available">
-  <div class="container">
-    <p class="section-label fade-in">// what I offer</p>
-    <h2 class="section-title fade-in">Available For</h2>
-    <div class="available-grid fade-in">
-      <div class="available-card">
-        <h3>💻 Software</h3>
-        <ul>
-          <li>Android app development (Kotlin / Compose)</li>
-          <li>Custom ROM & Android modding</li>
-          <li>Linux customization & tooling</li>
-          <li>Small open-source collaborations</li>
-          <li>Promotion & tech content on social profiles</li>
+  <!-- ==========================================================================
+       HEADER E NAVIGAZIONE
+       ========================================================================== -->
+  <header>
+    <div class="container">
+      <!-- Logo e Nome: href punta alla home page -->
+      <a href="index.html" class="nav-logo">
+        <img src="https://avatars.githubusercontent.com/FilBanfi" alt="FilBanfi Logo" />
+        <span><span class="fil">Fil</span><span class="banfi">Banfi</span></span>
+      </a>
+      
+      <!-- Bottone hamburger per mobile -->
+      <button class="menu-toggle" aria-label="Toggle menu">Menu</button>
+      
+      <!-- Link di navigazione: la classe "active" indica la pagina corrente -->
+      <nav>
+        <ul class="nav-links">
+          <li><a href="index.html" class="active">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="projects.html">Projects</a></li>
+          <li><a href="contacts.html">Contacts</a></li>
         </ul>
-      </div>
-      <div class="available-card">
-        <h3>🔧 Hardware</h3>
-        <ul>
-          <li>Phone repair & refurbishment</li>
-          <li>PC repair & refurbishment</li>
-          <li>Tech device troubleshooting</li>
-          <li>Hardware diagnostics & component replacement</li>
-        </ul>
-      </div>
+      </nav>
     </div>
-  </div>
-</section>
+  </header>
 
-<hr class="divider" />
-
-<!-- ============================================================
-     ABOUT
-     ============================================================ -->
-<section id="about">
-  <div class="container">
-    <p class="section-label fade-in">// who I am</p>
-    <h2 class="section-title fade-in">About</h2>
-    <div class="about-box fade-in">
-      <p class="about-highlight">
-        Independent developer focused on Android, Linux, and open source projects.
-      </p>
-      <p>
-        I mainly work with Kotlin and the modern Android stack (Jetpack Compose), but I also build
-        experimental tools in Bash, Python, and C++. I'm interested in building complete systems:
-        from mobile apps to OS-level projects and custom ROMs.
-      </p>
-      <p>
-        My approach is practical: rapid prototyping, continuous testing, and constant iteration.
-        Some projects are experimental or incomplete by choice, as part of the learning process.
-      </p>
-      <p>
-        Current focus: Android development, personalized Linux systems, and open source projects (GPLv3).
-      </p>
-      <div class="philosophy-box">
-        <p>I build to understand.</p>
-        <p>If a project matters to me, I finish it — no matter what, until it's perfect.</p>
-        <p>Shipping matters more than perfection, but quality is non-negotiable.</p>
+  <main>
+    <!-- ==========================================================================
+         SEZIONE HERO (CHI SONO)
+         ========================================================================== -->
+    <section class="hero">
+      <div class="container">
+        <div class="hero-grid">
+          
+          <!-- Colonna sinistra: Immagine e Chips -->
+          <div class="hero-image-wrapper">
+            <!-- Sostituisci l'URL in src con la tua foto reale quando pronta -->
+            <img src="https://miro.medium.com/v2/resize:fit:1240/1*p6TJa5HwgptvQNDxIsF3QA.jpeg" alt="Filippo Banfi" class="hero-image" />
+            
+            <div class="hero-chips">
+              <span class="chip">open to collaborations</span>
+              <span class="chip">open source advocate</span>
+              <span class="chip">proudly italian</span>
+              
+              <!-- TEMPLATE: Per aggiungere un'altra chip, copia la riga qui sotto e incollala sopra questo commento -->
+              <!-- <span class="chip">Nuova Chip</span> -->
+            </div>
+          </div>
+          
+          <!-- Colonna destra: Titolo e Descrizione -->
+          <div class="hero-content">
+            <h1>Who I am?</h1>
+            <p>Hello! I'm filippo banfi, an italian indie developer and content creator. my goal is to make high quality and lightweight tools for your devices, fully privacy first and open source, while documenting everything on social medias, so everyone can understand how the tech world works.</p>
+          </div>
+          
+        </div>
       </div>
-    </div>
-  </div>
-</section>
+    </section>
 
-<hr class="divider" />
+    <hr class="divider" />
 
-<!-- ============================================================
-     CONTACTS — ALL icons from simpleicons.org
-     Format: https://cdn.simpleicons.org/[slug]/B0E6C4
-     ============================================================ -->
-<section id="contact">
-  <div class="container">
+    <!-- ==========================================================================
+         SEZIONE FEATURED PROJECTS
+         ========================================================================== -->
+    <section class="featured">
+      <div class="container">
+        <h2 class="section-title">Featured projects</h2>
+        
+        <div class="projects-grid">
+          
+          <!-- PROGETTO 1: WalkYourTime -->
+          <article class="project-card">
+            <img src="https://www.diabetes.ie/wp-content/uploads/2021/05/logo-Placeholder.jpg" alt="WalkYourTime Logo" class="project-logo" />
+            <div class="project-info">
+              <div>
+                <h3>WalkYourTime</h3>
+                <p>WalkYourTime is the innovative app that transform the steps made during the day in screen time, to promote an healthier and more conscious approach to your smartphone.</p>
+                <div class="project-meta">
+                  <span class="meta-chip">Kotlin</span>
+                  <span class="meta-chip">Android</span>
+                </div>
+              </div>
+              <!-- Cambia l'href con il link reale del progetto -->
+              <a href="https://github.com/FilBanfi/WalkYourTime" target="_blank" class="btn-discover">Discover more &rarr;</a>
+            </div>
+          </article>
 
-    <!-- Core: GitHub + Email (2 cards) -->
-    <div class="contact-group fade-in">
-      <p class="contact-group-label">// core</p>
-      <div class="social-grid">
-        <a href="https://github.com/FilBanfi" target="_blank" class="social-card">
-          <div class="social-icon">
-            <img class="si-icon" src="https://cdn.simpleicons.org/github/B0E6C4" alt="GitHub" />
-          </div>
-          <div class="social-info"><small>GitHub</small><span>FilBanfi</span></div>
-        </a>
-        <a href="mailto:filbanfi@hotmail.com" class="email-card">
-          <div class="social-icon">
-            <img class="si-icon" src="https://cdn.simpleicons.org/gmail/B0E6C4" alt="Email" />
-          </div>
-          <div class="social-info"><small>Email</small><span class="email-address">filbanfi@hotmail.com</span></div>
-        </a>
+          <!-- PROGETTO 2: EcoPoints -->
+          <article class="project-card">
+            <img src="https://www.diabetes.ie/wp-content/uploads/2021/05/logo-Placeholder.jpg" alt="EcoPoints Logo" class="project-logo" />
+            <div class="project-info">
+              <div>
+                <h3>EcoPoints</h3>
+                <p>EcoPoints is one of the first fully free and open source AI trash recognition software. Even if today the app might seem outdated, this app is one of the most important steps of my journey.</p>
+                <div class="project-meta">
+                  <span class="meta-chip">AppInventor</span>
+                  <span class="meta-chip">Android</span>
+                </div>
+              </div>
+              <a href="https://github.com/FilBanfi" target="_blank" class="btn-discover">Discover more &rarr;</a>
+            </div>
+          </article>
+
+          <!-- PROGETTO 3: SysUp -->
+          <article class="project-card">
+            <img src="https://www.diabetes.ie/wp-content/uploads/2021/05/logo-Placeholder.jpg" alt="SysUp Logo" class="project-logo" />
+            <div class="project-info">
+              <div>
+                <h3>SysUp</h3>
+                <p>Sysup is the brand new, fully customizable and modular tool to keep your Linux system fully updated in an easy, effortless way, suitable for everyone, on every distro.</p>
+                <div class="project-meta">
+                  <span class="meta-chip">Bash</span>
+                  <span class="meta-chip">Linux</span>
+                </div>
+              </div>
+              <a href="https://github.com/FilBanfi" target="_blank" class="btn-discover">Discover more &rarr;</a>
+            </div>
+          </article>
+
+          <!-- BLOCCO SPECIALE: Discover More (porta alla pagina Projects) -->
+          <article class="project-card explore">
+            <div class="project-info" style="align-items: center; text-align: center;">
+              <div>
+                <h3>Discover more</h3>
+                <p>FilBanfi is way more than just this. Click the button below to discover a new world of FilBanfi tools.</p>
+              </div>
+              <a href="projects.html" class="btn-discover">View All Projects &rarr;</a>
+            </div>
+          </article>
+
+          <!-- 
+            TEMPLATE: COME AGGIUNGERE UN NUOVO PROGETTO IN QUESTA GRIGLIA
+            Istruzioni:
+            1. Copia tutto il blocco <article> qui sotto.
+            2. Incollalo PRIMA del blocco "Discover more" (così rimane l'ultimo a destra/in basso).
+            3. Modifica: src dell'immagine, testo di h3 (titolo), testo di p (descrizione).
+            4. Modifica o aggiungi i <span class="meta-chip"> per linguaggio/piattaforma.
+            5. Modifica l'href del link <a> con l'URL corretto.
+          
+          <article class="project-card">
+            <img src="URL_IMMAGINE_QUI" alt="Nome Progetto Logo" class="project-logo" />
+            <div class="project-info">
+              <div>
+                <h3>Nome del Nuovo Progetto</h3>
+                <p>Descrizione breve e accattivante del nuovo progetto che stai aggiungendo alla home page.</p>
+                <div class="project-meta">
+                  <span class="meta-chip">Linguaggio</span>
+                  <span class="meta-chip">Piattaforma</span>
+                </div>
+              </div>
+              <a href="https://github.com/tuo-link" target="_blank" class="btn-discover">Discover more &rarr;</a>
+            </div>
+          </article>
+          -->
+
+        </div>
       </div>
-    </div>
+    </section>
 
-    <!-- Text & Updates: Twitter, Threads, Mastodon (3 cards) -->
-    <div class="contact-group fade-in">
-      <p class="contact-group-label">// text & updates — App/project news, tech updates</p>
-      <div class="social-grid">
-        <a href="https://x.com/FilBanfi" target="_blank" class="social-card">
-          <div class="social-icon">
-            <img class="si-icon" src="https://cdn.simpleicons.org/x/B0E6C4" alt="X / Twitter" />
+    <hr class="divider" />
+
+    <!-- ==========================================================================
+         SEZIONE ATTIVITA (GITHUB E LAVORI IN CORSO)
+         ========================================================================== -->
+    <section class="activity-section">
+      <div class="container">
+        <h2 class="section-title">My activity</h2>
+        
+        <div class="activity-grid">
+          
+          <!-- Grafico GitHub: i colori nell'URL sono già impostati per fondersi con lo sfondo -->
+          <div class="gh-stats">
+            <img src="https://github-readme-stats.vercel.app/api?username=FilBanfi&show_icons=true&title_color=b0e6c4&text_color=f5f5f0&icon_color=b0e6c4&bg_color=004519&hide_border=true" alt="GitHub Stats" />
           </div>
-          <div class="social-info"><small>X / Twitter</small><span>@FilBanfi</span></div>
-        </a>
-        <a href="https://www.threads.com/@filbanfi" target="_blank" class="social-card">
-          <div class="social-icon">
-            <img class="si-icon" src="https://cdn.simpleicons.org/threads/B0E6C4" alt="Threads" />
+
+          <!-- Lista "Currently working on" -->
+          <div class="currently-working">
+            <h3>Currently working on</h3>
+            
+            <!-- Item 1: WalkYourTime -->
+            <div class="working-item">
+              <span class="working-dot"></span>
+              <div>
+                <h4>WalkYourTime</h4>
+                <p>Improving step/time conversion ratio and UI polish</p>
+              </div>
+            </div>
+
+            <!-- 
+              TEMPLATE: COME AGGIUNGERE UN NUOVO PROGETTO IN SVILUPPO
+              Istruzioni:
+              1. Copia tutto il blocco <div class="working-item"> qui sotto.
+              2. Incollalo sotto l'ultimo progetto esistente, ma prima di questo commento.
+              3. Modifica il testo dentro <h4> con il nome del progetto.
+              4. Modifica il testo dentro <p> con una breve descrizione dello stato attuale.
+              5. (Opzionale) Se il progetto e' in pausa, puoi cambiare la classe del pallino da "working-dot" a "working-dot paused" (dovrai aggiungere lo stile CSS per .paused se vuoi un colore diverso, es. giallo).
+            
+            <div class="working-item">
+              <span class="working-dot"></span>
+              <div>
+                <h4>Nome del Nuovo Progetto</h4>
+                <p>Breve descrizione di cosa stai facendo su questo progetto in questo momento.</p>
+              </div>
+            </div>
+            -->
+
           </div>
-          <div class="social-info"><small>Threads</small><span>@filbanfi</span></div>
-        </a>
-        <a href="https://mastodon.social/@FilBanfi" target="_blank" class="social-card">
-          <div class="social-icon">
-            <img class="si-icon" src="https://cdn.simpleicons.org/mastodon/B0E6C4" alt="Mastodon" />
-          </div>
-          <div class="social-info"><small>Mastodon</small><span>@FilBanfi</span></div>
-        </a>
+        </div>
       </div>
+    </section>
+  </main>
+
+  <!-- ==========================================================================
+       FOOTER
+       ========================================================================== -->
+  <footer>
+    <div class="container">
+      <div class="footer-hearts">💚🤍❤️</div>
+      <p class="footer-text">Copyright 2026 FilBanfi. Open Source under <span>GPLv3</span>.</p>
     </div>
+  </footer>
 
-    <!-- Video: Instagram, YouTube, TikTok (3 cards) -->
-    <div class="contact-group fade-in">
-      <p class="contact-group-label">// video — Tech reviews, tests, commentary</p>
-      <div class="social-grid">
-        <a href="https://www.instagram.com/filbanfi/" target="_blank" class="social-card">
-          <div class="social-icon">
-            <img class="si-icon" src="https://cdn.simpleicons.org/instagram/B0E6C4" alt="Instagram" />
-          </div>
-          <div class="social-info"><small>Instagram</small><span>@filbanfi</span></div>
-        </a>
-        <a href="https://www.youtube.com/@FilBanfi" target="_blank" class="social-card">
-          <div class="social-icon">
-            <img class="si-icon" src="https://cdn.simpleicons.org/youtube/B0E6C4" alt="YouTube" />
-          </div>
-          <div class="social-info"><small>YouTube</small><span>@FilBanfi</span></div>
-        </a>
-        <a href="https://www.tiktok.com/@filbanfi" target="_blank" class="social-card">
-          <div class="social-icon">
-            <img class="si-icon" src="https://cdn.simpleicons.org/tiktok/B0E6C4" alt="TikTok" />
-          </div>
-          <div class="social-info"><small>TikTok</small><span>@filbanfi</span></div>
-        </a>
-      </div>
-    </div>
+  <!-- ==========================================================================
+       JAVASCRIPT MINIMO (SOLO PER IL MENU MOBILE)
+       ========================================================================== -->
+  <script>
+    // Seleziona il bottone del menu e la lista dei link
+    const menuToggle = document.querySelector('.menu-toggle');
+    const navLinks = document.querySelector('.nav-links');
 
-  </div>
-</section>
-
-<!-- ============================================================
-     FOOTER
-     ============================================================ -->
-<footer>
-  <div class="container">
-    <p>© 2026 FilBanfi · Rho (MI), Italy 💚🤍❤️</p>
-    <p>Where possible, released under <span class="gplv3">GPLv3</span></p>
-    <p style="font-size:0.7rem;color:#5a7260;">Independent developer · Open Source Advocate · 🐧 Fedora</p>
-  </div>
-</footer>
-
-<!-- ============================================================
-     JAVASCRIPT
-     ============================================================ -->
-<script>
-  /* === Project Data === */
-  var projectData = [
-    { name:"Armuino",                 status:"FI", platforms:["Arduino"],        langs:["C++","Arduino"],                url:null },
-    { name:"UltimateCalculator",      status:"PI", platforms:["Multi"],          langs:["Python","C++"],                 url:"https://github.com/FilBanfi/UltimateCalculator" },
-    { name:"Tubuntu",                 status:"FI", platforms:["Linux"],          langs:["Bash"],                          url:null },
-    { name:"RussianRoulette",         status:"PI", platforms:["Linux"],          langs:["Bash"],                          url:"https://github.com/FilBanfi/RussianRoulette" },
-    { name:"KaelOS Mobile",           status:"FI", platforms:["Android","Linux"],langs:["Bash"],                          url:null },
-    { name:"KaelOS PC",               status:"FI", platforms:["Linux"],          langs:["Bash"],                          url:null },
-    { name:"Debian Lite",             status:"FP", platforms:["Linux"],          langs:["Bash"],                          url:null },
-    { name:"AeroLinux",               status:"PI", platforms:["Linux"],          langs:["Bash"],                          url:null },
-    { name:"Fedora Hyprland",         status:"ID", platforms:["Linux"],          langs:["Bash"],                          url:"https://github.com/FilBanfi/Fedora-Hyprland" },
-    { name:"AnythingOS",              status:"FP", platforms:["Android"],        langs:["Android"],                       url:"https://github.com/FilBanfi/AnythingOS" },
-    { name:"WalkYourTime",            status:"AP", platforms:["Android"],        langs:["Kotlin"],                        url:"https://github.com/FilBanfi/WalkYourTime" },
-    { name:"EcoPoints",               status:"PI", platforms:["Android"],        langs:["AppInventor"],                    url:null },
-    { name:"Spot",                    status:"FP", platforms:["Android"],        langs:["Kotlin"],                        url:"https://github.com/FilBanfi/Spot" },
-    { name:"FindMyCar (Spot Legacy)", status:"ID", platforms:["Android"],        langs:["AppInventor"],                    url:null },
-    { name:"FindMyDevice",            status:"IN", platforms:["Android"],        langs:["AppInventor"],                    url:null },
-    { name:"FindMyDevice Legacy",     status:"ID", platforms:["Android"],        langs:["AppInventor"],                    url:null },
-    { name:"InternetExplorer12",      status:"PI", platforms:["Android"],        langs:["AppInventor"],                    url:null },
-    { name:"BrowserPlus",             status:"ID", platforms:["Android"],        langs:["AppInventor"],                    url:null },
-    { name:"IOMIBrowser",             status:"ID", platforms:["Android"],        langs:["AppInventor"],                    url:null },
-    { name:"AIWashing",               status:"FP", platforms:["Android","Web"],  langs:["AppInventor","Kotlin","Kodular"], url:null },
-    { name:"Mysterium",               status:"AB", platforms:["Web"],            langs:["TurboWarp"],                      url:"https://github.com/FilBanfi/Mysterium" },
-  ];
-
-  /* === Render Table === */
-  function renderTable(data) {
-    var tbody = document.getElementById('projectTableBody');
-    var noRes = document.getElementById('noResults');
-    tbody.innerHTML = '';
-
-    if (!data.length) {
-      noRes.style.display = 'block';
-      return;
-    }
-    noRes.style.display = 'none';
-
-    data.forEach(function(proj) {
-      var nameCell = proj.url
-        ? '<a href="' + proj.url + '" target="_blank">' + proj.name + '</a>'
-        : '<span class="no-link">' + proj.name + '</span>';
-
-      var langsHtml = proj.langs.map(function(lang) {
-        return '<span class="lang-tag">' + lang + '</span>';
-      }).join('');
-
-      tbody.innerHTML += '<tr>' +
-        '<td class="td-name">' + nameCell + '</td>' +
-        '<td><span class="status-chip s-' + proj.status + '">' + proj.status + '</span></td>' +
-        '<td class="td-platforms">' + proj.platforms.join(', ') + '</td>' +
-        '<td><div class="td-langs">' + langsHtml + '</div></td>' +
-        '</tr>';
+    // Aggiunge un ascoltatore di click: quando si clicca, aggiunge o rimuove la classe "active"
+    // La classe "active" nel CSS gestisce l'apertura e la chiusura con un'animazione
+    menuToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
     });
-  }
-
-  /* === Apply Filters === */
-  function applyFilters() {
-    var sVal = document.getElementById('filterStatus').value;
-    var pVal = document.getElementById('filterPlatform').value;
-    var lVal = document.getElementById('filterLang').value;
-
-    var filtered = projectData.filter(function(proj) {
-      var ms = !sVal || proj.status === sVal;
-      var mp = !pVal || proj.platforms.some(function(pl) {
-        return pl.toLowerCase().includes(pVal.toLowerCase());
-      });
-      var ml = !lVal || proj.langs.some(function(la) {
-        return la.toLowerCase().includes(lVal.toLowerCase());
-      });
-      return ms && mp && ml;
-    });
-
-    renderTable(filtered);
-  }
-
-  /* === Reset Filters === */
-  function resetFilters() {
-    document.getElementById('filterStatus').value = '';
-    document.getElementById('filterPlatform').value = '';
-    document.getElementById('filterLang').value = '';
-    renderTable(projectData);
-  }
-
-  /* Initial render */
-  renderTable(projectData);
-
-  /* === Expand / Collapse Project Card === */
-  function toggleProject(card) {
-    card.classList.toggle('expanded');
-    var btn = card.querySelector('.expand-toggle');
-    if (card.classList.contains('expanded')) {
-      btn.textContent = '− hide';
-    } else {
-      btn.textContent = '+ details';
-    }
-  }
-
-  /* === Banner Dismiss === */
-  (function() {
-    var banner = document.getElementById('collabBanner');
-    var btn = document.getElementById('dismissBanner');
-    if (localStorage.getItem('bannerDismissed') === 'true') {
-      banner.classList.add('dismissed');
-    }
-    btn.addEventListener('click', function() {
-      banner.classList.add('dismissed');
-      localStorage.setItem('bannerDismissed', 'true');
-    });
-  })();
-
-  /* === Legend Toggle === */
-  function toggleLegend() {
-    var toggle = document.getElementById('legendToggle');
-    var content = document.getElementById('legendContent');
-    toggle.classList.toggle('open');
-    content.classList.toggle('open');
-  }
-
-  /* === Scroll Animations === */
-  var fadeObs = new IntersectionObserver(function(entries) {
-    entries.forEach(function(entry) {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-      }
-    });
-  }, { threshold: 0.08 });
-
-  document.querySelectorAll('.fade-in').forEach(function(el) {
-    fadeObs.observe(el);
-  });
-</script>
+  </script>
 </body>
 </html>
-
