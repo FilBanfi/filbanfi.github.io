@@ -1,1 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <!-- SEO: Meta description per la pagina About -->
+  <meta name="description" content="About FilBanfi - The story behind the brand, from refurbished phones to open source development." />
+  
+  <title>About - FilBanfi</title>
+  
+  <!-- Ottimizzazione connessione a Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  
+  <!-- Caricamento standard dei font -->
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=JetBrains+Mono:wght@400;500&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet" />
+  
+  <!-- CSS del sito -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
 
+  <!-- HEADER E NAVIGAZIONE -->
+  <header>
+    <div class="container">
+      <a href="index.html" class="nav-logo">
+        <img src="https://avatars.githubusercontent.com/FilBanfi" alt="FilBanfi Logo" width="36" height="36" />
+        <span><span class="fil">Fil</span><span class="banfi">Banfi</span></span>
+      </a>
+      
+      <!-- Hamburger menu in puro CSS (3 linee) -->
+      <button class="menu-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      
+      <nav>
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html" class="active">About</a></li>
+          <li><a href="projects.html">Projects</a></li>
+          <li><a href="contacts.html">Contacts</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- SEZIONE ABOUT - HERO -->
+    <section class="about-hero">
+      <div class="container">
+        <h1 class="section-title">About</h1>
+        
+        <!-- This is me - Foto/Avatar -->
+        <div class="about-intro">
+          <div class="about-image-wrapper">
+            <img src="https://miro.medium.com/v2/resize:fit:1240/1*p6TJa5HwgptvQNDxIsF3QA.jpeg" alt="Filippo Banfi" class="about-image" width="280" height="280" />
+            <p class="about-caption">This is me</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <hr class="divider" />
+
+    <!-- WHO I AM (uguale alla home) -->
+    <section class="about-section">
+      <div class="container">
+        <h2 class="section-subtitle">Who I am</h2>
+        <div class="about-content-box">
+          <p>Hello! I'm Filippo Banfi, an Italian indie developer and content creator. My goal is to build high-quality, lightweight tools for your devices that are fully privacy-first and open source, while documenting everything on social media so everyone can understand how the tech world works.</p>
+        </div>
+      </div>
+    </section>
+
+    <hr class="divider" />
+
+    <!-- WHY FILBANFI - La storia -->
+    <section class="about-section">
+      <div class="container">
+        <h2 class="section-subtitle">Why FilBanfi</h2>
+        <div class="about-content-box">
+          <p>FilBanfi was born as a seller of refurbished phones on an Italian website called Subito.it, which is still active and working.</p>
+          
+          <p>But that's not my first project in the tech world. My first attempt was a blog called InformaticaScola.data.blog, that can be translated as "doing IT", hosted on WordPress; it lasted around 1 year.</p>
+          
+          <p>After another year I decided to try again, but not with InformaticaScola. I wanted to keep it as I left it, so I created a new blog, hosted on Blogger by Google, that unfortunately didn't last long, due to School/University.</p>
+          
+          <p>The summer of the same year I decided to try to fix my old phone, and I really enjoyed the activity, so I decided to fix other spare devices in my house and sell them on the website mentioned at the beginning of this text. That's how the name FilBanfi was born, then I first drafted a logo and decided to distribute my apps and projects under this name instead of just publishing the files in random WordPress websites.</p>
+        </div>
+      </div>
+    </section>
+
+    <hr class="divider" />
+
+    <!-- VIDEO YOUTUBE - Lazy loaded -->
+    <section class="about-section">
+      <div class="container">
+        <h2 class="section-subtitle">Watch my content</h2>
+        
+        <!-- Video placeholder con lazy loading -->
+        <div class="video-wrapper">
+          <div class="video-placeholder" id="videoPlaceholder" onclick="loadVideo()">
+            <img src="https://img.youtube.com/vi/jNQXAC9IVRw/maxresdefault.jpg" alt="YouTube Video Thumbnail" class="video-thumbnail" width="640" height="360" />
+            <div class="video-play-button">
+              <svg viewBox="0 0 24 24" fill="currentColor" width="64" height="64">
+                <path d="M8 5v14l11-7z"/>
+              </svg>
+            </div>
+          </div>
+        </div>
+        <p class="video-note">Click to load video from YouTube</p>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="footer-hearts">💚🤍❤️</div>
+      <p class="footer-text">Copyright 2026 FilBanfi. Open Source under <span>GPLv3</span>.</p>
+    </div>
+  </footer>
+
+  <!-- JAVASCRIPT MINIMO -->
+  <script>
+    // Menu mobile toggle
+    const menuToggle = document.querySelector('.menu-toggle');
+    const navLinks = document.querySelector('.nav-links');
+
+    menuToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+      menuToggle.classList.toggle('active');
+      
+      const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
+      menuToggle.setAttribute('aria-expanded', !isExpanded);
+    });
+
+    // Lazy loading video YouTube - si carica solo al click
+    function loadVideo() {
+      const placeholder = document.getElementById('videoPlaceholder');
+      const videoId = 'jNQXAC9IVRw';
+      
+      // Crea l'iframe del video YouTube
+      const iframe = document.createElement('iframe');
+      iframe.setAttribute('width', '100%');
+      iframe.setAttribute('height', '100%');
+      iframe.setAttribute('src', 'https://www.youtube.com/embed/' + videoId + '?autoplay=1&rel=0');
+      iframe.setAttribute('title', 'YouTube video');
+      iframe.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share');
+      iframe.setAttribute('allowfullscreen', 'true');
+      iframe.style.border = 'none';
+      
+      // Sostituisce il placeholder con l'iframe
+      placeholder.innerHTML = '';
+      placeholder.appendChild(iframe);
+      placeholder.classList.add('video-loaded');
+    }
+  </script>
+</body>
+</html>
