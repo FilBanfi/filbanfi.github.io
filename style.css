@@ -868,3 +868,99 @@ footer {
     height: 32px;
   }
 }
+
+/* ==========================================================================
+   12. PAGINA CONTACTS - CARD SOCIAL
+   ========================================================================== */
+
+.contact-category {
+  margin-bottom: 3rem;
+}
+
+.contact-category:last-child {
+  margin-bottom: 0;
+}
+
+.contact-category-title {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--green-light);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 1rem;
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1rem;
+}
+
+.contact-card {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background: rgba(176, 230, 196, 0.04);
+  border: 1px solid rgba(176, 230, 196, 0.12);
+  border-radius: 12px;
+  padding: 1.25rem;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+
+.contact-card:hover {
+  border-color: rgba(176, 230, 196, 0.3);
+  background: rgba(176, 230, 196, 0.08);
+  transform: translateY(-2px);
+}
+
+.contact-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  background: rgba(176, 230, 196, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.contact-icon img {
+  width: 24px;
+  height: 24px;
+}
+
+.contact-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.contact-platform {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--grey);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.25rem;
+}
+
+.contact-handle {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--white);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Email card speciale */
+.contact-card.email {
+  background: rgba(176, 230, 196, 0.08);
+  border-color: rgba(176, 230, 196, 0.2);
+}
+
+.contact-card.email:hover {
+  background: rgba(176, 230, 196, 0.12);
+  border-color: rgba(176, 230, 196, 0.4);
+}
