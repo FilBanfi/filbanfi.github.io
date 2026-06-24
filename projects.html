@@ -1,1 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <!-- SEO: Meta description per la pagina Projects -->
+  <meta name="description" content="All FilBanfi projects - Android apps, Linux tools, and open source software." />
+  
+  <title>Projects - FilBanfi</title>
+  
+  <!-- Ottimizzazione connessione a Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  
+  <!-- Caricamento standard dei font -->
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=JetBrains+Mono:wght@400;500&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet" />
+  
+  <!-- CSS del sito -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
 
+  <!-- HEADER E NAVIGAZIONE -->
+  <header>
+    <div class="container">
+      <a href="index.html" class="nav-logo">
+        <img src="https://avatars.githubusercontent.com/FilBanfi" alt="FilBanfi Logo" width="36" height="36" />
+        <span><span class="fil">Fil</span><span class="banfi">Banfi</span></span>
+      </a>
+      
+      <button class="menu-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      
+      <nav>
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="projects.html" class="active">Projects</a></li>
+          <li><a href="contacts.html">Contacts</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- TITOLO PAGINA -->
+    <section class="about-hero">
+      <div class="container">
+        <h1 class="section-title">Projects</h1>
+        <p style="color: var(--grey); font-size: 1rem; max-width: 600px;">
+          A complete list of my projects, from active apps to experimental tools. Use the filters to find what you're looking for.
+        </p>
+      </div>
+    </section>
+
+    <hr class="divider" />
+
+    <!-- SEZIONE FILTRI E TABELLA -->
+    <section class="about-section">
+      <div class="container">
+        
+        <!-- Barra di ricerca e filtri -->
+        <div class="filter-bar">
+          <input type="text" id="searchInput" class="search-input" placeholder="Search projects..." aria-label="Search projects" />
+          
+          <select id="filterStatus" class="filter-select" aria-label="Filter by status">
+            <option value="">Status: all</option>
+            <option value="AP">AP - Active, ready</option>
+            <option value="AB">AB - Active, beta</option>
+            <option value="PT">PT - Temporary pause</option>
+            <option value="PI">PI - Indefinite pause</option>
+            <option value="FP">FP - Future, planned</option>
+            <option value="FI">FI - Future, hypothetical</option>
+            <option value="ID">ID - Discontinued, available</option>
+            <option value="IN">IN - Discontinued, unavailable</option>
+          </select>
+          
+          <select id="filterPlatform" class="filter-select" aria-label="Filter by platform">
+            <option value="">Platform: all</option>
+            <option value="Android">Android</option>
+            <option value="Linux">Linux</option>
+            <option value="Web">Web</option>
+            <option value="Multi">Multi</option>
+          </select>
+          
+          <select id="filterLang" class="filter-select" aria-label="Filter by language">
+            <option value="">Language: all</option>
+            <option value="Kotlin">Kotlin</option>
+            <option value="Bash">Bash</option>
+            <option value="AppInventor">AppInventor</option>
+            <option value="Multi">Multi</option>
+          </select>
+          
+          <button class="reset-btn" id="resetBtn" aria-label="Reset filters">Reset</button>
+        </div>
+
+        <!-- Tabella progetti -->
+        <div class="table-wrap">
+          <table class="projects-table">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Status</th>
+                <th>Platforms</th>
+                <th>Languages</th>
+              </tr>
+            </thead>
+            <tbody id="projectTableBody">
+              <!-- Le righe vengono generate dinamicamente dal JavaScript -->
+            </tbody>
+          </table>
+          <div class="no-results" id="noResults" style="display: none;">
+            No projects match the selected filters.
+          </div>
+        </div>
+
+        <!-- Legenda status collassabile -->
+        <button class="legend-toggle" id="legendToggle" aria-expanded="false">
+          <span>View status meanings</span>
+          <span class="arrow">▼</span>
+        </button>
+        <div class="legend-content" id="legendContent">
+          <div class="legend">
+            <div class="legend-item">
+              <span class="status-chip s-AP">AP</span>
+              <div class="legend-text">
+                <strong>Active, Ready</strong>
+                <small>Under development and publicly available.</small>
+              </div>
+            </div>
+            <div class="legend-item">
+              <span class="status-chip s-AB">AB</span>
+              <div class="legend-text">
+                <strong>Active, Beta</strong>
+                <small>Actively developed but still in beta.</small>
+              </div>
+            </div>
+            <div class="legend-item">
+              <span class="status-chip s-PT">PT</span>
+              <div class="legend-text">
+                <strong>Temporary Pause</strong>
+                <small>Development temporarily suspended, will resume.</small>
+              </div>
+            </div>
+            <div class="legend-item">
+              <span class="status-chip s-PI">PI</span>
+              <div class="legend-text">
+                <strong>Indefinite Pause</strong>
+                <small>Development suspended indefinitely.</small>
+              </div>
+            </div>
+            <div class="legend-item">
+              <span class="status-chip s-FP">FP</span>
+              <div class="legend-text">
+                <strong>Future, Planned</strong>
+                <small>Not started yet but planned.</small>
+              </div>
+            </div>
+            <div class="legend-item">
+              <span class="status-chip s-FI">FI</span>
+              <div class="legend-text">
+                <strong>Future, Hypothetical</strong>
+                <small>May never be realized.</small>
+              </div>
+            </div>
+            <div class="legend-item">
+              <span class="status-chip s-ID">ID</span>
+              <div class="legend-text">
+                <strong>Discontinued, Available</strong>
+                <small>Not finished, will not be resumed, but still usable.</small>
+              </div>
+            </div>
+            <div class="legend-item">
+              <span class="status-chip s-IN">IN</span>
+              <div class="legend-text">
+                <strong>Discontinued, Unavailable</strong>
+                <small>Not finished, depends on inactive infrastructure.</small>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="footer-hearts">💚🤍❤️</div>
+      <p class="footer-text">Copyright 2026 FilBanfi. Open Source under <span>GPLv3</span>.</p>
+    </div>
+  </footer>
+
+  <!-- JAVASCRIPT: DATI PROGETTI E LOGICA FILTRI -->
+  <script>
+    // ==========================================================================
+    // DATI DEI PROGETTI
+    // ==========================================================================
+    // Per aggiungere un nuovo progetto, copia un oggetto esistente e modifica i campi:
+    // - name: nome del progetto (stringa)
+    // - status: codice status (AP, AB, PT, PI, FP, FI, ID, IN)
+    // - platforms: array di piattaforme (es. ["Android"], ["Linux"], ["Android", "Web"])
+    // - langs: array di linguaggi (es. ["Kotlin"], ["Bash"])
+    // - url: link GitHub (stringa) oppure null se non disponibile
+    
+    const projects = [
+      {
+        name: "WalkYourTime",
+        status: "AP",
+        platforms: ["Android"],
+        langs: ["Kotlin"],
+        url: "https://github.com/FilBanfi/WalkYourTime"
+      },
+      {
+        name: "EcoPoints",
+        status: "ID",
+        platforms: ["Android"],
+        langs: ["AppInventor"],
+        url: "https://github.com/FilBanfi"
+      },
+      {
+        name: "SysUp",
+        status: "FP",
+        platforms: ["Linux"],
+        langs: ["Bash"],
+        url: "https://github.com/FilBanfi"
+      },
+      {
+        name: "New Project",
+        status: "FP",
+        platforms: ["Multi"],
+        langs: ["Multi"],
+        url: null
+      }
+    ];
+
+    // ==========================================================================
+    // RENDERING TABELLA
+    // ==========================================================================
+    function renderTable(data) {
+      const tbody = document.getElementById('projectTableBody');
+      const noResults = document.getElementById('noResults');
+      tbody.innerHTML = '';
+
+      if (data.length === 0) {
+        noResults.style.display = 'block';
+        return;
+      }
+      noResults.style.display = 'none';
+
+      data.forEach(project => {
+        const nameCell = project.url
+          ? `<td class="td-name"><a href="${project.url}" target="_blank" rel="noopener noreferrer">${project.name}</a></td>`
+          : `<td class="td-name"><span class="no-link">${project.name}</span></td>`;
+
+        const langsHtml = project.langs
+          .map(lang => `<span class="meta-chip">${lang}</span>`)
+          .join('');
+
+        const row = document.createElement('tr');
+        row.innerHTML = `
+          ${nameCell}
+          <td><span class="status-chip s-${project.status}">${project.status}</span></td>
+          <td class="td-platforms">${project.platforms.join(', ')}</td>
+          <td><div class="td-langs">${langsHtml}</div></td>
+        `;
+        tbody.appendChild(row);
+      });
+    }
+
+    // ==========================================================================
+    // LOGICA FILTRI
+    // ==========================================================================
+    function applyFilters() {
+      const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+      const statusFilter = document.getElementById('filterStatus').value;
+      const platformFilter = document.getElementById('filterPlatform').value;
+      const langFilter = document.getElementById('filterLang').value;
+
+      const filtered = projects.filter(project => {
+        const matchSearch = project.name.toLowerCase().includes(searchTerm);
+        const matchStatus = !statusFilter || project.status === statusFilter;
+        const matchPlatform = !platformFilter || project.platforms.some(p => p.toLowerCase().includes(platformFilter.toLowerCase()));
+        const matchLang = !langFilter || project.langs.some(l => l.toLowerCase().includes(langFilter.toLowerCase()));
+        return matchSearch && matchStatus && matchPlatform && matchLang;
+      });
+
+      renderTable(filtered);
+    }
+
+    function resetFilters() {
+      document.getElementById('searchInput').value = '';
+      document.getElementById('filterStatus').value = '';
+      document.getElementById('filterPlatform').value = '';
+      document.getElementById('filterLang').value = '';
+      renderTable(projects);
+    }
+
+    // Event listeners per i filtri
+    document.getElementById('searchInput').addEventListener('input', applyFilters);
+    document.getElementById('filterStatus').addEventListener('change', applyFilters);
+    document.getElementById('filterPlatform').addEventListener('change', applyFilters);
+    document.getElementById('filterLang').addEventListener('change', applyFilters);
+    document.getElementById('resetBtn').addEventListener('click', resetFilters);
+
+    // Rendering iniziale
+    renderTable(projects);
+
+    // ==========================================================================
+    // TOGGLE LEGENDA
+    // ==========================================================================
+    const legendToggle = document.getElementById('legendToggle');
+    const legendContent = document.getElementById('legendContent');
+
+    legendToggle.addEventListener('click', () => {
+      legendToggle.classList.toggle('open');
+      legendContent.classList.toggle('open');
+      const isExpanded = legendToggle.getAttribute('aria-expanded') === 'true';
+      legendToggle.setAttribute('aria-expanded', !isExpanded);
+    });
+
+    // ==========================================================================
+    // MENU MOBILE (uguale alle altre pagine)
+    // ==========================================================================
+    const menuToggle = document.querySelector('.menu-toggle');
+    const navLinks = document.querySelector('.nav-links');
+
+    menuToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+      menuToggle.classList.toggle('active');
+      const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
+      menuToggle.setAttribute('aria-expanded', !isExpanded);
+    });
+  </script>
+</body>
+</html>
