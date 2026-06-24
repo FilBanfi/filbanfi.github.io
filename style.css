@@ -964,3 +964,21 @@ footer {
   background: rgba(176, 230, 196, 0.12);
   border-color: rgba(176, 230, 196, 0.4);
 }
+
+/* Avviso ufficiale anti-cloni */
+.official-notice {
+  background: rgba(176, 230, 196, 0.08);
+  border: 1px solid rgba(176, 230, 196, 0.2);
+  border-left: 4px solid var(--green-light);
+  border-radius: 8px;
+  padding: 1rem 1.25rem;
+  margin-bottom: 2rem;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--grey);
+  line-height: 1.5;
+}
+
+.official-notice strong {
+  color: var(--white);
+}
