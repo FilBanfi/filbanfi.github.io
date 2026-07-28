@@ -441,34 +441,155 @@
   text-decoration: none;
 }
 
-/* RESPONSIVE */
+/* ==========================================================================
+   RESPONSIVE - MOBILE FIX
+   ========================================================================== */
 @media (max-width: 768px) {
+  .project-main {
+    padding: 2rem 0 3rem;
+  }
+
+  /* Hero più compatto */
   .project-hero {
-    padding: 2rem 1rem;
+    padding: 1.5rem 1rem;
     border-radius: 20px;
+    margin-bottom: 2.5rem;
   }
   
   .project-title {
-    font-size: 2.25rem;
+    font-size: 2rem;
   }
-  
+
+  .project-description {
+    font-size: 1rem;
+  }
+
+  /* Pulsanti in colonna su mobile */
+  .project-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  /* Sezioni con meno padding */
+  .project-section {
+    margin-bottom: 2.5rem;
+    padding: 0 0.5rem;
+  }
+
+  .section-heading {
+    font-size: 1.4rem;
+    margin-bottom: 1rem;
+  }
+
+  /* Timeline compatta per mobile */
   .timeline {
-    padding-left: 2rem;
+    padding-left: 1.5rem;
+    margin-left: 0;
   }
-  
+
+  .timeline-item {
+    margin-bottom: 1.75rem;
+  }
+
   .timeline-dot {
-    left: -2.6rem;
-    width: 14px;
-    height: 14px;
+    left: -2rem;
+    width: 12px;
+    height: 12px;
+    box-shadow: 0 0 0 3px var(--md-sys-color-background);
   }
-  
-  .screenshot-img {
-    width: 220px;
+
+  .timeline-item.current .timeline-dot {
+    box-shadow: 0 0 0 3px var(--md-sys-color-background), 0 0 8px rgba(176, 230, 196, 0.4);
   }
-  
-  .features-grid,
+
+  .timeline-content h3 {
+    font-size: 1rem;
+  }
+
+  .timeline-content p {
+    font-size: 0.875rem;
+  }
+
+  /* Features in colonna singola */
+  .features-grid {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+
+  .feature-card {
+    padding: 1.25rem;
+  }
+
+  /* Usage list più compatta */
+  .usage-list {
+    padding: 1.25rem;
+    font-size: 0.9rem;
+  }
+
+  .usage-list li {
+    margin-bottom: 0.75rem;
+  }
+
+  /* Install links in colonna */
   .install-links {
     grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+
+  .install-link {
+    padding: 1rem 1.25rem;
+  }
+
+  /* Screenshot più piccoli */
+  .screenshots-grid {
+    gap: 1rem;
+    padding: 0.5rem;
+  }
+
+  .screenshot-img {
+    width: 200px;
+    border-radius: 20px;
+  }
+
+  /* Tech chips più piccoli */
+  .tech-chips {
+    gap: 0.5rem;
+  }
+
+  .tech-chip {
+    font-size: 0.75rem;
+    padding: 0.4rem 0.75rem;
+  }
+
+  /* Testo base */
+  .text-block {
+    font-size: 0.95rem;
+  }
+}
+
+/* Per schermi molto piccoli (iPhone SE, ecc.) */
+@media (max-width: 380px) {
+  .project-title {
+    font-size: 1.75rem;
+  }
+
+  .screenshot-img {
+    width: 180px;
+  }
+
+  .timeline {
+    padding-left: 1.25rem;
+  }
+
+  .timeline-dot {
+    left: -1.75rem;
+    width: 10px;
+    height: 10px;
   }
 }
 
