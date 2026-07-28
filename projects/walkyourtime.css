@@ -484,3 +484,44 @@
 .elevation-3 {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
 }
+
+/* ==========================================================================
+   MATERIAL 3 - LIGHT MODE (Auto-detect)
+   ========================================================================== */
+@media (prefers-color-scheme: light) {
+  :root {
+    /* Background - Light Mode */
+    --md-sys-color-background: #FDFCF5;
+    --md-sys-color-on-background: #1A1C19;
+    --md-sys-color-surface: #FDFCF5;
+    --md-sys-color-surface-variant: #F0F0F0;
+    --md-sys-color-surface-container: #F5F5F0;
+    --md-sys-color-surface-container-low: #FAFAF5;
+    --md-sys-color-surface-container-high: #EFEFEA;
+    --md-sys-color-surface-container-highest: #E8E8E3;
+    
+    /* Primary - adjusted for light bg */
+    --md-sys-color-primary: #2E5C45;
+    --md-sys-color-on-primary: #FFFFFF;
+    --md-sys-color-primary-container: #B0E6C4;
+    --md-sys-color-on-primary-container: #1C3D2A;
+    
+    /* Secondary */
+    --md-sys-color-secondary: #4A6B55;
+    --md-sys-color-on-secondary: #FFFFFF;
+    --md-sys-color-secondary-container: #D4F0DA;
+    
+    /* Error */
+    --md-sys-color-error: #BA1A1A;
+    --md-sys-color-on-error: #FFFFFF;
+    
+    /* Outline */
+    --md-sys-color-outline: #7A7A7A;
+    --md-sys-color-outline-variant: #C9C9C9;
+    
+    /* Elevation - lighter for light mode */
+    --md-sys-elevation-1: rgba(0, 0, 0, 0.05);
+    --md-sys-elevation-2: rgba(0, 0, 0, 0.08);
+    --md-sys-elevation-3: rgba(0, 0, 0, 0.11);
+  }
+}
