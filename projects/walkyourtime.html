@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="WalkYourTime - Transform your daily steps into screen time. An open-source Android app by FilBanfi." />
+  <title>WalkYourTime - FilBanfi</title>
+  
+  <!-- Font del sito principale -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=JetBrains+Mono:wght@400;500&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet" />
+  
+  <!-- CSS del sito principale (per header, footer e base) -->
+  <link rel="stylesheet" href="../style.css" />
+  <!-- CSS Custom del progetto (Material 3 Expressive) -->
+  <link rel="stylesheet" href="walkyourtime.css" />
+</head>
+<body>
+
+  <!-- HEADER (Percorsi aggiornati con ../) -->
+  <header>
+    <div class="container">
+      <a href="../index.html" class="nav-logo">
+        <img src="https://avatars.githubusercontent.com/FilBanfi" alt="FilBanfi Logo" width="36" height="36" />
+        <span><span class="fil">Fil</span><span class="banfi">Banfi</span></span>
+      </a>
+      <button class="menu-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="../about.html">About</a></li>
+          <li><a href="../projects.html" class="active">Projects</a></li>
+          <li><a href="../contacts.html">Contacts</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="project-main">
+    <div class="container">
+      
+      <!-- 1. HERO -->
+      <section class="project-hero">
+        <div class="project-badge">Android App</div>
+        <h1 class="project-title">WalkYourTime</h1>
+        <p class="project-description">
+          WalkYourTime is an innovative app that lets you transform your daily steps into screen time for your smartphone. This helps you take back control of your time on the phone.
+        </p>
+        <div class="project-actions">
+          <a href="https://github.com/FilBanfi/WalkYourTime" target="_blank" class="btn btn-primary">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12c0 4.42 2.87 8.17 6.84 9.49.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.15-1.1-1.46-1.1-1.46-.9-.62.07-.6.07-.6 1 .07 1.52 1.02 1.52 1.02.89 1.52 2.34 1.08 2.91.83.09-.64.35-1.08.63-1.33-2.22-.25-4.56-1.11-4.56-4.95 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.64 0 0 .84-.27 2.75 1.02A9.56 9.56 0 0112 7.43c.85 0 1.7.11 2.5.34 1.91-1.29 2.75-1.02 2.75-1.02.55 1.37.2 2.39.1 2.64.64.7 1.03 1.59 1.03 2.68 0 3.85-2.34 4.7-4.57 4.95.36.31.68.92.68 1.85v2.74c0 .27.18.58.69.48A10.01 10.01 0 0022 12c0-5.52-4.48-10-10-10z"/></svg>
+            View on GitHub
+          </a>
+          <a href="https://play.google.com/store/apps/details?id=com.filbanfi.walkyourtime" target="_blank" class="btn btn-secondary">Download on Google Play</a>
+        </div>
+      </section>
+
+      <!-- 2. FEATURES -->
+      <section class="project-section">
+        <h2 class="section-heading">Features</h2>
+        <div class="features-grid">
+          <div class="feature-card"><h3>Lightweight</h3><p>Optimized to run smoothly without draining your battery.</p></div>
+          <div class="feature-card"><h3>Privacy Friendly</h3><p>Your data stays on your device. No tracking, no analytics.</p></div>
+          <div class="feature-card"><h3>100% Offline</h3><p>Works perfectly without an internet connection.</p></div>
+          <div class="feature-card"><h3>Open Source</h3><p>Transparent codebase, fully auditable by the community.</p></div>
+          <div class="feature-card"><h3>Modern Tech</h3><p>Built with the newest Android technologies (M3 Expressive, Jetpack Compose).</p></div>
+          <div class="feature-card"><h3>Wide Compatibility</h3><p>Tested and compatible with over 17,000 different Android devices.</p></div>
+        </div>
+      </section>
+
+      <!-- 3. USAGE -->
+      <section class="project-section">
+        <h2 class="section-heading">How to Use</h2>
+        <ol class="usage-list">
+          <li><strong>Download & Install:</strong> Get the app from the Play Store or GitHub Releases.</li>
+          <li><strong>Grant Permissions:</strong> Allow the necessary physical activity permissions when prompted.</li>
+          <li><strong>Customize:</strong> Set your preferred steps-to-minutes conversion ratio in the settings.</li>
+          <li><strong>Go about your day:</strong> Your steps are silently converted into usable screen time minutes.</li>
+          <li><strong>Phone locked?</strong> Just go for a walk to earn more time!</li>
+        </ol>
+      </section>
+
+      <!-- 4. TIMELINE (Roadmap) -->
+      <section class="project-section">
+        <h2 class="section-heading">Project Timeline</h2>
+        <p class="section-note">Version codenames are in Italian, honoring the project's origins.</p>
+        
+        <div class="timeline">
+          <!-- PASSATO -->
+          <div class="timeline-item past">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <span class="timeline-date">v1.0 "Antilope"</span>
+              <h3>Official Launch</h3>
+              <p>Initial public release of the app.</p>
+            </div>
+          </div>
+          <div class="timeline-item past">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <span class="timeline-date">v1.1 "Antilope"</span>
+              <h3>Refinements</h3>
+              <p>Translation fixes and rebalancing of the step/minute ratio bar.</p>
+            </div>
+          </div>
+          <div class="timeline-item past">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <span class="timeline-date">v1.2 "Antilope"</span>
+              <h3>Engine Rewrite</h3>
+              <p>Rewrote the app detection engine for better efficiency and implemented different app categories.</p>
+            </div>
+          </div>
+          <div class="timeline-item current">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <span class="timeline-date">v1.3 "Antilope" (Current)</span>
+              <h3>Credits & Polish</h3>
+              <p>Added the credits screen and ongoing minor improvements.</p>
+            </div>
+          </div>
+
+          <!-- FUTURO -->
+          <div class="timeline-item future">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <span class="timeline-date">v1.4 - v1.5 "Antilope"</span>
+              <h3>UI/UX Overhaul</h3>
+              <p>Fix onboarding. Add language, theme, and color selector support. Redesigned icon with dynamic color support and true OLED black theme.</p>
+            </div>
+          </div>
+          <div class="timeline-item future">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <span class="timeline-date">v2.x "Bufalo"</span>
+              <h3>Wearable Integration</h3>
+              <p>v2.0: Add Health Connect support for smartwatch step counting. v2.1-v2.2: Support for additional third-party services.</p>
+            </div>
+          </div>
+          <div class="timeline-item future">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <span class="timeline-date">v3.x (TBD)</span>
+              <h3>Parental Control</h3>
+              <p>PIN protection to disable the app or change settings, allowing parents to configure limits for their children. Exploring anti-uninstall measures. Moving the disable toggle to settings with a confirmation dialog.</p>
+            </div>
+          </div>
+          <div class="timeline-item future">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <span class="timeline-date">v4.x (TBD)</span>
+              <h3>Advanced Android Features</h3>
+              <p>Dynamic notifications (Android 16+), Now Bar support, home screen widgets, and other secondary improvements.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 5. INSTALLATION -->
+      <section class="project-section">
+        <h2 class="section-heading">Installation</h2>
+        <div class="install-links">
+          <a href="https://play.google.com/store/apps/details?id=com.filbanfi.walkyourtime" target="_blank" class="install-link primary">
+            <span>Google Play Store</span>
+            <small>Recommended for most users</small>
+          </a>
+          <a href="https://github.com/FilBanfi/WalkYourTime/releases/latest" target="_blank" class="install-link">
+            <span>Latest GitHub Release</span>
+            <small>APK download</small>
+          </a>
+          <a href="https://github.com/FilBanfi/WalkYourTime/releases" target="_blank" class="install-link">
+            <span>Historical Versions</span>
+            <small>Previous GitHub releases</small>
+          </a>
+          <a href="https://walkyourtime.wordpress.com/" target="_blank" class="install-link">
+            <span>Alpha / Beta Builds</span>
+            <small>Legacy WordPress site (Italian)</small>
+          </a>
+        </div>
+      </section>
+
+      <!-- 6. SCREENSHOTS -->
+      <section class="project-section">
+        <h2 class="section-heading">Screenshots</h2>
+        <div class="screenshots-grid">
+          <img src="walkyourtime/1.webp" alt="WalkYourTime Screenshot 1" class="screenshot-img" loading="lazy" />
+          <img src="walkyourtime/2.webp" alt="WalkYourTime Screenshot 2" class="screenshot-img" loading="lazy" />
+          <img src="walkyourtime/3.webp" alt="WalkYourTime Screenshot 3" class="screenshot-img" loading="lazy" />
+          <img src="walkyourtime/4.webp" alt="WalkYourTime Screenshot 4" class="screenshot-img" loading="lazy" />
+          <img src="walkyourtime/5.webp" alt="WalkYourTime Screenshot 5" class="screenshot-img" loading="lazy" />
+          <img src="walkyourtime/6.webp" alt="WalkYourTime Screenshot 6" class="screenshot-img" loading="lazy" />
+        </div>
+      </section>
+
+      <!-- 7. TECH STACK -->
+      <section class="project-section">
+        <h2 class="section-heading">Tech Stack</h2>
+        <div class="tech-chips">
+          <span class="tech-chip">Kotlin</span>
+          <span class="tech-chip">Jetpack Compose</span>
+          <span class="tech-chip">Material 3 Expressive</span>
+          <span class="tech-chip">Android Studio</span>
+        </div>
+      </section>
+
+      <!-- 8. CONTRIBUTING -->
+      <section class="project-section">
+        <h2 class="section-heading">Contributing</h2>
+        <p class="text-block">
+          Found a bug or have a feature request? Feel free to open an issue on the GitHub repository. 
+          If you want to discuss the project directly or need help, you can always reach out via the <a href="../contacts.html" class="text-link">Contacts page</a>.
+        </p>
+      </section>
+
+      <!-- 9. LICENSE -->
+      <section class="project-section">
+        <h2 class="section-heading">License</h2>
+        <p class="text-block">
+          This project is licensed under the <strong>GNU General Public License v3.0</strong>. 
+          See the <a href="https://github.com/FilBanfi/WalkYourTime/blob/main/LICENSE" target="_blank" class="text-link">LICENSE</a> file in the repository for details.
+        </p>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="footer-hearts">💚🤍❤️</div>
+      <p class="footer-text">Copyright 2026 FilBanfi. Open Source under <span>GPLv3</span>.</p>
+    </div>
+  </footer>
+
+  <!-- JS MINIMO -->
+  <script>
+    const menuToggle = document.querySelector('.menu-toggle');
+    const navLinks = document.querySelector('.nav-links');
+    menuToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+      menuToggle.classList.toggle('active');
+      const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
+      menuToggle.setAttribute('aria-expanded', !isExpanded);
+    });
+  </script>
+</body>
+</html>
