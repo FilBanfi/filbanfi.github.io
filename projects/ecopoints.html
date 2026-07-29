@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="EcoPoints - Recognize waste with on-device AI. An open-source Android app by FilBanfi." />
+  <title>EcoPoints - FilBanfi</title>
+  
+  <!-- Font del sito principale -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=JetBrains+Mono:wght@400;500&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet" />
+  
+  <!-- CSS del sito principale -->
+  <link rel="stylesheet" href="../style.css" />
+  <!-- CSS Custom del progetto (Console/Bash style - da definire) -->
+  <link rel="stylesheet" href="ecopoints.css" />
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="container">
+      <a href="../index.html" class="nav-logo">
+        <img src="https://avatars.githubusercontent.com/FilBanfi" alt="FilBanfi Logo" width="36" height="36" />
+        <span><span class="fil">Fil</span><span class="banfi">Banfi</span></span>
+      </a>
+      <button class="menu-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="../about.html">About</a></li>
+          <li><a href="../projects.html" class="active">Projects</a></li>
+          <li><a href="../contacts.html">Contacts</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="project-main">
+    <div class="container">
+      
+      <!-- 1. HERO -->
+      <section class="project-hero">
+        <div class="project-badge">Android App • AI Tool</div>
+        <h1 class="project-title">EcoPoints</h1>
+        <p class="project-description">
+          Recognize different types of waste by scanning them with your camera, using an on-device AI photo recognition model. EcoPoints was one of the first free and open-source projects of this kind in Italy.
+        </p>
+        
+        <!-- 0. DISCLAIMER BANNER -->
+        <div class="disclaimer-banner">
+          <strong>⚠️ Project Discontinued</strong><br>
+          This project is no longer actively maintained and will not receive further updates. However, it remains fully open source: feel free to fork the repository, update the AI model, and continue its development!
+        </div>
+
+        <div class="project-actions">
+          <a href="https://drive.google.com/file/d/16CdIFyO5TedyFprZXUpjhkD4dQ9Dkk6i/view" target="_blank" class="btn btn-primary">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12c0 4.42 2.87 8.17 6.84 9.49.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.15-1.1-1.46-1.1-1.46-.9-.62.07-.6.07-.6 1 .07 1.52 1.02 1.52 1.02.89 1.52 2.34 1.08 2.91.83.09-.64.35-1.08.63-1.33-2.22-.25-4.56-1.11-4.56-4.95 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.64 0 0 .84-.27 2.75 1.02A9.56 9.56 0 0112 7.43c.85 0 1.7.11 2.5.34 1.91-1.29 2.75-1.02 2.75-1.02.55 1.37.2 2.39.1 2.64.64.7 1.03 1.59 1.03 2.68 0 3.85-2.34 4.7-4.57 4.95.36.31.68.92.68 1.85v2.74c0 .27.18.58.69.48A10.01 10.01 0 0022 12c0-5.52-4.48-10-10-10z"/></svg>
+            View Source Code
+          </a>
+          <a href="https://drive.google.com/file/d/1J578d8fsvWkONl510QIm1vh9QwgERQuy/view" target="_blank" class="btn btn-secondary">Download APK</a>
+        </div>
+      </section>
+
+      <!-- 2. FEATURES -->
+      <section class="project-section">
+        <h2 class="section-heading">Features</h2>
+        <div class="features-grid">
+          <div class="feature-card">
+            <h3>On-device AI</h3>
+            <p>All image recognition happens locally on your device. No data is sent to the cloud.</p>
+          </div>
+          <div class="feature-card">
+            <h3>Free and Open Source</h3>
+            <p>Transparent codebase, built for the community and fully auditable.</p>
+          </div>
+          <div class="feature-card">
+            <h3>Accessibility Friendly</h3>
+            <p>Designed with simplicity in mind to be easy to use for everyone.</p>
+          </div>
+          <div class="feature-card">
+            <h3>Italian Language Only</h3>
+            <p>Currently, the app interface and AI responses are available exclusively in Italian.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 3. HOW TO USE -->
+      <section class="project-section">
+        <h2 class="section-heading">How to Use</h2>
+        <ol class="usage-list">
+          <li><strong>Grant Permissions:</strong> Allow camera access when prompted by the app.</li>
+          <li><strong>Scan:</strong> Point your camera at the waste item and press the scan button.</li>
+          <li><strong>Enjoy:</strong> Get instant feedback on how to properly sort your garbage and earn points!</li>
+        </ol>
+      </section>
+
+      <!-- 4. DEVELOPMENT HISTORY & ROADMAP -->
+      <section class="project-section">
+        <h2 class="section-heading">Development History & Roadmap</h2>
+        <p class="section-note">Note: The official detailed timeline and historical versions have been lost, but the development journey was approximately as follows:</p>
+        
+        <div class="timeline">
+          <div class="timeline-item past">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <span class="timeline-date">Phase 1: Foundation</span>
+              <h3>Initial Shell & Google AI</h3>
+              <p>Built the initial app structure and integrated the first Google AI recognition model.</p>
+            </div>
+          </div>
+          <div class="timeline-item past">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <span class="timeline-date">Phase 2: Iteration</span>
+              <h3>Microsoft Model & Kodular</h3>
+              <p>Experimented with a Microsoft AI model and briefly moved development to the Kodular platform.</p>
+            </div>
+          </div>
+          <div class="timeline-item current">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <span class="timeline-date">Phase 3: Stabilization</span>
+              <h3>Return to MIT App Inventor</h3>
+              <p>Moved back to MIT App Inventor due to stability issues. Implemented the current MIT AI model, added detailed recycling instructions, and rebalanced the scoring system.</p>
+            </div>
+          </div>
+          <div class="timeline-item future">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <span class="timeline-date">Phase 4: Open for Forks</span>
+              <h3>Community Driven</h3>
+              <p>Active development is halted. The source code is available for anyone to download, update the AI model, and continue the project.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 5. INSTALLATION & DOWNLOADS -->
+      <section class="project-section">
+        <h2 class="section-heading">Installation & Downloads</h2>
+        <div class="install-links">
+          <a href="https://drive.google.com/file/d/1J578d8fsvWkONl510QIm1vh9QwgERQuy/view" target="_blank" class="install-link primary">
+            <span>Download Latest APK</span>
+            <small>Google Drive direct link</small>
+          </a>
+          <a href="https://drive.google.com/file/d/16CdIFyO5TedyFprZXUpjhkD4dQ9Dkk6i/view" target="_blank" class="install-link">
+            <span>View Source Code</span>
+            <small>Google Drive direct link</small>
+          </a>
+          <a href="https://ecopointsapp.wordpress.com/" target="_blank" class="install-link">
+            <span>Legacy Official Website</span>
+            <small>Italian only, abandoned</small>
+          </a>
+        </div>
+      </section>
+
+      <!-- 6. MEDIA (Demo Video) -->
+      <section class="project-section">
+        <h2 class="section-heading">Demo Video</h2>
+        <div class="video-wrapper">
+          <div class="video-placeholder" id="videoPlaceholder" onclick="loadVideo()">
+            <img src="https://img.youtube.com/vi/lwDD8a8PkNU/maxresdefault.jpg" alt="EcoPoints Demo Video Thumbnail" class="video-thumbnail" width="640" height="360" loading="lazy" />
+            <div class="video-play-button">
+              <svg viewBox="0 0 24 24" fill="currentColor" width="64" height="64">
+                <path d="M8 5v14l11-7z"/>
+              </svg>
+            </div>
+          </div>
+        </div>
+        <p class="video-note">Click to load video from YouTube</p>
+      </section>
+
+      <!-- 7. TECH STACK -->
+      <section class="project-section">
+        <h2 class="section-heading">Tech Stack</h2>
+        <div class="tech-chips">
+          <span class="tech-chip">MIT App Inventor</span>
+          <span class="tech-chip">Kodular</span>
+          <span class="tech-chip">On-device AI Models</span>
+        </div>
+      </section>
+
+      <!-- 8. CONTRIBUTING -->
+      <section class="project-section">
+        <h2 class="section-heading">Contributing</h2>
+        <p class="text-block">
+          This project is currently abandoned, but it is fully open for forks! Feel free to download the source code, update the AI model, and continue the development. If you create a fork that you are proud of, let me know via the <a href="../contacts.html" class="text-link">Contacts page</a>, and I will be happy to publicize it here.
+        </p>
+      </section>
+
+      <!-- 9. LICENSE -->
+      <section class="project-section">
+        <h2 class="section-heading">License</h2>
+        <p class="text-block">
+          This project is licensed under the <strong>GNU General Public License v3.0 (GPLv3)</strong>. 
+          See the LICENSE file included in the source code archive for details.
+        </p>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="footer-hearts">💚🤍❤️</div>
+      <p class="footer-text">Copyright 2026 FilBanfi. Open Source under <span>GPLv3</span>.</p>
+    </div>
+  </footer>
+
+  <!-- JAVASCRIPT -->
+  <script>
+    // Menu mobile toggle
+    const menuToggle = document.querySelector('.menu-toggle');
+    const navLinks = document.querySelector('.nav-links');
+    menuToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+      menuToggle.classList.toggle('active');
+      const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
+      menuToggle.setAttribute('aria-expanded', !isExpanded);
+    });
+
+    // Lazy loading video YouTube
+    function loadVideo() {
+      const placeholder = document.getElementById('videoPlaceholder');
+      const videoId = 'lwDD8a8PkNU';
+      
+      const iframe = document.createElement('iframe');
+      iframe.setAttribute('width', '100%');
+      iframe.setAttribute('height', '100%');
+      iframe.setAttribute('src', 'https://www.youtube.com/embed/' + videoId + '?autoplay=1&rel=0');
+      iframe.setAttribute('title', 'EcoPoints Demo Video');
+      iframe.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share');
+      iframe.setAttribute('allowfullscreen', 'true');
+      iframe.style.border = 'none';
+      
+      placeholder.innerHTML = '';
+      placeholder.appendChild(iframe);
+      placeholder.classList.add('video-loaded');
+    }
+  </script>
+</body>
+</html>
