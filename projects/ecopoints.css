@@ -3,22 +3,12 @@
    Inspired by the original app design
    ========================================================================== */
 
-/* OPEN DYSLEXIC FONT */
-@font-face {
-  font-family: 'OpenDyslexic';
-  src: url('https://cdn.jsdelivr.net/npm/opendyslexic@latest/OpenDyslexic-Regular.otf') format('opentype');
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
-}
+/* OPEN DYSLEXIC FONT - @fontsource */
+@import url('https://cdn.jsdelivr.net/npm/@fontsource/opendyslexic@latest/400.css');
+@import url('https://cdn.jsdelivr.net/npm/@fontsource/opendyslexic@latest/700.css');
 
-@font-face {
-  font-family: 'OpenDyslexic';
-  src: url('https://cdn.jsdelivr.net/npm/opendyslexic@latest/OpenDyslexic-Bold.otf') format('opentype');
-  font-weight: bold;
-  font-style: normal;
-  font-display: swap;
-}
+/* COLORI ECOPOINTS - Dalla tua app */
+:root {
 
 /* COLORI ECOPOINTS - Dalla tua app */
 :root {
