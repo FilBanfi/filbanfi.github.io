@@ -1,100 +1,93 @@
 /* ==========================================================================
-   WALKYOURTIME PROJECT PAGE - Material 3 Expressive Design System
-   Reference: https://m3.material.io
+   WALKYOURTIME PROJECT PAGE - Material 3 Expressive
+   Corretto e ottimizzato
    ========================================================================== */
 
-/* COLORI M3 - Dark Mode Primary */
+/* COLORI M3 - Dark Mode */
 :root {
-  /* Primary Palette - dal tuo screenshot */
-  --md-sys-color-primary: #B0E6C4;
-  --md-sys-color-on-primary: #1C3D2A;
-  --md-sys-color-primary-container: #2E5C45;
-  --md-sys-color-on-primary-container: #D4F0DA;
+  /* Primary */
+  --md-primary: #B0E6C4;
+  --md-on-primary: #1C3D2A;
+  --md-primary-container: #2E5C45;
+  --md-on-primary-container: #D4F0DA;
   
-  /* Secondary Palette */
-  --md-sys-color-secondary: #A8D5BA;
-  --md-sys-color-on-secondary: #143826;
-  --md-sys-color-secondary-container: #2A523F;
+  /* Secondary */
+  --md-secondary: #A8D5BA;
+  --md-on-secondary: #143826;
+  --md-secondary-container: #3A5245;
+  --md-on-secondary-container: #E0F1E5;
   
-  /* Tertiary Palette */
-  --md-sys-color-tertiary: #C9E8D0;
+  /* Background Dark */
+  --md-background: #0F0F0F;
+  --md-surface: #141414;
+  --md-surface-variant: #1A1A1A;
+  --md-surface-container: #1E1E1E;
+  --md-surface-container-high: #242424;
   
-  /* Error Palette */
-  --md-sys-color-error: #F2B8B5;
-  --md-sys-color-on-error: #601410;
-  
-  /* Background - Dark Mode */
-  --md-sys-color-background: #0F0F0F;
-  --md-sys-color-on-background: #E3E3E3;
-  --md-sys-color-surface: #141414;
-  --md-sys-color-surface-variant: #1E1E1E;
-  --md-sys-color-surface-container: #1A1A1A;
-  --md-sys-color-surface-container-low: #161616;
-  --md-sys-color-surface-container-high: #1F1F1F;
-  --md-sys-color-surface-container-highest: #242424;
-  
-  /* Outline */
-  --md-sys-color-outline: #4A4A4A;
-  --md-sys-color-outline-variant: #3A3A3A;
-  
-  /* Inverse */
-  --md-sys-color-inverse-surface: #E3E3E3;
-  --md-sys-color-inverse-on-surface: #2E2E2E;
-  
-  /* Elevation */
-  --md-sys-elevation-1: rgba(176, 230, 196, 0.05);
-  --md-sys-elevation-2: rgba(176, 230, 196, 0.08);
-  --md-sys-elevation-3: rgba(176, 230, 196, 0.11);
+  /* Text */
+  --md-on-background: #E3E3E3;
+  --md-on-surface: #E3E3E3;
+  --md-outline: #4A4A4A;
+  --md-outline-variant: #3A3A3A;
 }
 
-/* BASE STYLES */
+/* BASE */
 .project-main {
-  padding: 3rem 0 5rem;
-  background-color: var(--md-sys-color-background);
-  color: var(--md-sys-color-on-background);
+  padding: 3rem 1rem 5rem;
+  background: var(--md-background);
+  color: var(--md-on-background);
   font-family: var(--font-body);
+  max-width: 100%;
+  overflow-x: hidden;
 }
 
-/* TYPOGRAPHY M3 */
+/* HERO - Fix overflow */
 .project-hero {
   text-align: center;
-  margin-bottom: 4rem;
-  padding: 2.5rem 1.5rem;
-  background-color: var(--md-sys-color-surface-container);
-  border-radius: 24px; /* M3 Extra Large */
-  border: 1px solid var(--md-sys-color-outline-variant);
+  margin-bottom: 3rem;
+  padding: 2rem 1.5rem;
+  background: var(--md-surface-container);
+  border-radius: 24px;
+  border: 1px solid var(--md-outline-variant);
+  max-width: 100%;
+  overflow: hidden;
 }
 
 .project-badge {
   display: inline-block;
-  background-color: var(--md-sys-color-primary-container);
-  color: var(--md-sys-color-on-primary-container);
+  background: var(--md-primary-container);
+  color: var(--md-on-primary-container);
   font-family: var(--font-mono);
   font-size: 0.75rem;
   font-weight: 600;
-  padding: 0.375rem 0.875rem;
-  border-radius: 99px; /* M3 Pill shape */
+  padding: 0.375rem 1rem;
+  border-radius: 99px;
   margin-bottom: 1.25rem;
-  letter-spacing: 0.05em;
   text-transform: uppercase;
+  letter-spacing: 0.05em;
+  white-space: nowrap;
 }
 
 .project-title {
   font-family: var(--font-display);
-  font-size: clamp(2.5rem, 5vw, 3.5rem);
+  font-size: clamp(2rem, 8vw, 3.5rem);
   font-weight: 800;
-  color: var(--md-sys-color-primary);
-  margin-bottom: 1rem;
-  letter-spacing: -0.02em;
+  color: var(--md-primary);
+  margin: 0 auto 1rem;
+  line-height: 1.1;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  hyphens: auto;
 }
 
 .project-description {
-  font-size: 1.125rem;
-  color: var(--md-sys-color-on-background);
+  font-size: 1.0625rem;
+  color: var(--md-on-background);
   opacity: 0.85;
-  max-width: 650px;
-  margin: 0 auto 2rem;
+  max-width: 100%;
+  margin: 0 auto 1.75rem;
   line-height: 1.6;
+  padding: 0 0.5rem;
 }
 
 .project-actions {
@@ -102,149 +95,170 @@
   justify-content: center;
   gap: 1rem;
   flex-wrap: wrap;
+  width: 100%;
 }
 
-/* BUTTONS M3 */
+/* BUTTONS */
 .btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  padding: 0.875rem 1.5rem;
-  border-radius: 99px; /* M3 Filled button */
+  padding: 0.875rem 1.75rem;
+  border-radius: 99px;
   font-family: var(--font-display);
   font-weight: 600;
   font-size: 0.875rem;
   text-decoration: none;
-  transition: all 0.2s cubic-bezier(0.2, 0, 0, 1);
-  min-height: 48px; /* M3 touch target */
+  transition: all 0.2s;
+  min-height: 48px;
+  white-space: nowrap;
 }
 
 .btn-primary {
-  background-color: var(--md-sys-color-primary);
-  color: var(--md-sys-color-on-primary);
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  background: var(--md-primary);
+  color: var(--md-on-primary);
 }
 
 .btn-primary:hover {
-  box-shadow: 0 2px 6px rgba(176, 230, 196, 0.3);
+  opacity: 0.92;
   transform: translateY(-1px);
 }
 
 .btn-secondary {
-  background-color: transparent;
-  color: var(--md-sys-color-primary);
-  border: 1px solid var(--md-sys-color-outline);
+  background: transparent;
+  color: var(--md-primary);
+  border: 1px solid var(--md-outline);
 }
 
 .btn-secondary:hover {
-  background-color: rgba(176, 230, 196, 0.08);
-  border-color: var(--md-sys-color-primary);
+  background: rgba(176, 230, 196, 0.08);
+  border-color: var(--md-primary);
 }
 
-/* SEZIONI GENERALI */
+/* SEZIONI */
 .project-section {
-  margin-bottom: 4rem;
-  padding: 0 1rem;
+  margin-bottom: 3.5rem;
+  padding: 0 0.5rem;
+  max-width: 100%;
 }
 
 .section-heading {
   font-family: var(--font-display);
-  font-size: 1.75rem;
+  font-size: 1.625rem;
   font-weight: 700;
-  color: var(--md-sys-color-primary);
-  margin-bottom: 1.5rem;
-  padding-bottom: 0.75rem;
-  border-bottom: 1px solid var(--md-sys-color-outline-variant);
+  color: var(--md-primary);
+  margin-bottom: 1.25rem;
+  padding-bottom: 0.625rem;
+  border-bottom: 1px solid var(--md-outline-variant);
+  word-wrap: break-word;
 }
 
 .section-note {
   font-family: var(--font-mono);
-  font-size: 0.8rem;
-  color: var(--md-sys-color-on-background);
+  font-size: 0.75rem;
+  color: var(--md-on-background);
   opacity: 0.6;
-  margin-top: -1rem;
-  margin-bottom: 2rem;
+  margin-top: -0.75rem;
+  margin-bottom: 1.75rem;
   font-style: italic;
 }
 
-/* 2. FEATURES - M3 Cards */
+/* FEATURES */
 .features-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: 1rem;
 }
 
 .feature-card {
-  background-color: var(--md-sys-color-surface-container-low);
-  border: 1px solid var(--md-sys-color-outline-variant);
-  border-radius: 16px; /* M3 Medium */
+  background: var(--md-surface-variant);
+  border: 1px solid var(--md-outline-variant);
+  border-radius: 16px;
   padding: 1.5rem;
-  transition: all 0.2s cubic-bezier(0.2, 0, 0, 1);
+  transition: all 0.2s;
 }
 
 .feature-card:hover {
-  background-color: var(--md-sys-color-surface-container);
-  border-color: var(--md-sys-color-outline);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  border-color: var(--md-outline);
   transform: translateY(-2px);
 }
 
 .feature-card h3 {
   font-family: var(--font-display);
-  font-size: 1.125rem;
+  font-size: 1.0625rem;
   font-weight: 600;
-  color: var(--md-sys-color-primary);
+  color: var(--md-primary);
   margin-bottom: 0.5rem;
 }
 
 .feature-card p {
-  color: var(--md-sys-color-on-background);
+  color: var(--md-on-background);
   opacity: 0.8;
   font-size: 0.9rem;
   line-height: 1.5;
   margin: 0;
 }
 
-/* 3. USAGE - M3 List */
+/* USAGE - Fix frecce */
 .usage-list {
-  background-color: var(--md-sys-color-surface-container);
+  background: var(--md-surface-container);
   border-radius: 16px;
   padding: 1.5rem;
-  color: var(--md-sys-color-on-background);
-  opacity: 0.9;
+  list-style: none;
+  margin: 0;
 }
 
 .usage-list li {
-  margin-bottom: 0.875rem;
-  padding-left: 0.5rem;
   position: relative;
+  padding-left: 2.75rem;
+  margin-bottom: 1rem;
+  line-height: 1.6;
+  color: var(--md-on-background);
+}
+
+.usage-list li:last-child {
+  margin-bottom: 0;
 }
 
 .usage-list li::before {
   content: "→";
   position: absolute;
-  left: -1.5rem;
-  color: var(--md-sys-color-primary);
+  left: 0.75rem;
+  top: 0;
+  color: var(--md-primary);
   font-weight: 700;
+  font-size: 1rem;
 }
 
 .usage-list strong {
-  color: var(--md-sys-color-primary);
+  color: var(--md-primary);
   font-weight: 600;
+  display: block;
+  margin-bottom: 0.25rem;
 }
 
-/* 4. TIMELINE - M3 Style */
+/* TIMELINE - Fix allineamento */
 .timeline {
   position: relative;
-  padding-left: 2.5rem;
-  border-left: 2px solid var(--md-sys-color-outline-variant);
+  padding-left: 2rem;
   margin-left: 0.5rem;
+}
+
+.timeline::before {
+  content: "";
+  position: absolute;
+  left: 0.4375rem;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: var(--md-outline-variant);
 }
 
 .timeline-item {
   position: relative;
-  margin-bottom: 2.5rem;
+  margin-bottom: 2rem;
+  padding-left: 1rem;
 }
 
 .timeline-item:last-child {
@@ -253,101 +267,101 @@
 
 .timeline-dot {
   position: absolute;
-  left: -2.85rem;
+  left: -1.875rem;
   top: 0.25rem;
-  width: 16px;
-  height: 16px;
+  width: 14px;
+  height: 14px;
   border-radius: 50%;
-  background-color: var(--md-sys-color-surface);
-  border: 3px solid var(--md-sys-color-primary);
-  box-shadow: 0 0 0 4px var(--md-sys-color-background);
+  background: var(--md-surface);
+  border: 3px solid var(--md-primary);
+  z-index: 1;
 }
 
 .timeline-item.current .timeline-dot {
-  background-color: var(--md-sys-color-primary);
-  border-color: var(--md-sys-color-primary);
-  box-shadow: 0 0 0 4px var(--md-sys-color-background), 0 0 12px rgba(176, 230, 196, 0.5);
+  background: var(--md-primary);
+  box-shadow: 0 0 0 3px var(--md-background), 0 0 10px rgba(176, 230, 196, 0.5);
 }
 
 .timeline-item.future .timeline-dot {
-  background-color: transparent;
-  border-style: dashed;
-  border-color: var(--md-sys-color-outline);
+  background: transparent;
+  border: 2px dashed var(--md-outline);
+  width: 12px;
+  height: 12px;
+  left: -1.75rem;
+  top: 0.375rem;
 }
 
 .timeline-date {
   font-family: var(--font-mono);
   font-size: 0.75rem;
   font-weight: 600;
-  color: var(--md-sys-color-primary);
+  color: var(--md-primary);
   text-transform: uppercase;
   letter-spacing: 0.05em;
   display: block;
-  margin-bottom: 0.25rem;
+  margin-bottom: 0.375rem;
 }
 
 .timeline-content h3 {
   font-family: var(--font-display);
-  font-size: 1.125rem;
+  font-size: 1.0625rem;
   font-weight: 600;
-  color: var(--md-sys-color-on-background);
-  margin: 0.25rem 0 0.5rem;
+  color: var(--md-on-background);
+  margin: 0 0 0.5rem;
 }
 
 .timeline-content p {
-  color: var(--md-sys-color-on-background);
+  color: var(--md-on-background);
   opacity: 0.75;
-  font-size: 0.95rem;
+  font-size: 0.9375rem;
   line-height: 1.6;
   margin: 0;
 }
 
-/* 5. INSTALLATION - M3 Filled Cards */
+/* INSTALLATION */
 .install-links {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 0.875rem;
 }
 
 .install-link {
   display: flex;
   flex-direction: column;
   gap: 0.25rem;
-  background-color: var(--md-sys-color-surface-container-low);
-  border: 1px solid var(--md-sys-color-outline-variant);
-  border-radius: 16px;
-  padding: 1.25rem 1.5rem;
+  background: var(--md-surface-variant);
+  border: 1px solid var(--md-outline-variant);
+  border-radius: 12px;
+  padding: 1.125rem 1.25rem;
   text-decoration: none;
-  transition: all 0.2s cubic-bezier(0.2, 0, 0, 1);
+  transition: all 0.2s;
 }
 
 .install-link:hover {
-  background-color: var(--md-sys-color-surface-container);
-  border-color: var(--md-sys-color-primary);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-  transform: translateY(-2px);
+  border-color: var(--md-outline);
+  transform: translateY(-1px);
 }
 
 .install-link.primary {
-  background-color: var(--md-sys-color-primary-container);
-  border-color: var(--md-sys-color-primary);
+  background: var(--md-primary-container);
+  border-color: var(--md-primary);
 }
 
 .install-link span {
   font-family: var(--font-display);
   font-weight: 600;
-  color: var(--md-sys-color-on-background);
-  font-size: 1rem;
+  color: var(--md-on-background);
+  font-size: 0.9375rem;
 }
 
 .install-link.primary span {
-  color: var(--md-sys-color-on-primary-container);
+  color: var(--md-on-primary-container);
 }
 
 .install-link small {
   font-family: var(--font-mono);
-  font-size: 0.75rem;
-  color: var(--md-sys-color-on-background);
+  font-size: 0.7rem;
+  color: var(--md-on-background);
   opacity: 0.6;
 }
 
@@ -355,48 +369,48 @@
   opacity: 0.8;
 }
 
-/* 6. SCREENSHOTS - M3 Carousel */
+/* SCREENSHOTS */
 .screenshots-grid {
   display: flex;
-  gap: 1.5rem;
+  gap: 1rem;
   overflow-x: auto;
-  padding: 1rem 0.5rem 1.5rem;
+  padding: 0.75rem 0.5rem 1rem;
   scroll-snap-type: x mandatory;
   scrollbar-width: thin;
-  scrollbar-color: var(--md-sys-color-primary) var(--md-sys-color-surface-container);
+  scrollbar-color: var(--md-primary) var(--md-surface-variant);
   border-radius: 24px;
 }
 
 .screenshots-grid::-webkit-scrollbar {
-  height: 8px;
+  height: 6px;
 }
 
 .screenshots-grid::-webkit-scrollbar-track {
-  background: var(--md-sys-color-surface-container);
-  border-radius: 4px;
+  background: var(--md-surface-variant);
+  border-radius: 3px;
 }
 
 .screenshots-grid::-webkit-scrollbar-thumb {
-  background: var(--md-sys-color-primary);
-  border-radius: 4px;
+  background: var(--md-primary);
+  border-radius: 3px;
 }
 
 .screenshot-img {
   flex-shrink: 0;
-  width: 260px;
-  border-radius: 28px; /* M3 device corners */
-  border: 3px solid var(--md-sys-color-surface-container-highest);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
-  transition: transform 0.3s cubic-bezier(0.2, 0, 0, 1);
+  width: 240px;
+  border-radius: 24px;
+  border: 3px solid var(--md-surface-container-high);
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.4);
+  transition: transform 0.2s;
   scroll-snap-align: start;
 }
 
 .screenshot-img:hover {
-  transform: scale(1.03);
-  border-color: var(--md-sys-color-primary);
+  transform: scale(1.02);
+  border-color: var(--md-primary);
 }
 
-/* 7. TECH STACK - M3 Chips */
+/* TECH STACK - Fix contrasto */
 .tech-chips {
   display: flex;
   flex-wrap: wrap;
@@ -404,25 +418,24 @@
 }
 
 .tech-chip {
-  background-color: var(--md-sys-color-secondary-container);
-  color: var(--md-sys-color-on-secondary);
+  background: var(--md-secondary-container);
+  color: var(--md-on-secondary-container);
   font-family: var(--font-mono);
-  font-size: 0.8rem;
+  font-size: 0.8125rem;
   font-weight: 500;
   padding: 0.5rem 1rem;
-  border-radius: 8px; /* M3 Small */
-  border: 1px solid transparent;
-  transition: all 0.2s;
+  border-radius: 8px;
+  border: 1px solid rgba(176, 230, 196, 0.2);
 }
 
 .tech-chip:hover {
-  background-color: var(--md-sys-color-primary-container);
-  color: var(--md-sys-color-on-primary-container);
+  background: var(--md-primary-container);
+  color: var(--md-on-primary-container);
 }
 
-/* 8 & 9. TEXT BLOCKS */
+/* TEXT BLOCKS */
 .text-block {
-  color: var(--md-sys-color-on-background);
+  color: var(--md-on-background);
   opacity: 0.85;
   font-size: 1rem;
   line-height: 1.7;
@@ -430,41 +443,35 @@
 }
 
 .text-link {
-  color: var(--md-sys-color-primary);
+  color: var(--md-primary);
   text-decoration: underline;
   text-underline-offset: 3px;
-  transition: color 0.2s;
 }
 
 .text-link:hover {
-  color: var(--md-sys-color-on-primary);
-  text-decoration: none;
+  color: var(--md-on-primary);
 }
 
-/* ==========================================================================
-   RESPONSIVE - MOBILE FIX
-   ========================================================================== */
+/* MOBILE RESPONSIVE */
 @media (max-width: 768px) {
   .project-main {
-    padding: 2rem 0 3rem;
+    padding: 2rem 0.75rem 3rem;
   }
 
-  /* Hero più compatto */
   .project-hero {
     padding: 1.5rem 1rem;
     border-radius: 20px;
-    margin-bottom: 2.5rem;
   }
-  
+
   .project-title {
-    font-size: 2rem;
+    font-size: 1.875rem;
   }
 
   .project-description {
-    font-size: 1rem;
+    font-size: 0.9375rem;
+    padding: 0;
   }
 
-  /* Pulsanti in colonna su mobile */
   .project-actions {
     flex-direction: column;
     align-items: stretch;
@@ -472,39 +479,52 @@
 
   .btn {
     width: 100%;
-    justify-content: center;
   }
 
-  /* Sezioni con meno padding */
   .project-section {
+    padding: 0;
     margin-bottom: 2.5rem;
-    padding: 0 0.5rem;
   }
 
   .section-heading {
-    font-size: 1.4rem;
-    margin-bottom: 1rem;
+    font-size: 1.375rem;
   }
 
-  /* Timeline compatta per mobile */
+  .features-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .feature-card {
+    padding: 1.25rem;
+  }
+
+  .usage-list {
+    padding: 1.25rem;
+  }
+
+  .usage-list li {
+    padding-left: 2.5rem;
+  }
+
   .timeline {
     padding-left: 1.5rem;
     margin-left: 0;
   }
 
-  .timeline-item {
-    margin-bottom: 1.75rem;
+  .timeline::before {
+    left: 0.375rem;
   }
 
   .timeline-dot {
-    left: -2rem;
+    left: -1.625rem;
     width: 12px;
     height: 12px;
-    box-shadow: 0 0 0 3px var(--md-sys-color-background);
   }
 
-  .timeline-item.current .timeline-dot {
-    box-shadow: 0 0 0 3px var(--md-sys-color-background), 0 0 8px rgba(176, 230, 196, 0.4);
+  .timeline-item.future .timeline-dot {
+    left: -1.5rem;
+    width: 10px;
+    height: 10px;
   }
 
   .timeline-content h3 {
@@ -515,48 +535,14 @@
     font-size: 0.875rem;
   }
 
-  /* Features in colonna singola */
-  .features-grid {
-    grid-template-columns: 1fr;
-    gap: 0.75rem;
-  }
-
-  .feature-card {
-    padding: 1.25rem;
-  }
-
-  /* Usage list più compatta */
-  .usage-list {
-    padding: 1.25rem;
-    font-size: 0.9rem;
-  }
-
-  .usage-list li {
-    margin-bottom: 0.75rem;
-  }
-
-  /* Install links in colonna */
   .install-links {
     grid-template-columns: 1fr;
-    gap: 0.75rem;
-  }
-
-  .install-link {
-    padding: 1rem 1.25rem;
-  }
-
-  /* Screenshot più piccoli */
-  .screenshots-grid {
-    gap: 1rem;
-    padding: 0.5rem;
   }
 
   .screenshot-img {
     width: 200px;
-    border-radius: 20px;
   }
 
-  /* Tech chips più piccoli */
   .tech-chips {
     gap: 0.5rem;
   }
@@ -565,17 +551,11 @@
     font-size: 0.75rem;
     padding: 0.4rem 0.75rem;
   }
-
-  /* Testo base */
-  .text-block {
-    font-size: 0.95rem;
-  }
 }
 
-/* Per schermi molto piccoli (iPhone SE, ecc.) */
 @media (max-width: 380px) {
   .project-title {
-    font-size: 1.75rem;
+    font-size: 1.625rem;
   }
 
   .screenshot-img {
@@ -584,65 +564,5 @@
 
   .timeline {
     padding-left: 1.25rem;
-  }
-
-  .timeline-dot {
-    left: -1.75rem;
-    width: 10px;
-    height: 10px;
-  }
-}
-
-/* M3 Elevation Shadows */
-.elevation-1 {
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
-}
-
-.elevation-2 {
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
-}
-
-.elevation-3 {
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
-}
-
-/* ==========================================================================
-   MATERIAL 3 - LIGHT MODE (Auto-detect)
-   ========================================================================== */
-@media (prefers-color-scheme: light) {
-  :root {
-    /* Background - Light Mode */
-    --md-sys-color-background: #FDFCF5;
-    --md-sys-color-on-background: #1A1C19;
-    --md-sys-color-surface: #FDFCF5;
-    --md-sys-color-surface-variant: #F0F0F0;
-    --md-sys-color-surface-container: #F5F5F0;
-    --md-sys-color-surface-container-low: #FAFAF5;
-    --md-sys-color-surface-container-high: #EFEFEA;
-    --md-sys-color-surface-container-highest: #E8E8E3;
-    
-    /* Primary - adjusted for light bg */
-    --md-sys-color-primary: #2E5C45;
-    --md-sys-color-on-primary: #FFFFFF;
-    --md-sys-color-primary-container: #B0E6C4;
-    --md-sys-color-on-primary-container: #1C3D2A;
-    
-    /* Secondary */
-    --md-sys-color-secondary: #4A6B55;
-    --md-sys-color-on-secondary: #FFFFFF;
-    --md-sys-color-secondary-container: #D4F0DA;
-    
-    /* Error */
-    --md-sys-color-error: #BA1A1A;
-    --md-sys-color-on-error: #FFFFFF;
-    
-    /* Outline */
-    --md-sys-color-outline: #7A7A7A;
-    --md-sys-color-outline-variant: #C9C9C9;
-    
-    /* Elevation - lighter for light mode */
-    --md-sys-elevation-1: rgba(0, 0, 0, 0.05);
-    --md-sys-elevation-2: rgba(0, 0, 0, 0.08);
-    --md-sys-elevation-3: rgba(0, 0, 0, 0.11);
   }
 }
