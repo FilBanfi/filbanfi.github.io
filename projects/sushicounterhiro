@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>0 皿 · Hiro Rho</title>
+  <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@600;800&family=Noto+Serif+JP:wght@400;700;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --beni: #B61C1C;
+      --sumi: #101010;
+      --kin: #C9A24A;
+      --washi: #EFE6D2;
+      --urushi: #1B0505;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    html, body {
+      height: 100%;
+    }
+
+    body {
+      font-family: "Noto Serif JP", "Shippori Mincho", serif;
+      background:
+        radial-gradient(ellipse at center, #1c0707 0%, #090202 100%);
+      color: var(--washi);
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+      position: relative;
+      user-select: none;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background:
+        repeating-radial-gradient(
+          circle at 20% 20%,
+          rgba(201, 162, 74, 0.05) 0 1px,
+          transparent 1px 26px
+        ),
+        repeating-radial-gradient(
+          circle at 80% 80%,
+          rgba(182, 28, 28, 0.05) 0 1px,
+          transparent 1px 34px
+        );
+      pointer-events: none;
+    }
+
+    .frame {
+      width: min(92vw, 460px);
+      min-height: min(88vh, 720px);
+      background: linear-gradient(180deg, rgba(27, 5, 5, 0.92), rgba(10, 2, 2, 0.96));
+      border: 1px solid rgba(201, 162, 74, 0.45);
+      box-shadow:
+        0 0 0 1px rgba(0, 0, 0, 0.7),
+        0 30px 80px rgba(0, 0, 0, 0.55);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 44px 28px 34px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .frame::before,
+    .frame::after {
+      content: "";
+      position: absolute;
+      width: 34px;
+      height: 34px;
+      border: 2px solid var(--kin);
+      opacity: 0.85;
+    }
+
+    .frame::before {
+      top: 12px;
+      left: 12px;
+      border-right: none;
+      border-bottom: none;
+    }
+
+    .frame::after {
+      bottom: 12px;
+      right: 12px;
+      border-left: none;
+      border-top: none;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 42px;
+    }
+
+    .logo-wrap {
+      margin-bottom: 24px;
+      line-height: 0;
+    }
+
+    .logo {
+      max-width: 280px;
+      width: 70%;
+      height: auto;
+      opacity: 0.92;
+      filter: drop-shadow(0 2px 8px rgba(0,0,0,0.35));
+    }
+
+    h1 {
+      font-family: "Shippori Mincho", serif;
+      font-weight: 800;
+      font-size: clamp(38px, 8vw, 58px);
+      letter-spacing: 0.14em;
+      line-height: 1;
+      color: var(--washi);
+      text-shadow: 0 0 22px rgba(201, 162, 74, 0.22);
+    }
+
+    h1 .red {
+      color: var(--beni);
+    }
+
+    .sub {
+      margin-top: 12px;
+      font-size: 11px;
+      letter-spacing: 0.42em;
+      text-transform: uppercase;
+      color: var(--kin);
+    }
+
+    .counter-wrap {
+      text-align: center;
+      margin-bottom: 42px;
+    }
+
+    #count {
+      font-family: "Shippori Mincho", serif;
+      font-weight: 800;
+      font-size: clamp(96px, 26vw, 160px);
+      line-height: 0.9;
+      color: var(--washi);
+      text-shadow:
+        0 0 18px rgba(182, 28, 28, 0.28),
+        0 0 42px rgba(201, 162, 74, 0.12);
+    }
+
+    #count.pop {
+      animation: pop 0.18s ease;
+    }
+
+    @keyframes pop {
+      0% { transform: scale(1); }
+      45% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+
+    .label {
+      margin-top: 14px;
+      font-size: 13px;
+      letter-spacing: 0.38em;
+      color: var(--kin);
+    }
+
+    .label strong {
+      color: var(--washi);
+      font-weight: 700;
+    }
+
+    .add {
+      width: 190px;
+      height: 190px;
+      border-radius: 50%;
+      border: 3px solid var(--kin);
+      background:
+        radial-gradient(circle at 32% 28%, #d33030 0%, #a31818 42%, #6d0e0e 100%);
+      color: var(--washi);
+      cursor: pointer;
+      display: grid;
+      place-items: center;
+      gap: 4px;
+      box-shadow:
+        inset 0 0 0 8px rgba(0, 0, 0, 0.12),
+        inset 0 -18px 26px rgba(0, 0, 0, 0.28),
+        0 18px 40px rgba(182, 28, 28, 0.34),
+        0 0 0 1px rgba(0, 0, 0, 0.6);
+      transition: transform 0.15s ease, box-shadow 0.15s ease, filter 0.15s ease;
+      position: relative;
+    }
+
+    .add::after {
+      content: "";
+      position: absolute;
+      inset: 14px;
+      border-radius: 50%;
+      border: 1px dashed rgba(239, 230, 210, 0.28);
+      pointer-events: none;
+    }
+
+    .add:hover {
+      transform: translateY(-2px);
+      filter: brightness(1.05);
+      box-shadow:
+        inset 0 0 0 8px rgba(0, 0, 0, 0.12),
+        inset 0 -18px 26px rgba(0, 0, 0, 0.28),
+        0 24px 52px rgba(182, 28, 28, 0.42),
+        0 0 0 1px rgba(0, 0, 0, 0.6);
+    }
+
+    .add:active {
+      transform: translateY(1px) scale(0.985);
+    }
+
+    .add .kanji {
+      font-size: 42px;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      color: var(--washi);
+      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
+    }
+
+    .add .plus {
+      font-size: 18px;
+      letter-spacing: 0.28em;
+      color: #f6edda;
+      opacity: 0.92;
+    }
+
+    .remove {
+      margin-top: 26px;
+      background: transparent;
+      color: rgba(239, 230, 210, 0.72);
+      border: 1px solid rgba(201, 162, 74, 0.4);
+      padding: 8px 14px;
+      font-family: inherit;
+      font-size: 12px;
+      letter-spacing: 0.24em;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .remove:hover {
+      color: var(--washi);
+      border-color: var(--kin);
+      background: rgba(201, 162, 74, 0.08);
+    }
+
+    .remove:active {
+      transform: scale(0.98);
+    }
+
+    .note {
+      margin-top: 34px;
+      font-size: 10px;
+      letter-spacing: 0.28em;
+      color: rgba(201, 162, 74, 0.55);
+      text-transform: uppercase;
+      text-align: center;
+    }
+
+    @media (max-height: 700px) {
+      header {
+        margin-bottom: 26px;
+      }
+
+      .logo-wrap {
+        margin-bottom: 16px;
+      }
+
+      .logo {
+        max-width: 220px;
+      }
+
+      .counter-wrap {
+        margin-bottom: 26px;
+      }
+
+      .add {
+        width: 158px;
+        height: 158px;
+      }
+
+      .add .kanji {
+        font-size: 34px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="frame">
+    <header>
+      <div class="logo-wrap">
+        <img src="https://hirorho.com/wp-content/uploads/2025/03/logo-2-1024x611.png" alt="Hiro Rho Japanese Restaurant" class="logo">
+      </div>
+      <h1><span class="red">寿</span>司<span class="red">修</span>行</h1>
+      <div class="sub">You Can Eat · 一人</div>
+    </header>
+
+    <div class="counter-wrap" aria-live="polite">
+      <div id="count">0</div>
+      <div class="label"><strong>皿</strong> · Piatti</div>
+    </div>
+
+    <button id="add" class="add" type="button" aria-label="Aggiungi un piatto">
+      <span class="kanji">追加</span>
+      <span class="plus">+1</span>
+    </button>
+
+    <button id="remove" class="remove" type="button" aria-label="Togli un piatto">
+      −1 · 削除
+    </button>
+
+    <div class="note">Salvataggio automatico attivo</div>
+  </main>
+
+  <script>
+    const STORAGE_KEY = "sushi-dojo-hiro-rho-v1";
+
+    const countEl = document.getElementById("count");
+    const addBtn = document.getElementById("add");
+    const removeBtn = document.getElementById("remove");
+
+    let count = 0;
+
+    function load() {
+      try {
+        const saved = localStorage.getItem(STORAGE_KEY);
+        const parsed = Number(saved);
+        count = Number.isFinite(parsed) && parsed >= 0 ? Math.floor(parsed) : 0;
+      } catch (e) {
+        count = 0;
+      }
+    }
+
+    function save() {
+      try {
+        localStorage.setItem(STORAGE_KEY, String(count));
+      } catch (e) {
+        // se localStorage è bloccato, l'app funziona comunque solo senza memoria
+      }
+    }
+
+    function render(pop = false) {
+      countEl.textContent = count;
+      document.title = `${count} 皿 · Hiro Rho`;
+
+      if (pop) {
+        countEl.classList.remove("pop");
+        void countEl.offsetWidth;
+        countEl.classList.add("pop");
+      }
+    }
+
+    addBtn.addEventListener("click", () => {
+      count++;
+      save();
+      render(true);
+    });
+
+    removeBtn.addEventListener("click", () => {
+      if (count > 0) {
+        count--;
+        save();
+        render(true);
+      }
+    });
+
+    window.addEventListener("beforeunload", save);
+
+    load();
+    render();
+  </script>
+</body>
+</html>
